@@ -1,19 +1,19 @@
-# 💍 Free Wedding Website in 15 Minutes
+# 🏔️ Mountain Wedding Website
 
-Create a beautiful, fast, and free wedding website using GitHub Pages. Minimal setup required!
+A beautiful, responsive wedding website optimized for GitHub Pages with mountain wedding theming.
 
 **Live Demo**: [https://yourusername.github.io/wedding](https://yourusername.github.io/wedding)
 
 ## ✨ Features
 
+- **🏔️ Mountain Wedding Theme** - Warm browns, mountain graphics, clean typography
+- **🌙 Smart Dark/Light Mode** - Manual toggle with persistent storage + system preference
+- **⚡ Performance Optimized** - All advanced features enabled, sub-second loading
+- **📱 Fully Responsive** - Mobile-first design, touch-friendly
+- **🔄 Always-On Features** - Countdown, animations, lazy loading, offline support
+- **💍 Wedding Focused** - Ceremony/reception details, hotels, registry, RSVP
 - **100% Free** - Hosted on GitHub Pages forever
-- **Human-Friendly Config** - Edit YAML, get fast JSON
-- **Mobile Friendly** - Looks great on all devices  
-- **Offline Support** - Works without internet at the venue
-- **Dark Mode** - Automatically matches system preference
 - **Google Forms RSVP** - No backend needed
-- **Fast** - Loads in under 1 second
-- **Secure** - Guidance for protecting your RSVP form
 
 ## 🛠️ Prerequisites
 
@@ -154,9 +154,9 @@ git push
 - `rsvp.formUrl` - Your Google Form URL with `?embedded=true`
 
 ### Optional Customization
-- `theme.primary` - Your wedding color (default: gold #d4af37)
-- `theme.font` - Google Font name (default: "Playfair Display")
-- `dressCode` - e.g., "Black Tie", "Cocktail", "Casual"
+- `theme.primary` - Your wedding color (default: mountain brown #8B4513)
+- `theme.font` - Google Font name (default: "Montserrat")
+- `dressCode` - e.g., "Mountain Formal", "Cocktail", "Casual"
 - `footer.text` - Customize the footer message
 
 ### Adding/Removing Sections
@@ -184,7 +184,9 @@ Edit the `sections` array in config.json:
 
 ## 🎨 Color Themes
 
-Change `theme.primary` in config.json:
+Change `theme.primary` in config.yaml:
+- Mountain Brown (default): `"#8B4513"`
+- Forest Green: `"#2E8B57"`
 - Classic Gold: `"#d4af37"`
 - Romantic Rose: `"#e8b4b8"`
 - Sage Green: `"#87a96b"`

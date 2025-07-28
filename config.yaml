@@ -9,8 +9,8 @@ date:
   iso: "2026-09-12T16:00:00"
 
 theme:
-  primary: "#d4af37"         # Your wedding color
-  font: "Playfair Display"   # Google Font name
+  primary: "#8B4513"         # Mountain brown color
+  font: "Montserrat"         # Clean mountain-appropriate font
 
 # Navigation sections - customize order and visibility
 sections:
@@ -140,13 +140,6 @@ rsvp:
   deadline: "2026-08-01"
   form_url: "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
 
-# Advanced features
-features:
-  countdown: true           # Show countdown timer
-  animations: true          # Enable scroll animations
-  lazy_loading: true        # Lazy load images
-  offline_mode: true        # Enable service worker
-  share_button: true        # Show share button
 
 # Footer
 footer:

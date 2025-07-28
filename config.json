@@ -7,8 +7,8 @@
     "iso": "2026-09-12T16:00:00"
   },
   "theme": {
-    "primary": "#d4af37",
-    "font": "Playfair Display"
+    "primary": "#8B4513",
+    "font": "Montserrat"
   },
   "sections": [
     {
@@ -151,13 +151,6 @@
   "rsvp": {
     "deadline": "2026-08-01",
     "form_url": "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
-  },
-  "features": {
-    "countdown": true,
-    "animations": true,
-    "lazy_loading": true,
-    "offline_mode": true,
-    "share_button": true
   },
   "footer": {
     "text": "Made with ❤️ by Tye",
