@@ -1136,24 +1136,59 @@
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('visible');
-                        
-                        // Update active nav item
-                        const section = entry.target.closest('section');
-                        if (section && section.id) {
-                            const navLink = document.querySelector(`#nav a[href="#${section.id}"]`);
-                            if (navLink && entry.intersectionRatio > 0.5) {
-                                document.querySelectorAll('#nav a').forEach(a => a.classList.remove('active'));
-                                navLink.classList.add('active');
-                            }
-                        }
                     }
                 });
             }, observerOptions);
+
+            // Separate observer for navigation breadcrumb with better accuracy
+            const navObserverOptions = {
+                threshold: [0, 0.25, 0.5, 0.75, 1.0],
+                rootMargin: '0px 0px -50% 0px' // Only consider sections in top half of viewport
+            };
+
+            let sectionVisibility = new Map();
             
-            // Observe all animated elements
+            const navObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const section = entry.target;
+                    if (section.id) {
+                        sectionVisibility.set(section.id, {
+                            ratio: entry.intersectionRatio,
+                            isIntersecting: entry.isIntersecting
+                        });
+                    }
+                });
+                
+                // Find the section with highest visibility ratio
+                let mostVisibleSection = null;
+                let highestRatio = 0;
+                
+                for (const [sectionId, data] of sectionVisibility) {
+                    if (data.isIntersecting && data.ratio > highestRatio) {
+                        highestRatio = data.ratio;
+                        mostVisibleSection = sectionId;
+                    }
+                }
+                
+                // Update active nav item
+                if (mostVisibleSection) {
+                    const navLink = document.querySelector(`#nav a[href="#${mostVisibleSection}"]`);
+                    if (navLink) {
+                        document.querySelectorAll('#nav a').forEach(a => a.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                }
+            }, navObserverOptions);
+            
+            // Observe all animated elements and sections
             requestAnimationFrame(() => {
                 document.querySelectorAll('.animate').forEach(el => {
                     observer.observe(el);
+                });
+                
+                // Observe sections for navigation breadcrumb
+                document.querySelectorAll('section[id]').forEach(section => {
+                    navObserver.observe(section);
                 });
             });
             

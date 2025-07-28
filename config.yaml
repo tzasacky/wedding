@@ -24,7 +24,7 @@ sections:
     
   - id: story
     name: "Our Story"
-    enabled: true
+    enabled: false
     
   - id: timeline
     name: "Timeline"
