@@ -9,7 +9,6 @@ const STATIC_ASSETS = [
   './',
   './index.html',
   './config.yaml',
-  './config.json', // Fallback
   './sw.js'
 ];
 
@@ -148,7 +147,7 @@ self.addEventListener('fetch', event => {
         });
       })
     );
-  } else if (url.pathname.endsWith('.yaml') || url.pathname.endsWith('.json')) {
+  } else if (url.pathname.endsWith('.yaml')) {
     // Config files - stale while revalidate
     event.respondWith(CACHE_STRATEGIES.staleWhileRevalidate(request));
   } else {

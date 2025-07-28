@@ -17,50 +17,7 @@
     <meta name="description" content="Join us for our wedding celebration">
     <meta name="author" content="Wedding Couple">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="">
-    <meta property="og:title" content="Wedding">
-    <meta property="og:description" content="Join us for our wedding celebration">
-    <meta property="og:image" content="">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
     
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="">
-    <meta property="twitter:title" content="Wedding">
-    <meta property="twitter:description" content="Join us for our wedding celebration">
-    <meta property="twitter:image" content="">
-    
-    <!-- Structured Data for Search Engines -->
-    <script type="application/ld+json" id="structured-data">
-    {
-        "@context": "https://schema.org",
-        "@type": "Event",
-        "name": "Wedding",
-        "startDate": "",
-        "endDate": "",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "location": {
-            "@type": "Place",
-            "name": "",
-            "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "",
-                "addressLocality": "",
-                "addressRegion": "",
-                "postalCode": ""
-            }
-        },
-        "description": "Join us for our wedding celebration",
-        "organizer": {
-            "@type": "Person",
-            "name": ""
-        }
-    }
-    </script>
     
     <!-- Favicon -->
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💍</text></svg>">
@@ -768,16 +725,7 @@
                 return config;
             } catch (error) {
                 console.error('Failed to load config:', error);
-                
-                // Fallback to JSON if YAML fails
-                try {
-                    const response = await fetch('./config.json');
-                    const config = await response.json();
-                    perfData.configLoadEnd = performance.now();
-                    return config;
-                } catch {
-                    return null;
-                }
+                return null;
             }
         }
 
@@ -929,43 +877,8 @@
         async function buildPage(config) {
             perfData.renderStart = performance.now();
             
-            // Update meta tags
+            // Update page title
             document.title = `${config.couple.names} - ${config.date.display}`;
-            document.querySelector('meta[name="description"]').content = config.meta?.description || `Join ${config.couple.names} for their wedding celebration`;
-            
-            // Update Open Graph tags
-            const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, '');
-            document.querySelector('meta[property="og:url"]').content = baseUrl;
-            document.querySelector('meta[property="og:title"]').content = document.title;
-            document.querySelector('meta[property="og:description"]').content = config.meta?.description || '';
-            document.querySelector('meta[property="twitter:url"]').content = baseUrl;
-            
-            // Update structured data
-            const structuredData = {
-                "@context": "https://schema.org",
-                "@type": "Event",
-                "name": `${config.couple.names} Wedding`,
-                "description": config.meta?.description || `Wedding celebration of ${config.couple.names}`,
-                "startDate": config.date.iso,
-                "endDate": config.date.iso,
-                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-                "eventStatus": "https://schema.org/EventScheduled",
-                "location": {
-                    "@type": "Place",
-                    "name": config.ceremony?.venue || "Wedding Venue",
-                    "address": {
-                        "@type": "PostalAddress",
-                        "streetAddress": config.ceremony?.address || "",
-                        "addressLocality": config.ceremony?.city?.split(',')[0] || "",
-                        "addressRegion": config.ceremony?.city?.split(',')[1]?.trim() || ""
-                    }
-                },
-                "organizer": {
-                    "@type": "Person",
-                    "name": config.couple.names
-                }
-            };
-            document.getElementById('structured-data').textContent = JSON.stringify(structuredData);
             
             // Load custom font if specified
             if (config.theme?.font) {
