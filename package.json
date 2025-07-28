@@ -1,0 +1,8 @@
+{
+  "name": "wedding-site",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "bun run server.js",
+    "validate": "bun run validate.js"
+  }
+}
