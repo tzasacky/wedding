@@ -40,35 +40,48 @@ Your site will be live at: `https://YOUR-USERNAME.github.io/wedding`
    - Message (Paragraph, Optional)
 3. Click Send → Link icon → Copy link
 4. Replace `/viewform` with `/viewform?embedded=true` at the end
+5. **SECURITY**: Restrict responses to invited guests only:
+   - Click Settings (gear icon) → Responses
+   - Turn on "Limit to 1 response"
+   - Consider adding a passcode question as the first field
+   - Or use "Response receipts" to get email confirmations
 
 ### 4. Customize Your Site (3 minutes)
-Edit `config.json` with your details:
+Edit `config.yaml` with your details:
 
-```json
-{
-  "couple": {
-    "names": "Your Names Here"
-  },
-  "date": {
-    "display": "10.14.2024",
-    "iso": "2024-10-14"
-  },
-  "ceremony": {
-    "time": "3:00 PM",
-    "venue": "Beautiful Church",
-    "address": "123 Main St",
-    "city": "Your City, ST 12345"
-  },
-  "rsvp": {
-    "deadline": "2024-09-14",
-    "formUrl": "YOUR_GOOGLE_FORM_URL_HERE"
-  }
-}
+```yaml
+couple:
+  names: "Your Names Here"
+
+date:
+  display: "10.14.2024"
+  iso: "2024-10-14T15:00:00"
+
+ceremony:
+  time: "3:00 PM"
+  venue: "Beautiful Church"
+  address: "123 Main St"
+  city: "Your City, ST 12345"
+
+rsvp:
+  deadline: "2024-09-14"
+  form_url: "YOUR_GOOGLE_FORM_URL_HERE"
 ```
 
 ### 5. Push Your Changes (30 seconds)
 - If using GitHub Web: Just click "Commit changes"
 - If using Git: `git add . && git commit -m "Update config" && git push`
+
+### 6. Quick Start Checklist
+- [ ] Changed couple names
+- [ ] Updated wedding date
+- [ ] Added ceremony details
+- [ ] Added reception details  
+- [ ] Created Google Form
+- [ ] Added form URL to config
+- [ ] Added security to Google Form
+- [ ] Tested on phone
+- [ ] Shared with partner
 
 **That's it! Your site is live! 🎉**
 
@@ -184,13 +197,39 @@ A: Yes! Create new HTML files and link them in the navigation.
 **Q: How do I see RSVP responses?**
 A: Check your Google Form responses or link it to a Google Sheet.
 
+## 🔒 Security for Google Forms
+
+**IMPORTANT**: Protect your RSVP form from spam and uninvited responses:
+
+1. **Limit Responses**: Settings → Responses → "Limit to 1 response"
+2. **Add Passcode**: Include a passcode field that only invited guests know
+3. **Email Collection**: Require email addresses to track responses
+4. **Response Receipts**: Send confirmation emails to respondents
+5. **Review Regularly**: Check for suspicious submissions
+
+Example passcode question: "What's the secret word? (Hint: it rhymes with 'love')"
+
+## 🚀 Local Development
+
+For the best experience, use Bun for local development:
+
+```bash
+# Install Bun (if not already installed)
+curl -fsSL https://bun.sh/install | bash
+
+# Start dev server
+bun run dev
+
+# Visit http://localhost:3000
+```
+
 ## 💡 Tips
 
 1. **Test on your phone** before sharing with guests
 2. **Keep images small** - use [TinyPNG](https://tinypng.com) to compress
-3. **Preview locally** by opening index.html in your browser
-4. **Set up early** - gives you time to make tweaks
-5. **Share the link** 2-3 months before the wedding
+3. **Set up early** - gives you time to make tweaks
+4. **Share the link** 2-3 months before the wedding
+5. **Backup your config** - save a copy of config.yaml
 
 ---
 
