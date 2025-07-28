@@ -1,53 +1,90 @@
-# 💍 Free Wedding Website in 10 Minutes
+# 💍 Free Wedding Website in 15 Minutes
 
-Create a beautiful, fast, and free wedding website using GitHub Pages. No coding required!
+Create a beautiful, fast, and free wedding website using GitHub Pages. Minimal setup required!
 
 **Live Demo**: [https://yourusername.github.io/wedding](https://yourusername.github.io/wedding)
 
 ## ✨ Features
 
-- **100% Free** - Hosted on GitHub Pages
-- **No Build Process** - Just edit and push
-- **Mobile Friendly** - Looks great on all devices
+- **100% Free** - Hosted on GitHub Pages forever
+- **Human-Friendly Config** - Edit YAML, get fast JSON
+- **Mobile Friendly** - Looks great on all devices  
 - **Offline Support** - Works without internet at the venue
 - **Dark Mode** - Automatically matches system preference
 - **Google Forms RSVP** - No backend needed
 - **Fast** - Loads in under 1 second
-- **SEO Friendly** - Helps guests find your site
+- **Secure** - Guidance for protecting your RSVP form
 
-## 🚀 Setup in 10 Minutes
+## 🛠️ Prerequisites
 
-### 1. Fork This Repository (30 seconds)
-- Click the "Fork" button at the top right of this page
-- Name it `wedding` (or whatever you want)
+You'll need these tools installed:
 
-### 2. Enable GitHub Pages (1 minute)
-1. Go to your forked repo's Settings
-2. Scroll to "Pages" section
-3. Source: Deploy from a branch
-4. Branch: `main` / `root`
-5. Click Save
+### Required
+- **Git** - [Download here](https://git-scm.com/downloads) or use GitHub Desktop
+- **GitHub Account** - [Sign up free](https://github.com)
 
-Your site will be live at: `https://YOUR-USERNAME.github.io/wedding`
+### Recommended (for best experience)
+- **Bun** - [Install here](https://bun.sh) - Fast JavaScript runtime for local development
 
-### 3. Create Google Form for RSVPs (5 minutes)
-1. Go to [Google Forms](https://forms.google.com)
-2. Create a new form with these fields:
-   - Name (Short answer, Required)
-   - Email (Short answer, Required)
-   - Number of Guests (Multiple choice: 1, 2, 3, 4)
-   - Dietary Restrictions (Paragraph, Optional)
-   - Message (Paragraph, Optional)
-3. Click Send → Link icon → Copy link
-4. Replace `/viewform` with `/viewform?embedded=true` at the end
-5. **SECURITY**: Restrict responses to invited guests only:
-   - Click Settings (gear icon) → Responses
-   - Turn on "Limit to 1 response"
-   - Consider adding a passcode question as the first field
-   - Or use "Response receipts" to get email confirmations
+### Alternative (if you can't use Bun)
+- **Node.js** - [Download here](https://nodejs.org) - Works but slower than Bun
 
-### 4. Customize Your Site (3 minutes)
-Edit `config.yaml` with your details:
+## 🚀 Quick Setup Guide
+
+**Option A: Fork on GitHub (easiest)**
+1. Click the **"Fork"** button at the top right of this page
+2. Name it `wedding` (or whatever you want)
+3. Clone to your computer: `git clone https://github.com/YOUR-USERNAME/wedding.git`
+
+**Option B: Download and create new repo**
+1. Click **"Code"** → **"Download ZIP"**
+2. Extract and rename folder to `wedding`
+3. [Create new repository](https://github.com/new) on GitHub
+4. Upload your files
+
+### Step 2: Enable GitHub Pages (2 minutes)
+1. Go to your repo → **Settings** → **Pages** (left sidebar)
+2. **Source**: Deploy from a branch
+3. **Branch**: `main` / `/ (root)`
+4. Click **Save**
+
+✅ Your site will be live at: `https://YOUR-USERNAME.github.io/wedding`
+
+### Step 3: Install Development Tools (3 minutes)
+
+**Install Bun** (recommended):
+```bash
+# macOS/Linux
+curl -fsSL https://bun.sh/install | bash
+
+# Windows (PowerShell)
+powershell -c "irm bun.sh/install.ps1 | iex"
+```
+
+**Or install Node.js** (alternative):
+- Download from [nodejs.org](https://nodejs.org)
+- Follow installer instructions
+
+### Step 4: Create Google Form for RSVPs (5 minutes)
+1. Go to [**Google Forms**](https://forms.google.com) (requires Google account)
+2. Click **"Blank"** to create a new form
+3. Add these fields:
+   - **Name** (Short answer, Required)
+   - **Email** (Short answer, Required) 
+   - **Number of Guests** (Multiple choice: 1, 2, 3, 4)
+   - **Dietary Restrictions** (Paragraph, Optional)
+   - **Message** (Paragraph, Optional)
+4. Click **Send** → **Link icon** → Copy link
+5. Replace `/viewform` with `/viewform?embedded=true` at the end
+
+**🔒 SECURITY (Important!)**: Protect from spam:
+- Click **Settings** (gear icon) → **Responses**
+- Turn on **"Limit to 1 response"**
+- Consider adding a passcode question as the first field
+- Enable **"Response receipts"** for confirmations
+
+### Step 5: Customize Your Wedding Details (5 minutes)
+Open `config.yaml` in any text editor and update with your details:
 
 ```yaml
 couple:
@@ -68,28 +105,45 @@ rsvp:
   form_url: "YOUR_GOOGLE_FORM_URL_HERE"
 ```
 
-### 5. Build for Production (30 seconds)
+### Step 6: Test Locally (2 minutes)
+Navigate to your project folder and start the dev server:
+
 ```bash
-# Generate config.json from config.yaml
-bun run build
+cd wedding
+
+# If you have Bun
+bun run dev
+
+# If you have Node.js
+npm run dev
 ```
 
-### 6. Push Your Changes (30 seconds)
-- If using GitHub Web: Upload the generated `config.json` file along with your changes
-- If using Git: `git add . && git commit -m "Update config" && git push`
+Visit **http://localhost:3000** to see your site!
 
-### 7. Quick Start Checklist
-- [ ] Changed couple names
-- [ ] Updated wedding date
-- [ ] Added ceremony details
-- [ ] Added reception details  
-- [ ] Created Google Form
-- [ ] Added form URL to config
-- [ ] Added security to Google Form
-- [ ] Tested on phone
-- [ ] Shared with partner
+### Step 7: Deploy to GitHub Pages (1 minute)
+When you're happy with your changes:
 
-**That's it! Your site is live! 🎉**
+```bash
+# Generate the production config
+bun run build   # or: npm run build
+
+# Commit your changes  
+git add .
+git commit -m "Update wedding details"
+git push
+```
+
+✅ **Your site is now live!** Visit `https://YOUR-USERNAME.github.io/wedding`
+
+## ✅ Quick Start Checklist
+- [ ] Forked repository and enabled GitHub Pages
+- [ ] Installed Bun (or Node.js) 
+- [ ] Created Google Form with security settings
+- [ ] Updated `config.yaml` with your wedding details
+- [ ] Tested locally with `bun run dev`
+- [ ] Built and deployed with `bun run build` + `git push`
+- [ ] Tested on mobile device
+- [ ] Shared link with partner for approval
 
 ## 📝 Configuration Guide
 
@@ -215,43 +269,81 @@ A: Check your Google Form responses or link it to a Google Sheet.
 
 Example passcode question: "What's the secret word? (Hint: it rhymes with 'love')"
 
-## 🚀 Local Development
+## 🔧 Development Workflow
 
-For the best experience, use Bun for local development:
-
+### Local Development
 ```bash
-# Install Bun (if not already installed)
-curl -fsSL https://bun.sh/install | bash
-
-# Start dev server (auto-converts YAML to JSON)
-bun run dev
+# Start dev server (auto-converts YAML to JSON on-the-fly)  
+bun run dev        # Recommended (faster)
+# or
+npm run dev        # If using Node.js
 
 # Visit http://localhost:3000
 ```
 
-### Build for Production
+The dev server automatically converts your `config.yaml` to JSON, so you see changes instantly!
 
-Before deploying to GitHub Pages, convert your YAML config to JSON:
-
+### Production Deployment  
 ```bash
-# Build config.json from config.yaml
-bun run build
+# Build static config.json for GitHub Pages
+bun run build     # or: npm run build
 
-# Commit both files
-git add config.yaml config.json
-git commit -m "Update config"
+# Deploy your changes
+git add .
+git commit -m "Update wedding details"  
 git push
 ```
 
-**Why the build step?** GitHub Pages is static hosting, so we can't parse YAML client-side reliably. The build step keeps your config human-friendly (YAML) while serving fast, reliable JSON to browsers.
+### Why the Build Step?
+- **Development**: Edit human-friendly YAML, dev server converts on-the-fly
+- **Production**: GitHub Pages serves pre-built JSON for maximum speed and reliability
+- **Best of both worlds**: Easy editing + fast loading
 
-## 💡 Tips
+### Available Commands
+```bash
+bun run dev       # Start development server
+bun run build     # Generate config.json for production
+```
+
+## 🆘 Troubleshooting
+
+### Site not loading?
+- Check that GitHub Pages is enabled in repo Settings
+- Make sure you ran `bun run build` before pushing
+- Wait 5-10 minutes for GitHub Pages to deploy
+
+### Config errors?
+- Validate your YAML syntax - [use this tool](https://yamlchecker.com)
+- Make sure indentation uses spaces, not tabs
+- Check that required fields are filled in
+
+### Form not working?
+- Ensure Google Form URL ends with `?embedded=true`
+- Test the form URL directly in a browser first
+- Check that form allows public responses
+
+### Dev server won't start?
+```bash
+# Install dependencies first
+bun install    # or: npm install
+
+# Then try starting again  
+bun run dev    # or: npm run dev
+```
+
+### Need help?
+- [Create an issue](https://github.com/tzasacky/wedding/issues) on GitHub
+- Check existing issues for solutions
+
+## 💡 Pro Tips
 
 1. **Test on your phone** before sharing with guests
 2. **Keep images small** - use [TinyPNG](https://tinypng.com) to compress
-3. **Set up early** - gives you time to make tweaks
+3. **Set up early** - gives you time to make tweaks  
 4. **Share the link** 2-3 months before the wedding
 5. **Backup your config** - save a copy of config.yaml
+6. **Use descriptive commit messages** - helps track changes
+7. **Test the RSVP form yourself** before going live
 
 ---
 

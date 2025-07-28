@@ -5,5 +5,14 @@
     "dev": "bun run server.js",
     "build": "bun run build.js",
     "prebuild": "echo '🧹 Cleaning old build...' && rm -f config.json"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "bun": ">=1.0.0"
+  },
+  "keywords": ["wedding", "github-pages", "yaml", "static-site"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tzasacky/wedding.git"
   }
 }
