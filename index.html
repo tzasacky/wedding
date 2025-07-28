@@ -90,7 +90,7 @@
 
         /* Hide content until config loads */
         body:not(.config-loaded) > *:not(#loader) {
-            opacity: 0;
+            visibility: hidden;
         }
 
         /* Skeleton loader */
@@ -207,7 +207,8 @@
             font-weight: 300;
             line-height: 1.1;
             margin-bottom: 1rem;
-            opacity: 0;
+            opacity: 1;
+            transform: translateY(0);
             animation: hero-fade-in 1s ease forwards;
             letter-spacing: -0.02em;
             position: relative;
@@ -218,7 +219,8 @@
         .hero-date {
             font-size: clamp(1.25rem, 3vw, 1.75rem);
             letter-spacing: 0.2em;
-            opacity: 0;
+            opacity: 1;
+            transform: translateY(0);
             animation: hero-fade-in 1s ease 0.2s forwards;
             font-weight: 300;
             position: relative;
@@ -234,13 +236,17 @@
         }
 
         @keyframes hero-fade-in {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
+            0% {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(0.98);
+            }
+            50% {
+                opacity: 1;
+                transform: translateY(0) scale(1.02);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -330,12 +336,17 @@
 
         /* Animate class for scroll animations */
         .animate {
-            opacity: 0;
-            transform: translateY(30px);
+            opacity: 1;
+            transform: translateY(0);
             transition: all 600ms ease;
         }
 
-        .animate.visible {
+        .animate.animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .animate.animate-on-scroll.visible {
             opacity: 1;
             transform: translateY(0);
         }

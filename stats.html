@@ -3,23 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stats for Nerds - Wedding Site</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <title>Stats for Nerds - Mountain Wedding</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏔️</text></svg>">
     <style>
         :root {
-            --primary: #d4af37;
-            --text: #1a1a1a;
-            --bg: #ffffff;
-            --card-bg: #f8f9fa;
-            --border: #e9ecef;
+            --primary: #8B4513;
+            --secondary: #2E8B57;
+            --accent: #F5F5DC;
+            --text: #2C1810;
+            --bg: #FEFEFE;
+            --card-bg: #F8F8F8;
+            --border: #E5E5E5;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --error: #ef4444;
+            --gradient: linear-gradient(135deg, #8B4513 0%, #CD853F 50%, #D2B48C 100%);
+        }
+
+        [data-theme="dark"] {
+            --text: #F8F8F8;
+            --bg: #1C1C1C;
+            --card-bg: #2A2A2A;
+            --border: #404040;
+            --gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
         }
 
         @media (prefers-color-scheme: dark) {
-            :root {
-                --text: #fafafa;
-                --bg: #0a0a0a;
-                --card-bg: #1a1a1a;
-                --border: #2d3748;
+            :root:not([data-theme]) {
+                --text: #F8F8F8;
+                --bg: #1C1C1C;
+                --card-bg: #2A2A2A;
+                --border: #404040;
+                --gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
             }
         }
 
@@ -30,12 +45,25 @@
         }
 
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             color: var(--text);
             background: var(--bg);
             padding: 2rem;
             min-height: 100vh;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 200px;
+            background: var(--gradient);
+            opacity: 0.1;
+            z-index: -1;
         }
 
         .container {
@@ -43,45 +71,129 @@
             margin: 0 auto;
         }
 
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+
         header {
             text-align: center;
             margin-bottom: 3rem;
+            position: relative;
         }
 
         h1 {
             font-size: 2.5rem;
             margin-bottom: 0.5rem;
-            color: var(--primary);
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
         }
 
         .subtitle {
             opacity: 0.7;
             font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .performance-summary {
+            display: inline-flex;
+            gap: 1rem;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .summary-item {
+            text-align: center;
+        }
+
+        .summary-label {
+            font-size: 0.75rem;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .summary-value {
+            font-weight: 600;
+            font-size: 1.25rem;
+            margin-top: 0.25rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2rem;
         }
 
         .stat-card {
             background: var(--card-bg);
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 2rem;
-            transition: transform 0.2s ease;
+            padding: 1.5rem;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            height: fit-content;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
         }
 
         .stat-card:hover {
-            transform: translateY(-2px);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15);
+        }
+
+        .stat-card:hover::before {
+            transform: translateX(0);
         }
 
         .stat-card h3 {
             color: var(--primary);
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .card-icon {
+            font-size: 1.5rem;
         }
 
         .metric {
@@ -107,9 +219,30 @@
             font-weight: bold;
         }
 
-        .good { color: #22c55e; }
-        .needs-improvement { color: #f59e0b; }
-        .poor { color: #ef4444; }
+        .good { 
+            color: var(--success); 
+            position: relative;
+        }
+        .good::before {
+            content: '●';
+            margin-right: 0.5rem;
+        }
+        .needs-improvement { 
+            color: var(--warning);
+            position: relative;
+        }
+        .needs-improvement::before {
+            content: '●';
+            margin-right: 0.5rem;
+        }
+        .poor { 
+            color: var(--error);
+            position: relative;
+        }
+        .poor::before {
+            content: '●';
+            margin-right: 0.5rem;
+        }
 
         .back-link {
             text-align: center;
@@ -142,6 +275,12 @@
             margin: 1rem 0;
         }
 
+        @media (max-width: 1024px) {
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
         @media (max-width: 768px) {
             body {
                 padding: 1rem;
@@ -153,15 +292,36 @@
             
             .stats-grid {
                 grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .performance-summary {
+                flex-direction: column;
+                gap: 0.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Theme Toggle -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+            <span id="theme-icon">🌙</span>
+        </button>
+
         <header>
-            <h1>📊 Stats for Nerds</h1>
-            <p class="subtitle">Performance metrics and technical details</p>
+            <h1>🏔️ Performance Analytics</h1>
+            <p class="subtitle">Mountain Wedding Site • Real-time Performance Metrics</p>
+            <div class="performance-summary" id="performance-summary">
+                <div class="summary-item">
+                    <div class="summary-label">Overall Score</div>
+                    <div class="summary-value" id="overall-score">—</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">Load Time</div>
+                    <div class="summary-value" id="load-time">—</div>
+                </div>
+            </div>
         </header>
 
         <div id="stats-container">
@@ -183,7 +343,7 @@
         };
 
         // Core Web Vitals tracking
-        function trackWebVitals() {
+        async function trackWebVitals() {
             if ('PerformanceObserver' in window) {
                 // Largest Contentful Paint (LCP)
                 try {
@@ -236,16 +396,54 @@
                 }
             }
 
-            // Technical info
+            // Helper function to check WebP support
+            function checkWebPSupport() {
+                return new Promise(resolve => {
+                    const webP = new Image();
+                    webP.onload = webP.onerror = () => resolve(webP.height === 2);
+                    webP.src = 'data:image/webp;base64,UklGRjoAAABXRUJQVlA4IC4AAACyAgCdASoCAAIALmk0mk0iIiIiIgBoSygABc6WWgAA/veff/0PP8bA//LwYAAA';
+                });
+            }
+
+            // Enhanced technical info
+            const connection = navigator.connection;
+            const memory = performance.memory;
+            const screen = window.screen;
+            
+            const webPSupported = await checkWebPSupport();
+            
             stats.technical = {
-                userAgent: navigator.userAgent,
-                viewport: `${window.innerWidth}x${window.innerHeight}`,
-                colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light',
+                // Display & Device
+                viewport: `${window.innerWidth}×${window.innerHeight}`,
+                devicePixelRatio: window.devicePixelRatio || 1,
+                screen: `${screen.width}×${screen.height}`,
+                colorDepth: `${screen.colorDepth}-bit`,
+                
+                // Network & Performance
+                connection: connection ? `${connection.effectiveType.toUpperCase()} (${connection.downlink}Mbps)` : 'Unknown',
+                rtt: connection ? `${connection.rtt}ms` : 'Unknown',
+                saveData: connection ? (connection.saveData ? 'Enabled' : 'Disabled') : 'Unknown',
+                
+                // Memory (Chrome only)
+                jsHeapSize: memory ? `${Math.round(memory.usedJSHeapSize / 1024 / 1024)}MB` : 'Unknown',
+                heapLimit: memory ? `${Math.round(memory.jsHeapSizeLimit / 1024 / 1024)}MB` : 'Unknown',
+                
+                // Browser Features
+                serviceWorker: 'serviceWorker' in navigator,
+                webShare: 'share' in navigator,
+                viewTransitions: 'startViewTransition' in document,
+                intersectionObserver: 'IntersectionObserver' in window,
+                webP: webPSupported,
+                
+                // System Preferences
+                colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'Dark' : 'Light',
                 reducedMotion: window.matchMedia('(prefers-reduced-motion: reduce)').matches,
-                connection: navigator.connection ? `${navigator.connection.effectiveType} (${navigator.connection.downlink}Mbps)` : 'Unknown',
-                serviceWorker: 'serviceWorker' in navigator ? 'Supported' : 'Not supported',
-                webShare: 'share' in navigator ? 'Supported' : 'Not supported',
-                viewTransitions: 'startViewTransition' in document ? 'Supported' : 'Not supported'
+                
+                // Browser Info
+                platform: navigator.platform,
+                language: navigator.language,
+                cookieEnabled: navigator.cookieEnabled,
+                onLine: navigator.onLine
             };
 
             stats.loaded = true;
@@ -287,117 +485,228 @@
                 <div class="stats-grid">
                     <!-- Core Web Vitals -->
                     <div class="stat-card">
-                        <h3>🚀 Core Web Vitals</h3>
+                        <h3><span class="card-icon">🚀</span>Core Web Vitals</h3>
                         ${stats.vitals.lcp ? `<div class="metric">
-                            <span class="metric-name">Largest Contentful Paint (LCP)</span>
+                            <span class="metric-name">LCP</span>
                             <span class="metric-value ${getLCPRating(stats.vitals.lcp)}">${stats.vitals.lcp}ms</span>
                         </div>` : ''}
-                        ${stats.vitals.fid ? `<div class="metric">
-                            <span class="metric-name">First Input Delay (FID)</span>
+                        ${stats.vitals.fid !== undefined ? `<div class="metric">
+                            <span class="metric-name">FID</span>
                             <span class="metric-value ${getFIDRating(stats.vitals.fid)}">${stats.vitals.fid}ms</span>
                         </div>` : ''}
                         ${stats.vitals.cls ? `<div class="metric">
-                            <span class="metric-name">Cumulative Layout Shift (CLS)</span>
+                            <span class="metric-name">CLS</span>
                             <span class="metric-value ${getCLSRating(parseFloat(stats.vitals.cls))}">${stats.vitals.cls}</span>
                         </div>` : ''}
-                        ${!stats.vitals.lcp && !stats.vitals.fid && !stats.vitals.cls ? '<div class="loading">Collecting metrics...</div>' : ''}
-                    </div>
-
-                    <!-- Performance Timing -->
-                    <div class="stat-card">
-                        <h3>⏱️ Performance Timing</h3>
                         ${stats.performance.ttfb ? `<div class="metric">
-                            <span class="metric-name">Time to First Byte (TTFB)</span>
+                            <span class="metric-name">TTFB</span>
                             <span class="metric-value ${getTTFBRating(stats.performance.ttfb)}">${stats.performance.ttfb}ms</span>
                         </div>` : ''}
-                        ${stats.performance.domContentLoaded ? `<div class="metric">
-                            <span class="metric-name">DOM Content Loaded</span>
-                            <span class="metric-value">${stats.performance.domContentLoaded}ms</span>
-                        </div>` : ''}
                         ${stats.performance.loadComplete ? `<div class="metric">
-                            <span class="metric-name">Load Complete</span>
+                            <span class="metric-name">Load Time</span>
                             <span class="metric-value">${stats.performance.loadComplete}ms</span>
-                        </div>` : ''}
-                        ${stats.performance.dns ? `<div class="metric">
-                            <span class="metric-name">DNS Lookup</span>
-                            <span class="metric-value">${stats.performance.dns}ms</span>
-                        </div>` : ''}
-                        ${stats.performance.connect ? `<div class="metric">
-                            <span class="metric-name">Connection Time</span>
-                            <span class="metric-value">${stats.performance.connect}ms</span>
-                        </div>` : ''}
-                        ${stats.performance.request ? `<div class="metric">
-                            <span class="metric-name">Request Time</span>
-                            <span class="metric-value">${stats.performance.request}ms</span>
                         </div>` : ''}
                     </div>
 
-                    <!-- Browser Support -->
+                    <!-- System & Display -->
                     <div class="stat-card">
-                        <h3>🌐 Browser Support</h3>
+                        <h3><span class="card-icon">💻</span>Device & Display</h3>
                         <div class="metric">
-                            <span class="metric-name">Service Worker</span>
-                            <span class="metric-value ${stats.technical.serviceWorker === 'Supported' ? 'good' : 'poor'}">${stats.technical.serviceWorker}</span>
+                            <span class="metric-name">Screen</span>
+                            <span class="metric-value">${stats.technical.screen}</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-name">Web Share API</span>
-                            <span class="metric-value ${stats.technical.webShare === 'Supported' ? 'good' : 'needs-improvement'}">${stats.technical.webShare}</span>
+                            <span class="metric-name">Viewport</span>
+                            <span class="metric-value">${stats.technical.viewport}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Pixel Ratio</span>
+                            <span class="metric-value">${stats.technical.devicePixelRatio}x</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Color Depth</span>
+                            <span class="metric-value">${stats.technical.colorDepth}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Theme</span>
+                            <span class="metric-value">${stats.technical.colorScheme}</span>
+                        </div>
+                    </div>
+
+                    <!-- Network & Memory -->
+                    <div class="stat-card">
+                        <h3><span class="card-icon">🌐</span>Network & Memory</h3>
+                        <div class="metric">
+                            <span class="metric-name">Connection</span>
+                            <span class="metric-value">${stats.technical.connection}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">RTT</span>
+                            <span class="metric-value">${stats.technical.rtt}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Data Saver</span>
+                            <span class="metric-value ${stats.technical.saveData === 'Enabled' ? 'needs-improvement' : 'good'}">${stats.technical.saveData}</span>
+                        </div>
+                        ${stats.technical.jsHeapSize !== 'Unknown' ? `<div class="metric">
+                            <span class="metric-name">JS Memory</span>
+                            <span class="metric-value">${stats.technical.jsHeapSize}</span>
+                        </div>` : ''}
+                        ${stats.technical.heapLimit !== 'Unknown' ? `<div class="metric">
+                            <span class="metric-name">Memory Limit</span>
+                            <span class="metric-value">${stats.technical.heapLimit}</span>
+                        </div>` : ''}
+                    </div>
+
+                    <!-- Browser Capabilities -->
+                    <div class="stat-card">
+                        <h3><span class="card-icon">⚡</span>Browser Features</h3>
+                        <div class="metric">
+                            <span class="metric-name">Service Worker</span>
+                            <span class="metric-value ${stats.technical.serviceWorker ? 'good' : 'poor'}">${stats.technical.serviceWorker ? 'Yes' : 'No'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Web Share</span>
+                            <span class="metric-value ${stats.technical.webShare ? 'good' : 'needs-improvement'}">${stats.technical.webShare ? 'Yes' : 'No'}</span>
                         </div>
                         <div class="metric">
                             <span class="metric-name">View Transitions</span>
-                            <span class="metric-value ${stats.technical.viewTransitions === 'Supported' ? 'good' : 'needs-improvement'}">${stats.technical.viewTransitions}</span>
+                            <span class="metric-value ${stats.technical.viewTransitions ? 'good' : 'needs-improvement'}">${stats.technical.viewTransitions ? 'Yes' : 'No'}</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-name">Color Scheme</span>
-                            <span class="metric-value">${stats.technical.colorScheme}</span>
+                            <span class="metric-name">WebP Support</span>
+                            <span class="metric-value ${stats.technical.webP ? 'good' : 'needs-improvement'}">${stats.technical.webP ? 'Yes' : 'No'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Online Status</span>
+                            <span class="metric-value ${stats.technical.onLine ? 'good' : 'poor'}">${stats.technical.onLine ? 'Online' : 'Offline'}</span>
+                        </div>
+                    </div>
+
+                    <!-- Mountain Wedding Stats -->
+                    <div class="stat-card">
+                        <h3><span class="card-icon">🏔️</span>Wedding Features</h3>
+                        <div class="metric">
+                            <span class="metric-name">Mountain Theme</span>
+                            <span class="metric-value good">Active</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Dark/Light Mode</span>
+                            <span class="metric-value good">Enabled</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Animations</span>
+                            <span class="metric-value ${stats.technical.reducedMotion ? 'needs-improvement' : 'good'}">${stats.technical.reducedMotion ? 'Reduced' : 'Full'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Lazy Loading</span>
+                            <span class="metric-value good">Active</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">PWA Ready</span>
+                            <span class="metric-value good">Yes</span>
+                        </div>
+                    </div>
+
+                    <!-- System Information -->
+                    <div class="stat-card">
+                        <h3><span class="card-icon">🔧</span>System Details</h3>
+                        <div class="metric">
+                            <span class="metric-name">Platform</span>
+                            <span class="metric-value">${stats.technical.platform}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Language</span>
+                            <span class="metric-value">${stats.technical.language}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Cookies</span>
+                            <span class="metric-value ${stats.technical.cookieEnabled ? 'good' : 'poor'}">${stats.technical.cookieEnabled ? 'Enabled' : 'Disabled'}</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-name">Intersection Observer</span>
+                            <span class="metric-value ${stats.technical.intersectionObserver ? 'good' : 'poor'}">${stats.technical.intersectionObserver ? 'Yes' : 'No'}</span>
                         </div>
                         <div class="metric">
                             <span class="metric-name">Reduced Motion</span>
                             <span class="metric-value">${stats.technical.reducedMotion ? 'Yes' : 'No'}</span>
                         </div>
                     </div>
-
-                    <!-- System Info -->
-                    <div class="stat-card">
-                        <h3>💻 System Info</h3>
-                        <div class="metric">
-                            <span class="metric-name">Viewport</span>
-                            <span class="metric-value">${stats.technical.viewport}</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-name">Connection</span>
-                            <span class="metric-value">${stats.technical.connection}</span>
-                        </div>
-                        <div class="metric">
-                            <span class="metric-name">User Agent</span>
-                            <span class="metric-value" style="font-size: 0.8em; word-break: break-all;">${stats.technical.userAgent}</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="stat-card" style="margin-top: 2rem;">
-                    <h3>📈 Performance Tips</h3>
-                    <div style="line-height: 1.8;">
-                        <p><strong>Good:</strong> ✅ LCP &lt; 2.5s, FID &lt; 100ms, CLS &lt; 0.1</p>
-                        <p><strong>Needs Improvement:</strong> ⚠️ LCP 2.5-4s, FID 100-300ms, CLS 0.1-0.25</p>
-                        <p><strong>Poor:</strong> ❌ LCP &gt; 4s, FID &gt; 300ms, CLS &gt; 0.25</p>
-                        <br>
-                        <p><strong>Tips for better performance:</strong></p>
-                        <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-                            <li>Optimize images with WebP format and proper sizing</li>
-                            <li>Minimize CSS and JavaScript</li>
-                            <li>Use a CDN for static assets</li>
-                            <li>Enable gzip compression</li>
-                            <li>Lazy load images below the fold</li>
-                        </ul>
-                    </div>
                 </div>
             `;
         }
 
+        // Theme system
+        function initializeTheme() {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = document.getElementById('theme-icon');
+            
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const defaultTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+            
+            function applyTheme(theme) {
+                document.documentElement.setAttribute('data-theme', theme);
+                themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+                localStorage.setItem('theme', theme);
+            }
+            
+            applyTheme(defaultTheme);
+            
+            themeToggle.addEventListener('click', () => {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+        }
+
+        // Calculate performance score
+        function calculatePerformanceScore() {
+            let score = 0;
+            let factors = 0;
+            
+            if (stats.vitals.lcp) {
+                score += stats.vitals.lcp <= 2500 ? 100 : stats.vitals.lcp <= 4000 ? 75 : 50;
+                factors++;
+            }
+            if (stats.vitals.fid) {
+                score += stats.vitals.fid <= 100 ? 100 : stats.vitals.fid <= 300 ? 75 : 50;
+                factors++;
+            }
+            if (stats.vitals.cls) {
+                const cls = parseFloat(stats.vitals.cls);
+                score += cls <= 0.1 ? 100 : cls <= 0.25 ? 75 : 50;
+                factors++;
+            }
+            
+            return factors > 0 ? Math.round(score / factors) : 0;
+        }
+
+        // Update summary
+        function updateSummary() {
+            const score = calculatePerformanceScore();
+            const loadTime = stats.performance.loadComplete || 0;
+            
+            document.getElementById('overall-score').textContent = score > 0 ? `${score}/100` : '—';
+            document.getElementById('overall-score').className = `summary-value ${score >= 90 ? 'good' : score >= 75 ? 'needs-improvement' : score > 0 ? 'poor' : ''}`;
+            
+            document.getElementById('load-time').textContent = loadTime > 0 ? `${loadTime}ms` : '—';
+            document.getElementById('load-time').className = `summary-value ${loadTime <= 1000 ? 'good' : loadTime <= 2000 ? 'needs-improvement' : loadTime > 0 ? 'poor' : ''}`;
+            
+        }
+
+        // Enhanced update display function
+        const originalUpdateDisplay = updateDisplay;
+        updateDisplay = function() {
+            originalUpdateDisplay();
+            updateSummary();
+        };
+
         // Start tracking when page loads
-        window.addEventListener('load', () => {
-            setTimeout(trackWebVitals, 100);
+        window.addEventListener('load', async () => {
+            initializeTheme();
+            await new Promise(resolve => setTimeout(resolve, 100));
+            await trackWebVitals();
         });
 
         // Update viewport size on resize
