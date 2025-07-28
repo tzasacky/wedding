@@ -1,0 +1,166 @@
+{
+  "couple": {
+    "names": "Tye & Louise"
+  },
+  "date": {
+    "display": "09.12.2026",
+    "iso": "2026-09-12T16:00:00"
+  },
+  "theme": {
+    "primary": "#d4af37",
+    "font": "Playfair Display"
+  },
+  "sections": [
+    {
+      "id": "home",
+      "name": "Home",
+      "enabled": true
+    },
+    {
+      "id": "details",
+      "name": "Details",
+      "enabled": true
+    },
+    {
+      "id": "story",
+      "name": "Our Story",
+      "enabled": true
+    },
+    {
+      "id": "timeline",
+      "name": "Timeline",
+      "enabled": false
+    },
+    {
+      "id": "accommodations",
+      "name": "Hotels",
+      "enabled": true
+    },
+    {
+      "id": "registry",
+      "name": "Registry",
+      "enabled": true
+    },
+    {
+      "id": "gallery",
+      "name": "Gallery",
+      "enabled": false
+    },
+    {
+      "id": "rsvp",
+      "name": "RSVP",
+      "enabled": true
+    }
+  ],
+  "ceremony": {
+    "time": "4:00 PM",
+    "venue": "Crested Butte Land Trust",
+    "address": "311 3rd Street",
+    "city": "Crested Butte, CO 81224"
+  },
+  "reception": {
+    "time": "6:00 PM",
+    "venue": "Slogar Bar & Restaurant",
+    "address": "517 2nd Street",
+    "city": "Crested Butte, CO 81224"
+  },
+  "dress_code": "Mountain Formal - Dress warmly, it can get chilly in the evenings!",
+  "story": {
+    "content": "<p>We met at a coffee shop on a rainy Tuesday morning. What started as a \nspilled latte turned into a conversation that lasted until closing time.</p>\n\n<p>Five years, countless adventures, and one perfect proposal later, \nwe're ready to say \"I do\" surrounded by our favorite people.</p>\n"
+  },
+  "timeline": {
+    "events": [
+      {
+        "date": "October 2020",
+        "title": "First Date",
+        "description": "Coffee turned into dinner, dinner turned into forever"
+      },
+      {
+        "date": "June 2022",
+        "title": "Moving In Together",
+        "description": "Our first apartment in the Mission"
+      },
+      {
+        "date": "December 2024",
+        "title": "The Proposal",
+        "description": "A surprise proposal at Baker Beach at sunset"
+      }
+    ]
+  },
+  "hotels": [
+    {
+      "name": "The Grand Lodge Crested Butte",
+      "address": "6 Emmons Loop",
+      "city": "Mount Crested Butte, CO 81225",
+      "rate": "$220/night",
+      "code": "TYELOUISE2026",
+      "link": "https://www.grandlodgecrestedbutte.com"
+    },
+    {
+      "name": "Elk Mountain Lodge",
+      "address": "129 Gothic Avenue",
+      "city": "Crested Butte, CO 81224",
+      "rate": "$180/night",
+      "code": "WEDDING2026",
+      "link": "https://www.elkmountainlodge.net"
+    },
+    {
+      "name": "Old Town Inn",
+      "address": "708 6th Street",
+      "city": "Crested Butte, CO 81224",
+      "rate": "$160/night",
+      "code": "TYEANDLOUISE",
+      "link": "https://www.oldtowninn.net"
+    }
+  ],
+  "registry": {
+    "message": "Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we've registered at the following stores.",
+    "stores": [
+      {
+        "name": "Williams Sonoma",
+        "url": "https://www.williams-sonoma.com/registry/tyelouise"
+      },
+      {
+        "name": "Crate & Barrel",
+        "url": "https://www.crateandbarrel.com/gift-registry/tye-louise/2025"
+      },
+      {
+        "name": "Amazon",
+        "url": "https://www.amazon.com/wedding/tye-louise-aug-2025"
+      },
+      {
+        "name": "Honeymoon Fund",
+        "url": "https://www.honeyfund.com/wedding/tye-louise-2025"
+      }
+    ]
+  },
+  "gallery": {
+    "images": [
+      {
+        "url": "./images/engagement-1.jpg",
+        "thumbnail": "./images/engagement-1-thumb.jpg",
+        "caption": "Engagement photos at Golden Gate Park"
+      },
+      {
+        "url": "./images/engagement-2.jpg",
+        "thumbnail": "./images/engagement-2-thumb.jpg",
+        "caption": "At the beach"
+      }
+    ]
+  },
+  "rsvp": {
+    "deadline": "2026-08-01",
+    "form_url": "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
+  },
+  "features": {
+    "countdown": true,
+    "animations": true,
+    "lazy_loading": true,
+    "offline_mode": true,
+    "share_button": true
+  },
+  "footer": {
+    "text": "Made with ❤️ by Tye",
+    "github_url": "https://github.com/tzasacky/wedding"
+  }
+}

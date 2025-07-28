@@ -5,12 +5,8 @@ couple:
   names: "Tye & Louise"
 
 date:
-  display: "08.15.2025"
-  iso: "2025-08-15T16:00:00"
-
-meta:
-  description: "Join Tye & Louise for their wedding celebration on August 15, 2025 in San Francisco"
-  image: "./images/og-image.jpg"
+  display: "09.12.2026"
+  iso: "2026-09-12T16:00:00"
 
 theme:
   primary: "#d4af37"         # Your wedding color
@@ -28,7 +24,7 @@ sections:
     
   - id: story
     name: "Our Story"
-    enabled: false          # Set to true to enable
+    enabled: true
     
   - id: timeline
     name: "Timeline"
@@ -53,17 +49,17 @@ sections:
 # Event details
 ceremony:
   time: "4:00 PM"
-  venue: "St. Mary's Cathedral"
-  address: "123 Main Street"
-  city: "San Francisco, CA 94102"
+  venue: "Crested Butte Land Trust"
+  address: "311 3rd Street"
+  city: "Crested Butte, CO 81224"
 
 reception:
   time: "6:00 PM"
-  venue: "The Grand Ballroom"
-  address: "456 Oak Avenue"
-  city: "San Francisco, CA 94103"
+  venue: "Slogar Bar & Restaurant"
+  address: "517 2nd Street"
+  city: "Crested Butte, CO 81224"
 
-dress_code: "Black Tie Optional"
+dress_code: "Mountain Formal - Dress warmly, it can get chilly in the evenings!"
 
 # Our Story section (optional)
 story:
@@ -91,26 +87,26 @@ timeline:
 
 # Accommodations
 hotels:
-  - name: "The Grand Hotel"
-    address: "123 Market Street"
-    city: "San Francisco, CA 94103"
-    rate: "$189/night"
-    code: "TYELOUISE"
-    link: "https://grandhotel.com/wedding-block"
+  - name: "The Grand Lodge Crested Butte"
+    address: "6 Emmons Loop"
+    city: "Mount Crested Butte, CO 81225"
+    rate: "$220/night"
+    code: "TYELOUISE2026"
+    link: "https://www.grandlodgecrestedbutte.com"
     
-  - name: "Boutique Inn"
-    address: "789 Valencia Street"
-    city: "San Francisco, CA 94110"
-    rate: "$159/night"
-    code: "TL2025"
-    link: "https://boutiqueinn.com"
+  - name: "Elk Mountain Lodge"
+    address: "129 Gothic Avenue"
+    city: "Crested Butte, CO 81224"
+    rate: "$180/night"
+    code: "WEDDING2026"
+    link: "https://www.elkmountainlodge.net"
     
-  - name: "Harbor View Suites"
-    address: "456 Embarcadero"
-    city: "San Francisco, CA 94111"
-    rate: "$209/night"
-    code: "WEDDING25"
-    link: "https://harborview.com"
+  - name: "Old Town Inn"
+    address: "708 6th Street"
+    city: "Crested Butte, CO 81224"
+    rate: "$160/night"
+    code: "TYEANDLOUISE"
+    link: "https://www.oldtowninn.net"
 
 # Registry
 registry:
@@ -141,7 +137,7 @@ gallery:
 
 # RSVP Configuration
 rsvp:
-  deadline: "2025-07-15"
+  deadline: "2026-08-01"
   form_url: "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
 
 # Advanced features

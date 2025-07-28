@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "dev": "bun run server.js",
-    "validate": "bun run validate.js"
+    "build": "bun run build.js",
+    "prebuild": "echo '🧹 Cleaning old build...' && rm -f config.json"
   }
 }

@@ -68,11 +68,17 @@ rsvp:
   form_url: "YOUR_GOOGLE_FORM_URL_HERE"
 ```
 
-### 5. Push Your Changes (30 seconds)
-- If using GitHub Web: Just click "Commit changes"
+### 5. Build for Production (30 seconds)
+```bash
+# Generate config.json from config.yaml
+bun run build
+```
+
+### 6. Push Your Changes (30 seconds)
+- If using GitHub Web: Upload the generated `config.json` file along with your changes
 - If using Git: `git add . && git commit -m "Update config" && git push`
 
-### 6. Quick Start Checklist
+### 7. Quick Start Checklist
 - [ ] Changed couple names
 - [ ] Updated wedding date
 - [ ] Added ceremony details
@@ -217,11 +223,27 @@ For the best experience, use Bun for local development:
 # Install Bun (if not already installed)
 curl -fsSL https://bun.sh/install | bash
 
-# Start dev server
+# Start dev server (auto-converts YAML to JSON)
 bun run dev
 
 # Visit http://localhost:3000
 ```
+
+### Build for Production
+
+Before deploying to GitHub Pages, convert your YAML config to JSON:
+
+```bash
+# Build config.json from config.yaml
+bun run build
+
+# Commit both files
+git add config.yaml config.json
+git commit -m "Update config"
+git push
+```
+
+**Why the build step?** GitHub Pages is static hosting, so we can't parse YAML client-side reliably. The build step keeps your config human-friendly (YAML) while serving fast, reliable JSON to browsers.
 
 ## 💡 Tips
 
