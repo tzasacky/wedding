@@ -1,0 +1,158 @@
+# Wedding Site Configuration
+# Edit this file to customize your wedding website
+
+couple:
+  names: "Tye & Louise"
+
+date:
+  display: "08.15.2025"
+  iso: "2025-08-15T16:00:00"
+
+meta:
+  description: "Join Tye & Louise for their wedding celebration on August 15, 2025 in San Francisco"
+  image: "./images/og-image.jpg"
+
+theme:
+  primary: "#d4af37"         # Your wedding color
+  font: "Playfair Display"   # Google Font name
+
+# Navigation sections - customize order and visibility
+sections:
+  - id: home
+    name: "Home"
+    enabled: true
+    
+  - id: details
+    name: "Details"
+    enabled: true
+    
+  - id: story
+    name: "Our Story"
+    enabled: false          # Set to true to enable
+    
+  - id: timeline
+    name: "Timeline"
+    enabled: false
+    
+  - id: accommodations
+    name: "Hotels"
+    enabled: true
+    
+  - id: registry
+    name: "Registry"
+    enabled: true
+    
+  - id: gallery
+    name: "Gallery"
+    enabled: false
+    
+  - id: rsvp
+    name: "RSVP"
+    enabled: true
+
+# Event details
+ceremony:
+  time: "4:00 PM"
+  venue: "St. Mary's Cathedral"
+  address: "123 Main Street"
+  city: "San Francisco, CA 94102"
+
+reception:
+  time: "6:00 PM"
+  venue: "The Grand Ballroom"
+  address: "456 Oak Avenue"
+  city: "San Francisco, CA 94103"
+
+dress_code: "Black Tie Optional"
+
+# Our Story section (optional)
+story:
+  content: |
+    <p>We met at a coffee shop on a rainy Tuesday morning. What started as a 
+    spilled latte turned into a conversation that lasted until closing time.</p>
+    
+    <p>Five years, countless adventures, and one perfect proposal later, 
+    we're ready to say "I do" surrounded by our favorite people.</p>
+
+# Timeline section (optional)
+timeline:
+  events:
+    - date: "October 2020"
+      title: "First Date"
+      description: "Coffee turned into dinner, dinner turned into forever"
+      
+    - date: "June 2022"
+      title: "Moving In Together"
+      description: "Our first apartment in the Mission"
+      
+    - date: "December 2024"
+      title: "The Proposal"
+      description: "A surprise proposal at Baker Beach at sunset"
+
+# Accommodations
+hotels:
+  - name: "The Grand Hotel"
+    address: "123 Market Street"
+    city: "San Francisco, CA 94103"
+    rate: "$189/night"
+    code: "TYELOUISE"
+    link: "https://grandhotel.com/wedding-block"
+    
+  - name: "Boutique Inn"
+    address: "789 Valencia Street"
+    city: "San Francisco, CA 94110"
+    rate: "$159/night"
+    code: "TL2025"
+    link: "https://boutiqueinn.com"
+    
+  - name: "Harbor View Suites"
+    address: "456 Embarcadero"
+    city: "San Francisco, CA 94111"
+    rate: "$209/night"
+    code: "WEDDING25"
+    link: "https://harborview.com"
+
+# Registry
+registry:
+  message: "Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we've registered at the following stores."
+  stores:
+    - name: "Williams Sonoma"
+      url: "https://www.williams-sonoma.com/registry/tyelouise"
+      
+    - name: "Crate & Barrel"
+      url: "https://www.crateandbarrel.com/gift-registry/tye-louise/2025"
+      
+    - name: "Amazon"
+      url: "https://www.amazon.com/wedding/tye-louise-aug-2025"
+      
+    - name: "Honeymoon Fund"
+      url: "https://www.honeyfund.com/wedding/tye-louise-2025"
+
+# Photo gallery (optional)
+gallery:
+  images:
+    - url: "./images/engagement-1.jpg"
+      thumbnail: "./images/engagement-1-thumb.jpg"
+      caption: "Engagement photos at Golden Gate Park"
+      
+    - url: "./images/engagement-2.jpg"
+      thumbnail: "./images/engagement-2-thumb.jpg"
+      caption: "At the beach"
+
+# RSVP Configuration
+rsvp:
+  deadline: "2025-07-15"
+  form_url: "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
+
+# Advanced features
+features:
+  countdown: true           # Show countdown timer
+  animations: true          # Enable scroll animations
+  lazy_loading: true        # Lazy load images
+  offline_mode: true        # Enable service worker
+  share_button: true        # Show share button
+
+# Footer
+footer:
+  text: "Made with ❤️ by Tye"
+  github_url: "https://github.com/tzasacky/wedding"

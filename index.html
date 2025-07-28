@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="generator" content="Wedding Site Builder v2.0">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="config.json" as="fetch" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Primary Meta Tags -->
+    <title>Wedding</title>
+    <meta name="title" content="Wedding">
+    <meta name="description" content="Join us for our wedding celebration">
+    <meta name="author" content="Wedding Couple">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="">
+    <meta property="og:title" content="Wedding">
+    <meta property="og:description" content="Join us for our wedding celebration">
+    <meta property="og:image" content="">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="">
+    <meta property="twitter:title" content="Wedding">
+    <meta property="twitter:description" content="Join us for our wedding celebration">
+    <meta property="twitter:image" content="">
+    
+    <!-- Structured Data for Search Engines -->
+    <script type="application/ld+json" id="structured-data">
+    {
+        "@context": "https://schema.org",
+        "@type": "Event",
+        "name": "Wedding",
+        "startDate": "",
+        "endDate": "",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "location": {
+            "@type": "Place",
+            "name": "",
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "",
+                "addressLocality": "",
+                "addressRegion": "",
+                "postalCode": ""
+            }
+        },
+        "description": "Join us for our wedding celebration",
+        "organizer": {
+            "@type": "Person",
+            "name": ""
+        }
+    }
+    </script>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>💍</text></svg>">
+    
+    <!-- Critical CSS -->
+    <style id="critical-css">
+        /* CSS Custom Properties */
+        :root {
+            --primary: #d4af37;
+            --primary-rgb: 212, 175, 55;
+            --text-dark: #1a1a1a;
+            --text-light: #fafafa;
+            --bg-dark: #0a0a0a;
+            --bg-light: #ffffff;
+            --font-display: system-ui, -apple-system, sans-serif;
+            --font-body: system-ui, -apple-system, sans-serif;
+            --transition-speed: 200ms;
+            --section-padding: clamp(3rem, 10vw, 6rem);
+            --content-width: 1200px;
+            --nav-height: 60px;
+        }
+
+        /* Reset with performance in mind */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--nav-height);
+            -webkit-text-size-adjust: 100%;
+            text-size-adjust: 100%;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            text-rendering: optimizeLegibility;
+            font-synthesis: none;
+            overflow-x: hidden;
+        }
+
+        /* Hide content until config loads */
+        body:not(.config-loaded) > *:not(#loader) {
+            opacity: 0;
+        }
+
+        /* Skeleton loader */
+        #loader {
+            position: fixed;
+            inset: 0;
+            display: grid;
+            place-items: center;
+            background: var(--bg-light);
+            z-index: 9999;
+            transition: opacity 300ms ease;
+        }
+
+        #loader.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-icon {
+            font-size: 3rem;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.95); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+
+        /* Navigation with backdrop filter */
+        #nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: var(--nav-height);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            z-index: 1000;
+            transition: all var(--transition-speed) ease;
+            contain: layout style;
+        }
+
+        #nav.scrolled {
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        #nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            height: 100%;
+            max-width: var(--content-width);
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        #nav a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+            transition: color var(--transition-speed) ease;
+            padding: 0.5rem 0;
+        }
+
+        #nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width var(--transition-speed) ease;
+        }
+
+        #nav a:hover::after,
+        #nav a.active::after {
+            width: 100%;
+        }
+
+        /* Hero with parallax ready */
+        .hero {
+            min-height: 100vh;
+            min-height: 100dvh;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: var(--section-padding) 2rem;
+            position: relative;
+            overflow: hidden;
+            contain: layout style paint;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 10vw, 7rem);
+            font-weight: 300;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+            opacity: 0;
+            animation: hero-fade-in 1s ease forwards;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-date {
+            font-size: clamp(1.25rem, 3vw, 1.75rem);
+            letter-spacing: 0.2em;
+            opacity: 0;
+            animation: hero-fade-in 1s ease 0.2s forwards;
+            font-weight: 300;
+        }
+
+        .hero-accent {
+            color: var(--primary);
+            display: inline-block;
+            transform: scale(1.1);
+        }
+
+        @keyframes hero-fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Sections with Intersection Observer ready */
+        section {
+            padding: var(--section-padding) 2rem;
+            max-width: var(--content-width);
+            margin: 0 auto;
+            contain: layout style;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+            font-weight: 300;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        /* Content containers with container queries */
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 350px), 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            transition: all var(--transition-speed) ease;
+            container-type: inline-size;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--primary);
+            transform: translateX(-100%);
+            transition: transform 300ms ease;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(var(--primary-rgb), 0.15);
+        }
+
+        .card:hover::before {
+            transform: translateX(0);
+        }
+
+        .card h3 {
+            font-family: var(--font-display);
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 400;
+        }
+
+        /* Container queries for responsive typography */
+        @container (min-width: 400px) {
+            .card h3 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Animate class for scroll animations */
+        .animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 600ms ease;
+        }
+
+        .animate.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animate:nth-child(2) { transition-delay: 100ms; }
+        .animate:nth-child(3) { transition-delay: 200ms; }
+        .animate:nth-child(4) { transition-delay: 300ms; }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--bg-light);
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            font-size: 0.875rem;
+        }
+
+        footer a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: opacity var(--transition-speed) ease;
+        }
+
+        footer a:hover {
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        /* Dark mode with system preference */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-dark: #fafafa;
+                --text-light: #1a1a1a;
+                --bg-dark: #ffffff;
+                --bg-light: #0a0a0a;
+            }
+
+            #nav {
+                background: rgba(10, 10, 10, 0.8);
+            }
+
+            .card {
+                background: #1a1a1a;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            }
+
+            footer {
+                background: var(--bg-light);
+                border-top-color: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Reduced motion preferences */
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            html {
+                scroll-behavior: auto;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            #nav, footer, .no-print { display: none !important; }
+            body { color: black; background: white; }
+            .card { box-shadow: none; border: 1px solid #ddd; }
+        }
+
+        /* Mobile optimizations */
+        @media (max-width: 768px) {
+            #nav ul {
+                gap: 1rem;
+                font-size: 0.75rem;
+            }
+            
+            .hero h1 {
+                font-size: clamp(2.5rem, 12vw, 4rem);
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        /* Loading states */
+        .skeleton {
+            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+
+        /* View Transition API styles */
+        @supports (view-transition-name: none) {
+            ::view-transition-old(root) {
+                animation: 300ms ease-out both fade-out;
+            }
+
+            ::view-transition-new(root) {
+                animation: 300ms ease-out both fade-in;
+            }
+        }
+
+        @keyframes fade-out {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+
+        @keyframes fade-in {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loader -->
+    <div id="loader" role="status" aria-live="polite">
+        <div class="loader-icon">💍</div>
+    </div>
+
+    <!-- Navigation -->
+    <nav id="nav" role="navigation" aria-label="Main navigation">
+        <ul id="nav-menu"></ul>
+    </nav>
+
+    <!-- Dynamic content will be inserted here -->
+    <main id="content" role="main"></main>
+
+    <!-- Footer -->
+    <footer id="footer" role="contentinfo">
+        <p id="footer-text">Made with ❤️</p>
+        <div class="footer-links">
+            <a href="#" id="share-button" aria-label="Share this website">Share</a>
+            <span aria-hidden="true">•</span>
+            <a href="https://github.com/yourusername/wedding" target="_blank" rel="noopener noreferrer" aria-label="View source on GitHub">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                    <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+                </svg>
+                Source
+            </a>
+        </div>
+    </footer>
+
+    <!-- Non-critical CSS -->
+    <style id="additional-css">
+        /* Google Form styles */
+        .form-container {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+        }
+
+        .google-form {
+            width: 100%;
+            height: 800px;
+            border: none;
+        }
+
+        /* Custom scrollbar */
+        @supports (scrollbar-width: thin) {
+            * {
+                scrollbar-width: thin;
+                scrollbar-color: var(--primary) transparent;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 4px;
+        }
+
+        /* Image optimization */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Lazy loading backgrounds */
+        [data-bg-src] {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Countdown timer styles */
+        .countdown {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--primary);
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+        }
+
+        /* Timeline styles */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--primary);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding: 2rem;
+            width: calc(50% - 2rem);
+            margin-bottom: 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            margin-left: auto;
+            text-align: left;
+        }
+
+        .timeline-item:nth-child(even) {
+            text-align: right;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 20px;
+            height: 20px;
+            background: var(--primary);
+            border-radius: 50%;
+            transform: translateY(-50%);
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            left: -2rem;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            right: -2rem;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                width: calc(100% - 60px);
+                margin-left: 60px;
+                text-align: left;
+            }
+
+            .timeline-item::before {
+                left: -40px;
+            }
+        }
+
+        /* Gallery styles */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform var(--transition-speed) ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+
+    <script type="module">
+        // Performance monitoring
+        const perfData = {
+            navigationStart: performance.now(),
+            configLoadStart: 0,
+            configLoadEnd: 0,
+            renderStart: 0,
+            renderEnd: 0
+        };
+
+        // YAML parser (minimal implementation)
+        function parseYAML(yamlString) {
+            const lines = yamlString.split('\n');
+            const result = {};
+            let currentObj = result;
+            let currentKey = null;
+            const stack = [result];
+            const indentStack = [-1];
+
+            lines.forEach(line => {
+                const trimmed = line.trim();
+                if (!trimmed || trimmed.startsWith('#')) return;
+
+                const indent = line.search(/\S/);
+                const isArray = trimmed.startsWith('- ');
+                const match = trimmed.match(/^(-?\s*)?([^:]+):\s*(.*)$/);
+
+                // Handle arrays
+                if (isArray) {
+                    const value = trimmed.substring(2).trim();
+                    if (!Array.isArray(currentObj[currentKey])) {
+                        currentObj[currentKey] = [];
+                    }
+                    
+                    if (value.includes(':')) {
+                        const obj = {};
+                        const [k, v] = value.split(':').map(s => s.trim());
+                        obj[k] = v.replace(/^["']|["']$/g, '');
+                        currentObj[currentKey].push(obj);
+                    } else {
+                        currentObj[currentKey].push(value.replace(/^["']|["']$/g, ''));
+                    }
+                    return;
+                }
+
+                if (match) {
+                    const key = match[2].trim();
+                    const value = match[3].trim();
+
+                    // Handle indent changes
+                    while (indentStack.length > 0 && indent <= indentStack[indentStack.length - 1]) {
+                        stack.pop();
+                        indentStack.pop();
+                    }
+
+                    currentObj = stack[stack.length - 1];
+
+                    if (value) {
+                        // Simple value
+                        currentObj[key] = value.replace(/^["']|["']$/g, '');
+                    } else {
+                        // New object
+                        currentObj[key] = {};
+                        stack.push(currentObj[key]);
+                        indentStack.push(indent);
+                        currentKey = key;
+                    }
+                }
+            });
+
+            return result;
+        }
+
+        // Load and parse configuration
+        async function loadConfig() {
+            perfData.configLoadStart = performance.now();
+            
+            try {
+                const response = await fetch('./config.yaml', {
+                    cache: 'no-cache',
+                    headers: {
+                        'Accept': 'text/yaml, text/plain'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`Config not found: ${response.status}`);
+                }
+                
+                const yamlText = await response.text();
+                const config = parseYAML(yamlText);
+                
+                perfData.configLoadEnd = performance.now();
+                return config;
+            } catch (error) {
+                console.error('Failed to load config:', error);
+                
+                // Fallback to JSON if YAML fails
+                try {
+                    const response = await fetch('./config.json');
+                    const config = await response.json();
+                    perfData.configLoadEnd = performance.now();
+                    return config;
+                } catch {
+                    return null;
+                }
+            }
+        }
+
+        // Section builders
+        const sectionBuilders = {
+            hero: (config) => `
+                <header class="hero" id="home">
+                    <div>
+                        <h1>${config.couple.names.replace('&', '<span class="hero-accent">&</span>')}</h1>
+                        <p class="hero-date">${config.date.display}</p>
+                        ${config.features?.countdown ? '<div id="countdown" class="countdown"></div>' : ''}
+                    </div>
+                </header>
+            `,
+
+            details: (config) => `
+                <section id="details" class="animate">
+                    <h2 class="section-title">Wedding Details</h2>
+                    <div class="content-grid">
+                        ${config.ceremony ? `
+                            <article class="card animate">
+                                <h3>Ceremony</h3>
+                                <p><strong>${config.ceremony.time}</strong></p>
+                                <p>${config.ceremony.venue}<br>
+                                ${config.ceremony.address}<br>
+                                ${config.ceremony.city}</p>
+                            </article>
+                        ` : ''}
+                        ${config.reception ? `
+                            <article class="card animate">
+                                <h3>Reception</h3>
+                                <p><strong>${config.reception.time}</strong></p>
+                                <p>${config.reception.venue}<br>
+                                ${config.reception.address}<br>
+                                ${config.reception.city}</p>
+                            </article>
+                        ` : ''}
+                        ${config.dress_code ? `
+                            <article class="card animate">
+                                <h3>Dress Code</h3>
+                                <p>${config.dress_code}</p>
+                            </article>
+                        ` : ''}
+                    </div>
+                </section>
+            `,
+
+            story: (config) => `
+                <section id="story" class="animate">
+                    <h2 class="section-title">Our Story</h2>
+                    <div class="content-grid">
+                        <article class="card animate">
+                            ${config.story?.content || '<p>Our journey together...</p>'}
+                        </article>
+                    </div>
+                </section>
+            `,
+
+            timeline: (config) => `
+                <section id="timeline" class="animate">
+                    <h2 class="section-title">Our Journey</h2>
+                    <div class="timeline">
+                        ${(config.timeline?.events || []).map(event => `
+                            <article class="timeline-item animate">
+                                <h3>${event.date}</h3>
+                                <p>${event.title}</p>
+                                ${event.description ? `<p>${event.description}</p>` : ''}
+                            </article>
+                        `).join('')}
+                    </div>
+                </section>
+            `,
+
+            accommodations: (config) => `
+                <section id="accommodations" class="animate">
+                    <h2 class="section-title">Accommodations</h2>
+                    <div class="content-grid">
+                        ${(config.hotels || []).map(hotel => `
+                            <article class="card animate">
+                                <h3>${hotel.name}</h3>
+                                <p>${hotel.address || ''}<br>
+                                ${hotel.city || ''}</p>
+                                ${hotel.rate ? `<p><strong>${hotel.rate}</strong></p>` : ''}
+                                ${hotel.code ? `<p>Code: <strong>${hotel.code}</strong></p>` : ''}
+                                ${hotel.link ? `<p><a href="${hotel.link}" target="_blank" rel="noopener">Book Now</a></p>` : ''}
+                            </article>
+                        `).join('')}
+                    </div>
+                </section>
+            `,
+
+            registry: (config) => `
+                <section id="registry" class="animate">
+                    <h2 class="section-title">Registry</h2>
+                    <div style="text-align: center; max-width: 800px; margin: 0 auto;">
+                        <p style="font-size: 1.125rem; margin-bottom: 2rem;">
+                            ${config.registry?.message || 'Your presence is the greatest gift of all.'}
+                        </p>
+                        <div class="content-grid" style="max-width: 600px; margin: 0 auto;">
+                            ${(config.registry?.stores || []).map(store => `
+                                <a href="${store.url}" target="_blank" rel="noopener" class="card animate" style="text-decoration: none; color: inherit;">
+                                    <h3 style="font-size: 1.25rem;">${store.name}</h3>
+                                </a>
+                            `).join('')}
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            rsvp: (config) => `
+                <section id="rsvp" class="animate">
+                    <h2 class="section-title">RSVP</h2>
+                    <div style="text-align: center;">
+                        <p>Please RSVP by ${new Date(config.rsvp.deadline).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                        })}</p>
+                        <div class="form-container">
+                            <iframe 
+                                src="${config.rsvp.form_url}" 
+                                class="google-form no-print"
+                                loading="lazy"
+                                title="RSVP Form">
+                            </iframe>
+                        </div>
+                    </div>
+                </section>
+            `,
+
+            gallery: (config) => `
+                <section id="gallery" class="animate">
+                    <h2 class="section-title">Gallery</h2>
+                    <div class="gallery">
+                        ${(config.gallery?.images || []).map((img, i) => `
+                            <div class="gallery-item animate" style="animation-delay: ${i * 50}ms">
+                                <img src="${img.thumbnail || img.url}" 
+                                     alt="${img.caption || 'Gallery image'}"
+                                     loading="lazy"
+                                     decoding="async">
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            `
+        };
+
+        // Build the entire page
+        async function buildPage(config) {
+            perfData.renderStart = performance.now();
+            
+            // Update meta tags
+            document.title = `${config.couple.names} - ${config.date.display}`;
+            document.querySelector('meta[name="description"]').content = config.meta?.description || `Join ${config.couple.names} for their wedding celebration`;
+            
+            // Update Open Graph tags
+            const baseUrl = window.location.origin + window.location.pathname.replace(/\/$/, '');
+            document.querySelector('meta[property="og:url"]').content = baseUrl;
+            document.querySelector('meta[property="og:title"]').content = document.title;
+            document.querySelector('meta[property="og:description"]').content = config.meta?.description || '';
+            document.querySelector('meta[property="twitter:url"]').content = baseUrl;
+            
+            // Update structured data
+            const structuredData = {
+                "@context": "https://schema.org",
+                "@type": "Event",
+                "name": `${config.couple.names} Wedding`,
+                "description": config.meta?.description || `Wedding celebration of ${config.couple.names}`,
+                "startDate": config.date.iso,
+                "endDate": config.date.iso,
+                "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+                "eventStatus": "https://schema.org/EventScheduled",
+                "location": {
+                    "@type": "Place",
+                    "name": config.ceremony?.venue || "Wedding Venue",
+                    "address": {
+                        "@type": "PostalAddress",
+                        "streetAddress": config.ceremony?.address || "",
+                        "addressLocality": config.ceremony?.city?.split(',')[0] || "",
+                        "addressRegion": config.ceremony?.city?.split(',')[1]?.trim() || ""
+                    }
+                },
+                "organizer": {
+                    "@type": "Person",
+                    "name": config.couple.names
+                }
+            };
+            document.getElementById('structured-data').textContent = JSON.stringify(structuredData);
+            
+            // Load custom font if specified
+            if (config.theme?.font) {
+                const fontLink = document.createElement('link');
+                fontLink.href = `https://fonts.googleapis.com/css2?family=${config.theme.font.replace(' ', '+')}:wght@300;400;700&display=swap`;
+                fontLink.rel = 'stylesheet';
+                document.head.appendChild(fontLink);
+                document.documentElement.style.setProperty('--font-display', `'${config.theme.font}', serif`);
+            }
+            
+            // Set theme colors
+            if (config.theme?.primary) {
+                document.documentElement.style.setProperty('--primary', config.theme.primary);
+                // Calculate RGB values for transparent versions
+                const hex = config.theme.primary.replace('#', '');
+                const r = parseInt(hex.substr(0, 2), 16);
+                const g = parseInt(hex.substr(2, 2), 16);
+                const b = parseInt(hex.substr(4, 2), 16);
+                document.documentElement.style.setProperty('--primary-rgb', `${r}, ${g}, ${b}`);
+            }
+            
+            // Build navigation
+            const navMenu = document.getElementById('nav-menu');
+            const sections = config.sections || [
+                { id: 'home', name: 'Home', enabled: true },
+                { id: 'details', name: 'Details', enabled: true },
+                { id: 'rsvp', name: 'RSVP', enabled: true }
+            ];
+            
+            sections.forEach(section => {
+                if (section.enabled !== false) {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `#${section.id}`;
+                    a.textContent = section.name;
+                    a.setAttribute('data-section', section.id);
+                    li.appendChild(a);
+                    navMenu.appendChild(li);
+                }
+            });
+            
+            // Build content sections
+            const content = document.getElementById('content');
+            let html = '';
+            
+            // Always add hero
+            html += sectionBuilders.hero(config);
+            
+            // Add other sections based on config
+            sections.forEach(section => {
+                if (section.id !== 'home' && section.enabled !== false && sectionBuilders[section.id]) {
+                    html += sectionBuilders[section.id](config);
+                }
+            });
+            
+            content.innerHTML = html;
+            
+            // Update footer
+            if (config.footer?.text) {
+                document.getElementById('footer-text').innerHTML = config.footer.text;
+            }
+            
+            // Update GitHub link
+            if (config.footer?.github_url) {
+                const githubLink = document.querySelector('a[href*="github.com"]');
+                if (githubLink) {
+                    githubLink.href = config.footer.github_url;
+                }
+            }
+            
+            perfData.renderEnd = performance.now();
+            
+            // Initialize features
+            initializeFeatures(config);
+            
+            // Mark as loaded
+            document.body.classList.add('config-loaded');
+            
+            // Fade out loader
+            const loader = document.getElementById('loader');
+            loader.classList.add('fade-out');
+            setTimeout(() => loader.remove(), 300);
+            
+            // Log performance metrics
+            console.log('Performance Metrics:', {
+                configLoad: Math.round(perfData.configLoadEnd - perfData.configLoadStart) + 'ms',
+                render: Math.round(perfData.renderEnd - perfData.renderStart) + 'ms',
+                total: Math.round(perfData.renderEnd - perfData.navigationStart) + 'ms'
+            });
+        }
+
+        // Initialize interactive features
+        function initializeFeatures(config) {
+            // Smooth scrolling with View Transitions API
+            document.addEventListener('click', async (e) => {
+                if (e.target.matches('a[href^="#"]')) {
+                    e.preventDefault();
+                    const targetId = e.target.getAttribute('href').slice(1);
+                    const targetElement = document.getElementById(targetId);
+                    
+                    if (targetElement) {
+                        // Update active nav state
+                        document.querySelectorAll('#nav a').forEach(a => a.classList.remove('active'));
+                        e.target.classList.add('active');
+                        
+                        // Use View Transitions API if available
+                        if ('startViewTransition' in document) {
+                            document.startViewTransition(() => {
+                                targetElement.scrollIntoView({ behavior: 'instant', block: 'start' });
+                            });
+                        } else {
+                            targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }
+                    }
+                }
+            });
+            
+            // Navbar scroll effect
+            let ticking = false;
+            function updateNav() {
+                const scrolled = window.scrollY > 50;
+                document.getElementById('nav').classList.toggle('scrolled', scrolled);
+                ticking = false;
+            }
+            
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(updateNav);
+                    ticking = true;
+                }
+            });
+            
+            // Intersection Observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -10% 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        
+                        // Update active nav item
+                        const section = entry.target.closest('section');
+                        if (section && section.id) {
+                            const navLink = document.querySelector(`#nav a[href="#${section.id}"]`);
+                            if (navLink && entry.intersectionRatio > 0.5) {
+                                document.querySelectorAll('#nav a').forEach(a => a.classList.remove('active'));
+                                navLink.classList.add('active');
+                            }
+                        }
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all animated elements
+            requestAnimationFrame(() => {
+                document.querySelectorAll('.animate').forEach(el => {
+                    observer.observe(el);
+                });
+            });
+            
+            // Countdown timer
+            if (config.features?.countdown && config.date?.iso) {
+                function updateCountdown() {
+                    const weddingDate = new Date(config.date.iso);
+                    const now = new Date();
+                    const diff = weddingDate - now;
+                    
+                    if (diff > 0) {
+                        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                        
+                        const countdownEl = document.getElementById('countdown');
+                        if (countdownEl) {
+                            countdownEl.innerHTML = `
+                                <div class="countdown-item">
+                                    <div class="countdown-value">${days}</div>
+                                    <div class="countdown-label">Days</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">${hours}</div>
+                                    <div class="countdown-label">Hours</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">${minutes}</div>
+                                    <div class="countdown-label">Minutes</div>
+                                </div>
+                                <div class="countdown-item">
+                                    <div class="countdown-value">${seconds}</div>
+                                    <div class="countdown-label">Seconds</div>
+                                </div>
+                            `;
+                        }
+                    }
+                }
+                
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            }
+            
+            // Web Share API
+            document.getElementById('share-button').addEventListener('click', async (e) => {
+                e.preventDefault();
+                
+                if (navigator.share) {
+                    try {
+                        await navigator.share({
+                            title: document.title,
+                            text: `Join us for our wedding on ${config.date.display}!`,
+                            url: window.location.href
+                        });
+                    } catch (err) {
+                        if (err.name !== 'AbortError') {
+                            console.error('Share failed:', err);
+                        }
+                    }
+                } else {
+                    // Fallback: copy to clipboard
+                    try {
+                        await navigator.clipboard.writeText(window.location.href);
+                        const button = e.target;
+                        const originalText = button.textContent;
+                        button.textContent = 'Copied!';
+                        setTimeout(() => button.textContent = originalText, 2000);
+                    } catch (err) {
+                        console.error('Copy failed:', err);
+                    }
+                }
+            });
+            
+            // Lazy load images
+            if ('loading' in HTMLImageElement.prototype) {
+                // Browser supports lazy loading
+                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                    img.src = img.dataset.src || img.src;
+                });
+            } else {
+                // Polyfill for older browsers
+                const imageObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const img = entry.target;
+                            img.src = img.dataset.src || img.src;
+                            imageObserver.unobserve(img);
+                        }
+                    });
+                });
+                
+                document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                    imageObserver.observe(img);
+                });
+            }
+        }
+
+        // Initialize everything
+        async function init() {
+            try {
+                const config = await loadConfig();
+                if (config) {
+                    await buildPage(config);
+                } else {
+                    throw new Error('Configuration not found');
+                }
+            } catch (error) {
+                console.error('Initialization failed:', error);
+                document.getElementById('loader').innerHTML = `
+                    <div style="text-align: center;">
+                        <div class="loader-icon">⚠️</div>
+                        <p style="margin-top: 1rem;">Configuration Error</p>
+                        <p style="font-size: 0.875rem; opacity: 0.7;">Please check config.yaml</p>
+                    </div>
+                `;
+            }
+        }
+
+        // Start the app
+        init();
+
+        // Register service worker for offline support
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registered'))
+                    .catch(err => console.log('Service Worker registration failed:', err));
+            });
+        }
+
+        // Web Vitals tracking (for the nerds)
+        if ('PerformanceObserver' in window) {
+            try {
+                // Largest Contentful Paint
+                new PerformanceObserver((list) => {
+                    const entries = list.getEntries();
+                    const lastEntry = entries[entries.length - 1];
+                    console.log('LCP:', Math.round(lastEntry.startTime) + 'ms');
+                }).observe({ entryTypes: ['largest-contentful-paint'] });
+
+                // First Input Delay
+                new PerformanceObserver((list) => {
+                    const entries = list.getEntries();
+                    entries.forEach(entry => {
+                        console.log('FID:', Math.round(entry.processingStart - entry.startTime) + 'ms');
+                    });
+                }).observe({ entryTypes: ['first-input'] });
+
+                // Cumulative Layout Shift
+                let clsValue = 0;
+                new PerformanceObserver((list) => {
+                    for (const entry of list.getEntries()) {
+                        if (!entry.hadRecentInput) {
+                            clsValue += entry.value;
+                        }
+                    }
+                    console.log('CLS:', clsValue.toFixed(3));
+                }).observe({ entryTypes: ['layout-shift'] });
+            } catch (e) {
+                // Performance Observer not supported
+            }
+        }
+    </script>
+</body>
+</html>
