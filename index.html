@@ -13,6 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     
+    <!-- Preload primary font for immediate rendering -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;700&display=swap"></noscript>
+    
     <!-- Primary Meta Tags - Optimized for GitHub Pages -->
     <title>Mountain Wedding - Tye & Louise</title>
     <meta name="title" content="Mountain Wedding - Tye & Louise">
@@ -43,7 +47,7 @@
     
     <!-- Critical CSS -->
     <style id="critical-css">
-        /* CSS Custom Properties */
+        /* CSS Custom Properties with fallbacks for GitHub Pages */
         :root {
             --primary: #8B4513;
             --primary-rgb: 139, 69, 19;
@@ -53,14 +57,36 @@
             --text-light: #F8F8F8;
             --bg-dark: #1C1C1C;
             --bg-light: #FEFEFE;
-            --mountain-gradient: linear-gradient(135deg, #8B4513 0%, #CD853F  50%, #D2B48C 100%);
-            --font-display: 'Montserrat', system-ui, -apple-system, sans-serif;
-            --font-body: 'Montserrat', system-ui, -apple-system, sans-serif;
+            --mountain-gradient: linear-gradient(135deg, #8B4513 0%, #CD853F 50%, #D2B48C 100%);
+            --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --transition-speed: 200ms;
             --section-padding: clamp(3rem, 10vw, 6rem);
             --content-width: 1200px;
             --nav-height: 60px;
         }
+
+        /* Fallback styles for browsers without custom property support */
+        html {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+        
+        /* Font loading optimization to prevent layout shift */
+        @font-face {
+            font-family: 'Montserrat';
+            font-style: normal;
+            font-weight: 300 700;
+            font-display: swap;
+            src: local('Montserrat');
+        }
+        
+        /* Enhanced color definitions with fallbacks */
+        .theme-primary { color: #8B4513; color: var(--primary); }
+        .bg-primary { background-color: #8B4513; background-color: var(--primary); }
+        .theme-secondary { color: #2E8B57; color: var(--secondary); }
+        .theme-accent { color: #F5F5DC; color: var(--accent); }
+        .theme-text-dark { color: #2C1810; color: var(--text-dark); }
+        .theme-text-light { color: #F8F8F8; color: var(--text-light); }
 
         /* Reset with performance in mind */
         *, *::before, *::after {
@@ -77,15 +103,19 @@
         }
 
         body {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-body);
             line-height: 1.6;
+            color: #2C1810;
             color: var(--text-dark);
+            background: #FEFEFE;
             background: var(--bg-light);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
             text-rendering: optimizeLegibility;
             font-synthesis: none;
             overflow-x: hidden;
+            font-display: swap;
         }
 
         /* Hide content until config loads */
@@ -125,11 +155,13 @@
             top: 0;
             left: 0;
             right: 0;
+            height: 60px;
             height: var(--nav-height);
             background: rgba(255, 255, 255, 0.8);
             backdrop-filter: saturate(180%) blur(20px);
             -webkit-backdrop-filter: saturate(180%) blur(20px);
             z-index: 1000;
+            transition: all 200ms ease;
             transition: all var(--transition-speed) ease;
             contain: layout style;
         }
@@ -145,6 +177,7 @@
             align-items: center;
             gap: 2rem;
             height: 100%;
+            max-width: 1200px;
             max-width: var(--content-width);
             margin: 0 auto;
             padding: 0 2rem;
@@ -169,7 +202,9 @@
             left: 0;
             width: 0;
             height: 2px;
+            background: #8B4513;
             background: var(--primary);
+            transition: width 200ms ease;
             transition: width var(--transition-speed) ease;
         }
 
@@ -185,11 +220,14 @@
             display: grid;
             place-items: center;
             text-align: center;
+            padding: clamp(3rem, 10vw, 6rem) 2rem;
             padding: var(--section-padding) 2rem;
             position: relative;
             overflow: hidden;
             contain: layout style paint;
+            background: linear-gradient(135deg, #8B4513 0%, #CD853F 50%, #D2B48C 100%);
             background: var(--mountain-gradient);
+            color: #F8F8F8;
             color: var(--text-light);
         }
 
@@ -202,6 +240,7 @@
         }
 
         .hero h1 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-display);
             font-size: clamp(3rem, 10vw, 7rem);
             font-weight: 300;
@@ -229,6 +268,7 @@
         }
 
         .hero-accent {
+            color: #F5F5DC;
             color: var(--accent);
             display: inline-block;
             transform: scale(1.1);
@@ -252,13 +292,16 @@
 
         /* Sections with Intersection Observer ready */
         section {
+            padding: clamp(3rem, 10vw, 6rem) 2rem;
             padding: var(--section-padding) 2rem;
+            max-width: 1200px;
             max-width: var(--content-width);
             margin: 0 auto;
             contain: layout style;
         }
 
         .section-title {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-display);
             font-size: clamp(2.5rem, 5vw, 3.5rem);
             text-align: center;
@@ -276,6 +319,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 2px;
+            background: #8B4513;
             background: var(--primary);
         }
 
@@ -305,6 +349,7 @@
             left: 0;
             right: 0;
             height: 3px;
+            background: #8B4513;
             background: var(--primary);
             transform: translateX(-100%);
             transition: transform 300ms ease;
@@ -312,6 +357,7 @@
 
         .card:hover {
             transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(139, 69, 19, 0.15);
             box-shadow: 0 12px 24px rgba(var(--primary-rgb), 0.15);
         }
 
@@ -320,8 +366,10 @@
         }
 
         .card h3 {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-display);
             font-size: 1.75rem;
+            color: #8B4513;
             color: var(--primary);
             margin-bottom: 1rem;
             font-weight: 400;
@@ -365,8 +413,10 @@
         }
 
         footer a {
+            color: #8B4513;
             color: var(--primary);
             text-decoration: none;
+            transition: opacity 200ms ease;
             transition: opacity var(--transition-speed) ease;
         }
 
@@ -590,6 +640,7 @@
         @supports (scrollbar-width: thin) {
             * {
                 scrollbar-width: thin;
+                scrollbar-color: #8B4513 transparent;
                 scrollbar-color: var(--primary) transparent;
             }
         }
@@ -604,6 +655,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
+            background: #8B4513;
             background: var(--primary);
             border-radius: 4px;
         }
@@ -638,6 +690,7 @@
         .countdown-value {
             font-size: 2.5rem;
             font-weight: 300;
+            color: #8B4513;
             color: var(--primary);
             line-height: 1;
         }
@@ -662,6 +715,7 @@
             top: 0;
             bottom: 0;
             width: 2px;
+            background: #8B4513;
             background: var(--primary);
             transform: translateX(-50%);
         }
@@ -688,6 +742,7 @@
             top: 50%;
             width: 20px;
             height: 20px;
+            background: #8B4513;
             background: var(--primary);
             border-radius: 50%;
             transform: translateY(-50%);
@@ -960,13 +1015,16 @@
             // Update page title
             document.title = `${config.couple.names} - ${config.date.display}`;
             
-            // Load custom font if specified
-            if (config.theme?.font) {
+            // Update font family if specified in config (font is preloaded in head)
+            if (config.theme?.font && config.theme.font !== 'Montserrat') {
+                // Only load if different from default preloaded font
                 const fontLink = document.createElement('link');
-                fontLink.href = `https://fonts.googleapis.com/css2?family=${config.theme.font.replace(' ', '+')}:wght@300;400;700&display=swap`;
+                fontLink.href = `https://fonts.googleapis.com/css2?family=${config.theme.font.replace(' ', '+')}:wght@300;400;500;700&display=swap`;
                 fontLink.rel = 'stylesheet';
                 document.head.appendChild(fontLink);
-                document.documentElement.style.setProperty('--font-display', `'${config.theme.font}', serif`);
+                const fallbacks = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`;
+                document.documentElement.style.setProperty('--font-display', `'${config.theme.font}', ${fallbacks}`);
+                document.documentElement.style.setProperty('--font-body', `'${config.theme.font}', ${fallbacks}`);
             }
             
             // Set theme colors
