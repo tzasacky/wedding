@@ -9,7 +9,7 @@ date:
   iso: "2026-09-12T16:00:00"
 
 theme:
-  primary: "#8B4513"         # Mountain brown color
+  primary: "#1B365D"         # Navy blue color
   font: "Montserrat"         # Clean mountain-appropriate font
 
 # Navigation sections - customize order and visibility
@@ -112,17 +112,16 @@ hotels:
 registry:
   message: "Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we've registered at the following stores."
   stores:
-    - name: "Williams Sonoma"
-      url: "https://www.williams-sonoma.com/registry/tyelouise"
-      
-    - name: "Crate & Barrel"
-      url: "https://www.crateandbarrel.com/gift-registry/tye-louise/2025"
-      
-    - name: "Amazon"
-      url: "https://www.amazon.com/wedding/tye-louise-aug-2025"
-      
     - name: "Honeymoon Fund"
-      url: "https://www.honeyfund.com/wedding/tye-louise-2025"
+      payment_options:
+        - name: "Venmo"
+          qr_code: "./images/venmo-qr.png"
+          url: "https://venmo.com/u/louisecl"
+        - name: "Zelle"
+          qr_code: "./images/zelle-qr.png"
+          details: "louiseclindegaard@gmail.com"
+    - name: "Amazon"
+      url: "https://www.amazon.com/wedding/registry/3SGD7UOZNH1VH"
 
 # Photo gallery (optional)
 gallery:

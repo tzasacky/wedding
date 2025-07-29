@@ -52,7 +52,12 @@ const server = Bun.serve({
                 const yamlContent = readFileSync('config.yaml', 'utf8');
                 const config = parse(yamlContent);
                 return new Response(JSON.stringify(config), {
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache',
+                        'Expires': '0'
+                    }
                 });
             } catch (error) {
                 return new Response(JSON.stringify({
@@ -60,7 +65,12 @@ const server = Bun.serve({
                     message: error.message
                 }), {
                     status: 500,
-                    headers: { 'Content-Type': 'application/json' }
+                    headers: { 
+                        'Content-Type': 'application/json',
+                        'Cache-Control': 'no-cache, no-store, must-revalidate',
+                        'Pragma': 'no-cache',
+                        'Expires': '0'
+                    }
                 });
             }
         } else {

@@ -49,15 +49,15 @@
     <style id="critical-css">
         /* CSS Custom Properties with fallbacks for GitHub Pages */
         :root {
-            --primary: #8B4513;
-            --primary-rgb: 139, 69, 19;
-            --secondary: #2E8B57;
-            --accent: #F5F5DC;
-            --text-dark: #2C1810;
-            --text-light: #F8F8F8;
-            --bg-dark: #1C1C1C;
-            --bg-light: #FEFEFE;
-            --mountain-gradient: linear-gradient(135deg, #8B4513 0%, #CD853F 50%, #D2B48C 100%);
+            --primary: #1B365D;
+            --primary-rgb: 27, 54, 93;
+            --secondary: #2E5984;
+            --accent: #E8F2FF;
+            --text-dark: #1A1A1A;
+            --text-light: #F8F9FA;
+            --bg-dark: #0F1419;
+            --bg-light: #FFFFFF;
+            --mountain-gradient: linear-gradient(135deg, #1B365D 0%, #2E5984 50%, #4A7BA7 100%);
             --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --transition-speed: 200ms;
@@ -81,12 +81,12 @@
         }
         
         /* Enhanced color definitions with fallbacks */
-        .theme-primary { color: #8B4513; color: var(--primary); }
-        .bg-primary { background-color: #8B4513; background-color: var(--primary); }
-        .theme-secondary { color: #2E8B57; color: var(--secondary); }
-        .theme-accent { color: #F5F5DC; color: var(--accent); }
-        .theme-text-dark { color: #2C1810; color: var(--text-dark); }
-        .theme-text-light { color: #F8F8F8; color: var(--text-light); }
+        .theme-primary { color: #1B365D; color: var(--primary); }
+        .bg-primary { background-color: #1B365D; background-color: var(--primary); }
+        .theme-secondary { color: #2E5984; color: var(--secondary); }
+        .theme-accent { color: #E8F2FF; color: var(--accent); }
+        .theme-text-dark { color: #1A1A1A; color: var(--text-dark); }
+        .theme-text-light { color: #F8F9FA; color: var(--text-light); }
 
         /* Reset with performance in mind */
         *, *::before, *::after {
@@ -106,9 +106,9 @@
             font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-body);
             line-height: 1.6;
-            color: #2C1810;
+            color: #1A1A1A;
             color: var(--text-dark);
-            background: #FEFEFE;
+            background: #FFFFFF;
             background: var(--bg-light);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -459,11 +459,16 @@
 
         /* Dark theme */
         [data-theme="dark"] {
-            --text-dark: #F8F8F8;
-            --text-light: #2C1810;
-            --bg-dark: #FEFEFE;
-            --bg-light: #1C1C1C;
-            --mountain-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+            --text-dark: #F8F9FA;
+            --text-light: #1A1A1A;
+            --bg-dark: #FFFFFF;
+            --bg-light: #0F1419;
+            --mountain-gradient: linear-gradient(135deg, #0F2540 0%, #1B365D 50%, #2E5984 100%);
+        }
+
+        [data-theme="dark"] body {
+            color: #F8F9FA;
+            background: #0F1419;
         }
 
         [data-theme="dark"] .theme-toggle {
@@ -476,12 +481,18 @@
         }
 
         [data-theme="dark"] #nav {
-            background: rgba(28, 28, 28, 0.8);
+            background: rgba(15, 20, 25, 0.9);
+            color: #F8F9FA;
         }
 
         [data-theme="dark"] .card {
-            background: #2A2A2A;
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+            background: #1B2631;
+            color: #F8F9FA;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        }
+        
+        [data-theme="dark"] .card h3 {
+            color: #87CEEB;
         }
 
         [data-theme="dark"] footer {
@@ -492,11 +503,16 @@
         /* System preference fallback */
         @media (prefers-color-scheme: dark) {
             :root:not([data-theme]) {
-                --text-dark: #F8F8F8;
-                --text-light: #2C1810;
-                --bg-dark: #FEFEFE;
-                --bg-light: #1C1C1C;
-                --mountain-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+                --text-dark: #F8F9FA;
+                --text-light: #1A1A1A;
+                --bg-dark: #FFFFFF;
+                --bg-light: #0F1419;
+                --mountain-gradient: linear-gradient(135deg, #0F2540 0%, #1B365D 50%, #2E5984 100%);
+            }
+
+            :root:not([data-theme]) body {
+                color: #F8F9FA;
+                background: #0F1419;
             }
 
             :root:not([data-theme]) .hero {
@@ -504,12 +520,18 @@
             }
 
             :root:not([data-theme]) #nav {
-                background: rgba(28, 28, 28, 0.8);
+                background: rgba(15, 20, 25, 0.9);
+                color: #F8F9FA;
             }
 
             :root:not([data-theme]) .card {
-                background: #2A2A2A;
-                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+                background: #1B2631;
+                color: #F8F9FA;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            }
+            
+            :root:not([data-theme]) .card h3 {
+                color: #87CEEB;
             }
 
             :root:not([data-theme]) footer {
@@ -690,13 +712,16 @@
         .countdown-value {
             font-size: 2.5rem;
             font-weight: 300;
-            color: #8B4513;
-            color: var(--primary);
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-display);
+            color: #FFFFFF;
             line-height: 1;
         }
 
         .countdown-label {
             font-size: 0.875rem;
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: var(--font-body);
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-top: 0.5rem;
@@ -814,7 +839,7 @@
             perfData.configLoadStart = performance.now();
             
             try {
-                const response = await fetch('./config.json', {
+                const response = await fetch(`./config.json?t=${Date.now()}`, {
                     cache: 'no-cache',
                     headers: {
                         'Accept': 'application/json'
@@ -939,11 +964,47 @@
                                 ${config.registry?.message || 'Your presence is the greatest gift of all.'}
                             </p>
                             <div class="content-grid" style="max-width: 600px; margin: 0 auto;">
-                                ${(config.registry?.stores || []).map(store => `
-                                    <a href="${store.url}" target="_blank" rel="noopener" class="card animate" style="text-decoration: none; color: inherit;">
-                                        <h3 style="font-size: 1.25rem;">${store.name}</h3>
-                                    </a>
-                                `).join('')}
+                                ${(config.registry?.stores || []).map(store => {
+                                    if (store.payment_options) {
+                                        // Render store with payment options and QR codes
+                                        return `
+                                            <div class="card animate" style="text-align: center;">
+                                                <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem;">${store.name}</h3>
+                                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                                                    ${store.payment_options.map(option => `
+                                                        <div style="text-align: center;">
+                                                            <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--primary);">${option.name}</h4>
+                                                            ${option.qr_code ? `
+                                                                <div style="margin-bottom: 1rem;">
+                                                                    <img src="${option.qr_code}" alt="${option.name} QR Code" 
+                                                                         style="width: 150px; height: 150px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                                                </div>
+                                                            ` : ''}
+                                                            ${option.url ? `
+                                                                <a href="${option.url}" target="_blank" rel="noopener" 
+                                                                   style="display: inline-block; padding: 0.5rem 1rem; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.875rem;">
+                                                                    Open ${option.name}
+                                                                </a>
+                                                            ` : ''}
+                                                            ${option.details ? `
+                                                                <p style="font-size: 0.875rem; margin-top: 0.5rem; font-family: monospace; background: #f5f5f5; padding: 0.5rem; border-radius: 4px;">
+                                                                    ${option.details}
+                                                                </p>
+                                                            ` : ''}
+                                                        </div>
+                                                    `).join('')}
+                                                </div>
+                                            </div>
+                                        `;
+                                    } else {
+                                        // Render regular store link
+                                        return `
+                                            <a href="${store.url}" target="_blank" rel="noopener" class="card animate" style="text-decoration: none; color: inherit;">
+                                                <h3 style="font-size: 1.25rem;">${store.name}</h3>
+                                            </a>
+                                        `;
+                                    }
+                                }).join('')}
                             </div>
                         </div>
                     `;
@@ -1016,10 +1077,9 @@
             document.title = `${config.couple.names} - ${config.date.display}`;
             
             // Update font family if specified in config (font is preloaded in head)
-            if (config.theme?.font && config.theme.font !== 'Montserrat') {
-                // Only load if different from default preloaded font
+            if (config.theme?.font) {
                 const fontLink = document.createElement('link');
-                fontLink.href = `https://fonts.googleapis.com/css2?family=${config.theme.font.replace(' ', '+')}:wght@300;400;500;700&display=swap`;
+                fontLink.href = `https://fonts.googleapis.com/css2?family=${config.theme.font.replace(/ /g, '+')}:wght@300;400;500;700&display=swap`;
                 fontLink.rel = 'stylesheet';
                 document.head.appendChild(fontLink);
                 const fallbacks = `-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif`;
