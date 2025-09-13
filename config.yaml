@@ -5,8 +5,8 @@ couple:
   names: "Tye & Louise"
 
 date:
-  display: "09.12.2026"
-  iso: "2026-09-12T16:00:00"
+  display: "09.18.2026"
+  iso: "2026-09-18T16:00:00"
 
 theme:
   primary: "#1B365D"         # Navy blue color
@@ -28,7 +28,11 @@ sections:
     
   - id: timeline
     name: "Timeline"
-    enabled: false
+    enabled: true
+    
+  - id: travel
+    name: "Travel"
+    enabled: true
     
   - id: accommodations
     name: "Hotels"
@@ -49,17 +53,19 @@ sections:
 # Event details
 ceremony:
   time: "4:00 PM"
-  venue: "Crested Butte Land Trust"
-  address: "311 3rd Street"
-  city: "Crested Butte, CO 81224"
+  venue: "Mountain Wedding Garden"
+  address: "911 Gothic Rd"
+  city: "Crested Butte, CO 81225"
+  dress_code: "Mountain Formal"
 
 reception:
   time: "6:00 PM"
-  venue: "Slogar Bar & Restaurant"
-  address: "517 2nd Street"
+  venue: "TBD"
+  address: "TBD"
   city: "Crested Butte, CO 81224"
+  dress_code: "Evening Formal. Bring warm clothes for the evening"
 
-dress_code: "Mountain Formal - Dress warmly, it can get chilly in the evenings!"
+dress_code: "Mountain Formal. \nBring warm clothes for the evening"
 
 # Our Story section (optional)
 story:
@@ -76,14 +82,64 @@ timeline:
     - date: "October 2020"
       title: "First Date"
       description: "Coffee turned into dinner, dinner turned into forever"
+      image: "./images/first-date.jpg"
       
     - date: "June 2022"
       title: "Moving In Together"
       description: "Our first apartment in the Mission"
+      image: "./images/moving-in.jpg"
       
     - date: "December 2024"
       title: "The Proposal"
       description: "A surprise proposal at Baker Beach at sunset"
+      image: "./images/proposal.jpg"
+
+# Travel Information
+travel:
+  airports:
+    - name: "Gunnison-Crested Butte Regional Airport"
+      code: "GUC"
+      distance_miles: 28
+      drive_time: "30 minutes"
+      cost_range: "$$$"
+      flight_availability: "Limited"
+      description: "Closest airport to Crested Butte. For these dates, only three daily flights on United from Denver. Book early!"
+      airlines: ["United (3 daily flights from DEN)", "Seasonal only: May 22 - Oct 25, 2025"]
+      
+    - name: "Montrose Regional Airport"
+      code: "MTJ"
+      distance_miles: 65
+      drive_time: "1 hour 30 minutes"
+      cost_range: "$$"
+      flight_availability: "Good"
+      description: "Year-round flights with good availability. Scenic drive over mountain passes."
+      airlines: ["United", "American", "Delta", "Alaska"]
+      
+    - name: "Denver International Airport"
+      code: "DEN"
+      distance_miles: 230
+      drive_time: "4 hours"
+      cost_range: "$"
+      flight_availability: "Excellent"
+      description: "Most flight options and best prices. Beautiful mountain drive but long journey."
+      airlines: ["All major airlines"]
+      
+  driving_tips:
+    - "Rental car recommended for mountain driving and local flexibility"
+    - "Check weather and road conditions, especially in September/winter months"
+    - "Mountain passes can be challenging - allow extra driving time"
+    - "Limited gas stations between airports and Crested Butte"
+    
+  alternative_transport:
+    - name: "Epic Mountain Express"
+      description: "Shuttle service from Denver Airport to Crested Butte"
+      cost: "$150-200 per person"
+      duration: "5-6 hours"
+      
+    - name: "Colorado Mountain Express"
+      description: "Private shuttles from Montrose and other airports"
+      cost: "Varies by airport and group size"
+      duration: "1.5-2 hours from Montrose"
 
 # Accommodations
 hotels:
@@ -91,21 +147,18 @@ hotels:
     address: "6 Emmons Loop"
     city: "Mount Crested Butte, CO 81225"
     rate: "$220/night"
-    code: "TYELOUISE2026"
     link: "https://www.grandlodgecrestedbutte.com"
     
   - name: "Elk Mountain Lodge"
     address: "129 Gothic Avenue"
     city: "Crested Butte, CO 81224"
     rate: "$180/night"
-    code: "WEDDING2026"
     link: "https://www.elkmountainlodge.net"
     
   - name: "Old Town Inn"
     address: "708 6th Street"
     city: "Crested Butte, CO 81224"
     rate: "$160/night"
-    code: "TYEANDLOUISE"
     link: "https://www.oldtowninn.net"
 
 # Registry
@@ -114,12 +167,8 @@ registry:
   stores:
     - name: "Honeymoon Fund"
       payment_options:
-        - name: "Venmo"
-          qr_code: "./images/venmo-qr.png"
-          url: "https://venmo.com/u/louisecl"
-        - name: "Zelle"
-          qr_code: "./images/zelle-qr.png"
-          details: "louiseclindegaard@gmail.com"
+        - name: "Honeyfund"
+          url: "https://www.honeyfund.com/site/zasacky-lindegaard-09-18-2026"
     - name: "Amazon"
       url: "https://www.amazon.com/wedding/registry/3SGD7UOZNH1VH"
 
@@ -137,7 +186,7 @@ gallery:
 # RSVP Configuration
 rsvp:
   deadline: "2026-08-01"
-  form_url: "https://docs.google.com/forms/d/e/YOUR_GOOGLE_FORM_ID/viewform?embedded=true"
+  form_url: "https://docs.google.com/forms/d/e/1FAIpQLScQsp7KoNxn12-ouZytcb1TNE5TPzPNDbLf9508iZBKJtVZxA/viewform?embedded=true"
 
 
 # Footer
