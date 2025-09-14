@@ -9,8 +9,21 @@ date:
   iso: "2026-09-18T16:00:00"
 
 theme:
-  primary: "#1B365D"         # Navy blue color
+  primary: "#781b12"         # Deep burgundy - warm and sophisticated
   font: "Montserrat"         # Clean mountain-appropriate font
+
+  # Light theme - warm and elegant with your colors
+  text_primary: "#2c1810"    # Very dark brown for better readability than pure black
+  text_secondary: "#781b12"  # Deep burgundy for secondary content
+  text_muted: "#41512d"      # Deep olive for muted text
+  text_light: "#ffffff"      # Pure white for light text
+
+  # Dark theme - burgundy background with warm text palette
+  dark:
+    text_primary: "#ffffff"  # Pure white for main text - maximum contrast on burgundy
+    text_secondary: "#f3912b" # Warm orange for headings and accents
+    text_muted: "#e5e1e3"    # Light warm gray for subtle text
+    text_light: "#000000"    # Pure black for contrast elements
 
 # Navigation sections - customize order and visibility
 sections:
@@ -79,20 +92,38 @@ story:
 # Timeline section (optional)
 timeline:
   events:
-    - date: "October 2020"
-      title: "First Date"
-      description: "Coffee turned into dinner, dinner turned into forever"
-      image: "./images/first-date.jpg"
-      
-    - date: "June 2022"
-      title: "Moving In Together"
-      description: "Our first apartment in the Mission"
-      image: "./images/moving-in.jpg"
-      
+    - date: "Summer 2017"
+      title: "Adventures Begin"
+      description: "Road trips and exploring the great outdoors together"
+      images:
+        - "./images/roadtrip2017.webp"
+        - "./images/4pass_2.webp"
+
+    - date: "Winter 2018"
+      title: "Louise's first time in Aspen"
+      description: "Hitting the slopes in Aspen - discovering our love for the mountains"
+      images:
+        - "./images/louise_aspen.webp"
+
+    - date: "Aug 2021"
+      title: "Moving in Together in Raleigh"
+      description: "Moving in together and making a space that's truly ours"
+      images:
+        - "./images/move_in.webp"
+        - "./images/twin_oaks.webp"
+
+    - date: "Nov 2022"
+      title: "Getting Poppy"
+      description: "Thanksgiving gave us more to be thankful for than expected this year"
+      images:
+        - "./images/poppy1.webp"
+        - "./images/poppy2.webp"
+
     - date: "December 2024"
       title: "The Proposal"
-      description: "A surprise proposal at Baker Beach at sunset"
-      image: "./images/proposal.jpg"
+      description: "A surprise proposal at the Maroon Bells"
+      images:
+        - "./images/engagement.webp"
 
 # Travel Information
 travel:
@@ -175,12 +206,12 @@ registry:
 # Photo gallery (optional)
 gallery:
   images:
-    - url: "./images/engagement-1.jpg"
-      thumbnail: "./images/engagement-1-thumb.jpg"
+    - url: "./images/engagement-1.webp"
+      thumbnail: "./images/engagement-1-thumb.webp"
       caption: "Engagement photos at Golden Gate Park"
       
-    - url: "./images/engagement-2.jpg"
-      thumbnail: "./images/engagement-2-thumb.jpg"
+    - url: "./images/engagement-2.webp"
+      thumbnail: "./images/engagement-2-thumb.webp"
       caption: "At the beach"
 
 # RSVP Configuration

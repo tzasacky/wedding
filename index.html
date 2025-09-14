@@ -49,21 +49,15 @@
     <style id="critical-css">
         /* CSS Custom Properties with fallbacks for GitHub Pages */
         :root {
-            --primary: #1B365D;
-            --primary-rgb: 27, 54, 93;
-            --secondary: #2E5984;
-            --accent: #E8F2FF;
-            --text-dark: #1A1A1A;
-            --text-light: #F8F9FA;
-            --bg-dark: #0F1419;
-            --bg-light: #FFFFFF;
-            --mountain-gradient: linear-gradient(135deg, #1B365D 0%, #2E5984 50%, #4A7BA7 100%);
+            /* Layout and typography variables */
             --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --transition-speed: 200ms;
             --section-padding: clamp(3rem, 10vw, 6rem);
             --content-width: 1200px;
             --nav-height: 60px;
+
+            /* Color variables will be set by JavaScript from config */
         }
 
         /* Fallback styles for browsers without custom property support */
@@ -81,12 +75,12 @@
         }
         
         /* Enhanced color definitions with fallbacks */
-        .theme-primary { color: #1B365D; color: var(--primary); }
-        .bg-primary { background-color: #1B365D; background-color: var(--primary); }
-        .theme-secondary { color: #2E5984; color: var(--secondary); }
-        .theme-accent { color: #E8F2FF; color: var(--accent); }
-        .theme-text-dark { color: #1A1A1A; color: var(--text-dark); }
-        .theme-text-light { color: #F8F9FA; color: var(--text-light); }
+        .theme-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+        .theme-secondary { color: var(--secondary); }
+        .theme-accent { color: var(--accent); }
+        .theme-text-dark { color: var(--text-dark); }
+        .theme-text-light { color: var(--text-light); }
 
         /* Reset with performance in mind */
         *, *::before, *::after {
@@ -106,9 +100,7 @@
             font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-body);
             line-height: 1.6;
-            color: #1A1A1A;
             color: var(--text-dark);
-            background: #FFFFFF;
             background: var(--bg-light);
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -121,6 +113,15 @@
         /* Hide content until config loads */
         body:not(.config-loaded) > *:not(#loader) {
             visibility: hidden;
+        }
+
+        /* General text shadows for better readability */
+        h1, h2, h3, h4, h5, h6 {
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        p, li, span, div {
+            text-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.05);
         }
 
         /* Skeleton loader */
@@ -170,6 +171,16 @@
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
         }
 
+        /* Dark mode navigation */
+        [data-theme="dark"] #nav {
+            background: rgba(28, 28, 28, 0.9);
+            color: var(--text-dark);
+        }
+
+        [data-theme="dark"] #nav.scrolled {
+            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+        }
+
         #nav ul {
             list-style: none;
             display: flex;
@@ -202,7 +213,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #8B4513;
+            background: var(--primary);
             background: var(--primary);
             transition: width 200ms ease;
             transition: width var(--transition-speed) ease;
@@ -225,9 +236,7 @@
             position: relative;
             overflow: hidden;
             contain: layout style paint;
-            background: linear-gradient(135deg, #8B4513 0%, #CD853F 50%, #D2B48C 100%);
             background: var(--mountain-gradient);
-            color: #F8F8F8;
             color: var(--text-light);
         }
 
@@ -235,8 +244,21 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><path d="M0,400 C150,300 300,350 450,250 C600,150 750,200 900,100 C1050,50 1200,150 1200,150 L1200,600 L0,600 Z" fill="%23FFFFFF10"/><path d="M0,450 C150,350 300,400 450,300 C600,200 750,250 900,150 C1050,100 1200,200 1200,200 L1200,600 L0,600 Z" fill="%23FFFFFF08"/></svg>') no-repeat center/cover;
-            opacity: 0.6;
+            background: url('./images/crested_butte.jpg') no-repeat center/cover;
+            z-index: 0;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                135deg,
+                rgba(27, 54, 93, 0.7) 0%,
+                rgba(46, 89, 132, 0.6) 50%,
+                rgba(74, 123, 167, 0.7) 100%
+            );
+            z-index: 1;
         }
 
         .hero h1 {
@@ -251,8 +273,12 @@
             animation: hero-fade-in 1s ease forwards;
             letter-spacing: -0.02em;
             position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            z-index: 2;
+            text-shadow:
+                2px 2px 4px rgba(0,0,0,0.8),
+                0 0 20px rgba(0,0,0,0.5),
+                0 0 40px rgba(27, 54, 93, 0.3);
+            color: white;
         }
 
         .hero-date {
@@ -261,14 +287,21 @@
             opacity: 1;
             transform: translateY(0);
             animation: hero-fade-in 1s ease 0.2s forwards;
-            font-weight: 300;
+            font-weight: 400;
             position: relative;
-            z-index: 1;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            z-index: 2;
+            text-shadow:
+                1px 1px 3px rgba(0,0,0,0.8),
+                0 0 15px rgba(0,0,0,0.5);
+            color: white;
+        }
+
+        .hero > div {
+            position: relative;
+            z-index: 2;
         }
 
         .hero-accent {
-            color: #F5F5DC;
             color: var(--accent);
             display: inline-block;
             transform: scale(1.1);
@@ -319,7 +352,7 @@
             transform: translateX(-50%);
             width: 60px;
             height: 2px;
-            background: #8B4513;
+            background: var(--primary);
             background: var(--primary);
         }
 
@@ -333,7 +366,7 @@
         }
 
         .card {
-            background: white;
+            background: var(--bg-light);
             padding: 2.5rem;
             border-radius: 12px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
@@ -344,6 +377,7 @@
             display: flex;
             flex-direction: column;
             min-height: 100%;
+            color: var(--text-dark);
         }
 
         .card::before {
@@ -353,7 +387,7 @@
             left: 0;
             right: 0;
             height: 3px;
-            background: #8B4513;
+            background: var(--primary);
             background: var(--primary);
             transform: translateX(-100%);
             transition: transform 300ms ease;
@@ -365,18 +399,29 @@
             box-shadow: 0 12px 24px rgba(var(--primary-rgb), 0.15);
         }
 
+        /* Dark mode card styling */
+        [data-theme="dark"] .card {
+            background: var(--bg-dark);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .card:hover {
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(243, 145, 43, 0.3);
+        }
+
         .card:hover::before {
             transform: translateX(0);
         }
 
         .card h3 {
-            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-display);
             font-size: 1.75rem;
-            color: #8B4513;
-            color: var(--primary);
+            color: var(--text-secondary);
             margin-bottom: 1rem;
-            font-weight: 400;
+            font-weight: 500;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
         }
 
         /* Container queries for responsive typography */
@@ -414,11 +459,16 @@
             background: var(--bg-light);
             border-top: 1px solid rgba(0, 0, 0, 0.05);
             font-size: 0.875rem;
+            color: var(--text-dark);
+        }
+
+        /* Dark mode footer */
+        [data-theme="dark"] footer {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         footer a {
-            color: #8B4513;
-            color: var(--primary);
+            color: var(--text-secondary);
             text-decoration: none;
             transition: opacity 200ms ease;
             transition: opacity var(--transition-speed) ease;
@@ -461,86 +511,57 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* Dark theme */
-        [data-theme="dark"] {
-            --text-dark: #F8F9FA;
-            --text-light: #1A1A1A;
-            --bg-dark: #FFFFFF;
-            --bg-light: #0F1419;
-            --mountain-gradient: linear-gradient(135deg, #0F2540 0%, #1B365D 50%, #2E5984 100%);
-        }
-
-        [data-theme="dark"] body {
-            color: #F8F9FA;
-            background: #0F1419;
-        }
-
+        /* Dark theme toggle styles */
         [data-theme="dark"] .theme-toggle {
-            background: rgba(28, 28, 28, 0.9);
+            background: rgba(42, 42, 42, 0.9);
             color: #F8F8F8;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        [data-theme="dark"] .hero {
-            background: var(--mountain-gradient);
-        }
-
-        [data-theme="dark"] #nav {
-            background: rgba(15, 20, 25, 0.9);
-            color: #F8F9FA;
-        }
-
-        [data-theme="dark"] .card {
-            background: #1B2631;
-            color: #F8F9FA;
+        [data-theme="dark"] .theme-toggle:hover {
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-        }
-        
-        [data-theme="dark"] .card h3 {
-            color: #87CEEB;
+            background: rgba(42, 42, 42, 1);
         }
 
-        [data-theme="dark"] footer {
-            background: var(--bg-light);
-            border-top-color: rgba(255, 255, 255, 0.05);
+
+        /* Initialize theme before config loads to prevent flash */
+        :root {
+            /* Default light theme colors */
+            --primary: #8B4513;
+            --secondary: #f3912b;
+            --accent: #e5e1e3;
+            --text-dark: #2c1810;
+            --text-secondary: #781b12;
+            --text-muted: #41512d;
+            --text-light: #ffffff;
+            --bg-light: #ffffff;
+            --bg-dark: #e5e1e3;
+            --mountain-gradient: linear-gradient(135deg, #781b12 0%, #f3912b 50%, #e5e1e3 100%);
+            --primary-rgb: 139, 69, 19;
         }
 
-        /* System preference fallback */
+        /* Dark theme overrides - consistent with stats page */
+        [data-theme="dark"] {
+            --text-dark: #F8F8F8;
+            --text-secondary: #f3912b;
+            --text-muted: #CCCCCC;
+            --text-light: #000000;
+            --bg-light: #1C1C1C;
+            --bg-dark: #2A2A2A;
+            --mountain-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+        }
+
+        /* System preference detection only for initial load */
         @media (prefers-color-scheme: dark) {
             :root:not([data-theme]) {
-                --text-dark: #F8F9FA;
-                --text-light: #1A1A1A;
-                --bg-dark: #FFFFFF;
-                --bg-light: #0F1419;
-                --mountain-gradient: linear-gradient(135deg, #0F2540 0%, #1B365D 50%, #2E5984 100%);
-            }
-
-            :root:not([data-theme]) body {
-                color: #F8F9FA;
-                background: #0F1419;
-            }
-
-            :root:not([data-theme]) .hero {
-                background: var(--mountain-gradient);
-            }
-
-            :root:not([data-theme]) #nav {
-                background: rgba(15, 20, 25, 0.9);
-                color: #F8F9FA;
-            }
-
-            :root:not([data-theme]) .card {
-                background: #1B2631;
-                color: #F8F9FA;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            }
-            
-            :root:not([data-theme]) .card h3 {
-                color: #87CEEB;
-            }
-
-            :root:not([data-theme]) footer {
-                background: var(--bg-light);
-                border-top-color: rgba(255, 255, 255, 0.05);
+                --text-dark: #F8F8F8;
+                --text-secondary: #f3912b;
+                --text-muted: #CCCCCC;
+                --text-light: #000000;
+                --bg-light: #1C1C1C;
+                --bg-dark: #2A2A2A;
+                --mountain-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
             }
         }
 
@@ -582,7 +603,7 @@
 
         /* Loading states */
         .skeleton {
-            background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+            background: linear-gradient(90deg, var(--accent) 25%, rgba(var(--primary-rgb), 0.1) 50%, var(--accent) 75%);
             background-size: 200% 100%;
             animation: loading 1.5s infinite;
         }
@@ -656,6 +677,15 @@
             margin-top: 2rem;
         }
 
+        /* Dark mode form container - keep background white to match iframe content */
+        [data-theme="dark"] .form-container {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Note: Google forms are embedded iframes and cannot inherit dark theme styling */
+
         .google-form {
             width: 100%;
             height: 800px;
@@ -666,7 +696,6 @@
         @supports (scrollbar-width: thin) {
             * {
                 scrollbar-width: thin;
-                scrollbar-color: #8B4513 transparent;
                 scrollbar-color: var(--primary) transparent;
             }
         }
@@ -681,7 +710,7 @@
         }
 
         ::-webkit-scrollbar-thumb {
-            background: #8B4513;
+            background: var(--primary);
             background: var(--primary);
             border-radius: 4px;
         }
@@ -718,8 +747,12 @@
             font-weight: 300;
             font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             font-family: var(--font-display);
-            color: #FFFFFF;
+            color: white;
             line-height: 1;
+            text-shadow:
+                2px 2px 4px rgba(0,0,0,0.8),
+                0 0 20px rgba(0,0,0,0.5),
+                0 0 40px rgba(27, 54, 93, 0.3);
         }
 
         .countdown-label {
@@ -729,6 +762,10 @@
             text-transform: uppercase;
             letter-spacing: 0.1em;
             margin-top: 0.5rem;
+            color: white;
+            text-shadow:
+                1px 1px 3px rgba(0,0,0,0.8),
+                0 0 15px rgba(0,0,0,0.5);
         }
 
         /* Horizontal Timeline styles */
@@ -762,15 +799,16 @@
             top: 50%;
             left: 0;
             right: 0;
-            height: 2px;
-            background: var(--primary);
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), rgba(var(--primary-rgb), 0.7), var(--primary));
             transform: translateY(-50%);
             z-index: 1;
+            border-radius: 2px;
         }
 
         .timeline-item-horizontal {
             position: relative;
-            flex: 0 0 350px;
+            flex: 0 0 400px;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -783,67 +821,88 @@
             background: var(--primary);
             border-radius: 50%;
             border: 4px solid white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
             z-index: 2;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .timeline-card {
-            background: white;
-            border-radius: 12px;
+            background: var(--bg-light);
+            border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all var(--transition-speed) ease;
             width: 100%;
-            max-width: 320px;
+            max-width: 380px;
+            color: var(--text-dark);
         }
 
         .timeline-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(var(--primary-rgb), 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 32px rgba(var(--primary-rgb), 0.15);
         }
 
-        .timeline-image {
-            width: 100%;
-            height: 180px;
-            overflow: hidden;
-        }
-
-        .timeline-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .timeline-content {
+        .timeline-text {
             padding: 1.5rem;
         }
 
         .timeline-date {
             font-size: 0.875rem;
-            color: var(--primary);
-            font-weight: 500;
+            color: var(--text-secondary);
+            font-weight: 600;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
         }
 
         .timeline-title {
             font-size: 1.25rem;
-            font-weight: 400;
+            font-weight: 500;
             margin-bottom: 0.75rem;
             color: var(--text-dark);
+            line-height: 1.3;
         }
 
         .timeline-description {
-            color: #666;
+            color: var(--text-secondary);
             line-height: 1.5;
-            font-size: 0.875rem;
+            font-size: 0.9rem;
             margin: 0;
         }
 
+        .timeline-images-horizontal {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            padding: 0 1.5rem 1.5rem;
+        }
+
+        .timeline-image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            background: var(--accent);
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 0.5rem 0;
+        }
+
+        .timeline-photo {
+            max-width: 100%;
+            height: auto;
+            width: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-speed) ease;
+            display: block;
+        }
+
+        .timeline-photo:hover {
+            transform: scale(1.02);
+        }
+
         .timeline-nav {
-            background: white;
+            background: var(--bg-light);
             border: 2px solid var(--primary);
             color: var(--primary);
             width: 50px;
@@ -857,6 +916,7 @@
             font-size: 1.5rem;
             font-weight: bold;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .timeline-nav:hover {
@@ -872,43 +932,10 @@
         }
 
         .timeline-nav:disabled:hover {
-            background: white;
+            background: var(--bg-light);
             color: var(--primary);
         }
 
-        /* Dark theme timeline styles */
-        [data-theme="dark"] .timeline-card {
-            background: #1B2631;
-            color: #F8F9FA;
-        }
-
-        [data-theme="dark"] .timeline-title {
-            color: #F8F9FA;
-        }
-
-        [data-theme="dark"] .timeline-description {
-            color: #B0B0B0;
-        }
-
-        [data-theme="dark"] .timeline-dot {
-            border-color: #1B2631;
-        }
-
-        [data-theme="dark"] .timeline-nav {
-            background: #1B2631;
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        [data-theme="dark"] .timeline-nav:hover {
-            background: var(--primary);
-            color: #1B2631;
-        }
-
-        [data-theme="dark"] .timeline-nav:disabled:hover {
-            background: #1B2631;
-            color: var(--primary);
-        }
 
         @media (max-width: 768px) {
             .timeline-container {
@@ -922,19 +949,28 @@
             }
 
             .timeline-item-horizontal {
-                flex: 0 0 280px;
+                flex: 0 0 320px;
             }
 
             .timeline-card {
-                max-width: 260px;
+                max-width: 300px;
             }
 
-            .timeline-image {
-                height: 150px;
-            }
-
-            .timeline-content {
+            .timeline-text {
                 padding: 1.25rem;
+            }
+
+            .timeline-title {
+                font-size: 1.1rem;
+            }
+
+            .timeline-images-horizontal {
+                padding: 0 1.25rem 1.25rem;
+            }
+
+            .timeline-image-wrapper {
+                min-height: 150px;
+                max-height: 250px;
             }
         }
 
@@ -1012,7 +1048,7 @@
         .metric-label {
             display: block;
             font-weight: 500;
-            color: var(--primary);
+            color: var(--text-secondary);
             font-size: 0.875rem;
             margin-bottom: 0.25rem;
         }
@@ -1043,7 +1079,7 @@
         /* Timeline styles for horizontal cards */
         .timeline-date {
             font-size: 1rem;
-            color: var(--primary);
+            color: var(--text-secondary);
             font-weight: 500;
             margin-bottom: 0.5rem;
             text-transform: uppercase;
@@ -1058,7 +1094,7 @@
         }
 
         .timeline-description {
-            color: #666;
+            color: var(--text-muted);
             line-height: 1.5;
             margin: 0;
         }
@@ -1070,7 +1106,7 @@
         .travel-tips h3, .alternative-transport h3 {
             font-family: var(--font-display);
             font-size: 1.75rem;
-            color: var(--primary);
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
             font-weight: 400;
         }
@@ -1078,10 +1114,11 @@
         .travel-tips ul {
             list-style: none;
             padding: 0;
-            background: white;
+            background: var(--bg-light);
             border-radius: 12px;
             padding: 2rem;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            color: var(--text-dark);
         }
 
         .travel-tips li {
@@ -1113,27 +1150,6 @@
             flex: 1;
         }
 
-        /* Dark theme styles */
-        [data-theme="dark"] .airlines {
-            border-top-color: rgba(255, 255, 255, 0.1);
-        }
-
-        [data-theme="dark"] .travel-tips ul {
-            background: #1B2631;
-        }
-
-        [data-theme="dark"] .timeline-title {
-            color: #F8F9FA;
-        }
-
-        [data-theme="dark"] .timeline-description {
-            color: #B0B0B0;
-        }
-
-        [data-theme="dark"] .airport-code {
-            background: rgba(255, 255, 255, 0.1);
-            color: #87CEEB;
-        }
 
         @media (max-width: 768px) {
             .horizontal-card {
@@ -1193,6 +1209,50 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        /* Dark mode timeline and interactive elements */
+        [data-theme="dark"] .timeline-card {
+            background: var(--bg-dark);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(243, 145, 43, 0.2);
+        }
+
+        [data-theme="dark"] .timeline-card:hover {
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(243, 145, 43, 0.4);
+            transform: translateY(-8px);
+        }
+
+        [data-theme="dark"] .timeline-nav {
+            background: var(--bg-dark);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        [data-theme="dark"] .timeline-nav:disabled:hover {
+            background: var(--bg-dark);
+        }
+
+        [data-theme="dark"] .travel-tips ul {
+            background: var(--bg-dark);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        [data-theme="dark"] .timeline-image-wrapper {
+            background: rgba(64, 64, 64, 0.3);
+        }
+
+        /* Dark mode for metric sections */
+        [data-theme="dark"] .airport-code {
+            background: rgba(var(--primary-rgb), 0.3);
+            color: var(--text-secondary);
+        }
+
+        /* Dark mode gallery styling */
+        [data-theme="dark"] .gallery-item {
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
     </style>
 
@@ -1471,23 +1531,32 @@
                             </button>
                             <div class="timeline-horizontal">
                                 <div class="timeline-line"></div>
-                                ${(config.timeline?.events || []).map((event, index) => `
-                                    <article class="timeline-item-horizontal animate" data-index="${index}">
-                                        <div class="timeline-dot"></div>
-                                        <div class="timeline-card">
-                                            ${event.image ? `
-                                                <div class="timeline-image">
-                                                    <img src="${event.image}" alt="${event.title}" loading="lazy" decoding="async">
+                                ${(config.timeline?.events || []).map((event, index) => {
+                                    // Support both single image and multiple images
+                                    const images = event.images || (event.image ? [event.image] : []);
+
+                                    return `
+                                        <article class="timeline-item-horizontal animate" data-index="${index}">
+                                            <div class="timeline-dot"></div>
+                                            <div class="timeline-card">
+                                                <div class="timeline-text">
+                                                    <h3 class="timeline-date">${event.date}</h3>
+                                                    <h4 class="timeline-title">${event.title}</h4>
+                                                    ${event.description ? `<p class="timeline-description">${event.description}</p>` : ''}
                                                 </div>
-                                            ` : ''}
-                                            <div class="timeline-content">
-                                                <h3 class="timeline-date">${event.date}</h3>
-                                                <h4 class="timeline-title">${event.title}</h4>
-                                                ${event.description ? `<p class="timeline-description">${event.description}</p>` : ''}
+                                                ${images.length > 0 ? `
+                                                    <div class="timeline-images-horizontal">
+                                                        ${images.map(img => `
+                                                            <div class="timeline-image-wrapper">
+                                                                <img src="${img}" alt="${event.title}" loading="lazy" decoding="async" class="timeline-photo">
+                                                            </div>
+                                                        `).join('')}
+                                                    </div>
+                                                ` : ''}
                                             </div>
-                                        </div>
-                                    </article>
-                                `).join('')}
+                                        </article>
+                                    `;
+                                }).join('')}
                             </div>
                             <button class="timeline-nav timeline-next" aria-label="Next timeline item">
                                 <span>›</span>
@@ -1541,7 +1610,7 @@
                 document.documentElement.style.setProperty('--font-body', `'${config.theme.font}', ${fallbacks}`);
             }
             
-            // Set theme colors
+            // Update theme colors from config if provided (preserving theme state)
             if (config.theme?.primary) {
                 document.documentElement.style.setProperty('--primary', config.theme.primary);
                 // Calculate RGB values for transparent versions
@@ -1603,9 +1672,6 @@
             // Initialize features
             initializeFeatures(config);
             
-            // Initialize theme
-            initializeTheme();
-            
             // Mark as loaded
             document.body.classList.add('config-loaded');
             
@@ -1622,33 +1688,37 @@
             });
         }
 
-        // Initialize theme system
+        // Initialize theme system early to prevent flash
         function initializeTheme() {
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
-            
+
             // Get saved theme or system preference
             const savedTheme = localStorage.getItem('theme');
             const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
             const defaultTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-            
-            // Apply theme
+
+            // Apply theme without overriding it
             function applyTheme(theme) {
                 document.documentElement.setAttribute('data-theme', theme);
-                themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+                if (themeIcon) {
+                    themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
+                }
                 localStorage.setItem('theme', theme);
             }
-            
-            // Set initial theme
+
+            // Set initial theme immediately
             applyTheme(defaultTheme);
-            
-            // Theme toggle handler
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                applyTheme(newTheme);
-            });
-            
+
+            // Setup toggle handler only when button exists
+            if (themeToggle) {
+                themeToggle.addEventListener('click', () => {
+                    const currentTheme = document.documentElement.getAttribute('data-theme');
+                    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                    applyTheme(newTheme);
+                });
+            }
+
             // Listen for system theme changes
             window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
                 if (!localStorage.getItem('theme')) {
@@ -1809,28 +1879,28 @@
             const timelineContainer = document.querySelector('.timeline-horizontal');
             const prevBtn = document.querySelector('.timeline-prev');
             const nextBtn = document.querySelector('.timeline-next');
-            
+
             if (timelineContainer && prevBtn && nextBtn) {
                 let currentIndex = 0;
                 const items = document.querySelectorAll('.timeline-item-horizontal');
                 const totalItems = items.length;
-                
+
                 function updateTimelinePosition() {
                     if (totalItems === 0) return;
-                    
+
                     const itemWidth = items[0].offsetWidth + 48; // item width + gap
                     const scrollPosition = currentIndex * itemWidth;
-                    
+
                     timelineContainer.scrollTo({
                         left: scrollPosition,
                         behavior: 'smooth'
                     });
-                    
+
                     // Update button states
                     prevBtn.disabled = currentIndex === 0;
                     nextBtn.disabled = currentIndex >= totalItems - 1;
                 }
-                
+
                 function navigateTimeline(direction) {
                     if (direction === 'prev' && currentIndex > 0) {
                         currentIndex--;
@@ -1839,33 +1909,33 @@
                     }
                     updateTimelinePosition();
                 }
-                
+
                 prevBtn.addEventListener('click', () => navigateTimeline('prev'));
                 nextBtn.addEventListener('click', () => navigateTimeline('next'));
-                
+
                 // Initialize
                 updateTimelinePosition();
-                
+
                 // Handle touch/swipe on mobile
                 let startX = 0;
                 let scrollStart = 0;
-                
+
                 timelineContainer.addEventListener('touchstart', (e) => {
                     startX = e.touches[0].clientX;
                     scrollStart = timelineContainer.scrollLeft;
                 });
-                
+
                 timelineContainer.addEventListener('touchmove', (e) => {
                     if (!startX) return;
-                    
+
                     const currentX = e.touches[0].clientX;
                     const diff = startX - currentX;
                     timelineContainer.scrollLeft = scrollStart + diff;
                 });
-                
+
                 timelineContainer.addEventListener('touchend', () => {
                     startX = 0;
-                    
+
                     // Snap to nearest item
                     const itemWidth = items[0].offsetWidth + 48;
                     const newIndex = Math.round(timelineContainer.scrollLeft / itemWidth);
@@ -1873,6 +1943,14 @@
                     updateTimelinePosition();
                 });
             }
+
+            // Timeline photo interactions
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('timeline-photo')) {
+                    // Future: could add lightbox functionality here
+                    console.log('Photo clicked:', e.target.src);
+                }
+            });
 
             // Web Share API
             document.getElementById('share-button').addEventListener('click', async (e) => {
@@ -1930,6 +2008,9 @@
 
         // Initialize everything
         async function init() {
+            // Initialize theme immediately to prevent flash
+            initializeTheme();
+
             try {
                 const config = await loadConfig();
                 if (config) {

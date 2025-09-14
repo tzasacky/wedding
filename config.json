@@ -7,8 +7,18 @@
     "iso": "2026-09-18T16:00:00"
   },
   "theme": {
-    "primary": "#1B365D",
-    "font": "Montserrat"
+    "primary": "#781b12",
+    "font": "Montserrat",
+    "text_primary": "#2c1810",
+    "text_secondary": "#781b12",
+    "text_muted": "#41512d",
+    "text_light": "#ffffff",
+    "dark": {
+      "text_primary": "#ffffff",
+      "text_secondary": "#f3912b",
+      "text_muted": "#e5e1e3",
+      "text_light": "#000000"
+    }
   },
   "sections": [
     {
@@ -78,22 +88,47 @@
   "timeline": {
     "events": [
       {
-        "date": "October 2020",
-        "title": "First Date",
-        "description": "Coffee turned into dinner, dinner turned into forever",
-        "image": "./images/first-date.jpg"
+        "date": "Summer 2017",
+        "title": "Adventures Begin",
+        "description": "Road trips and exploring the great outdoors together",
+        "images": [
+          "./images/roadtrip2017.webp",
+          "./images/4pass_2.webp"
+        ]
       },
       {
-        "date": "June 2022",
-        "title": "Moving In Together",
-        "description": "Our first apartment in the Mission",
-        "image": "./images/moving-in.jpg"
+        "date": "Winter 2018",
+        "title": "Louise's first time in Aspen",
+        "description": "Hitting the slopes in Aspen - discovering our love for the mountains",
+        "images": [
+          "./images/louise_aspen.webp"
+        ]
+      },
+      {
+        "date": "Aug 2021",
+        "title": "Moving in Together in Raleigh",
+        "description": "Moving in together and making a space that's truly ours",
+        "images": [
+          "./images/move_in.webp",
+          "./images/twin_oaks.webp"
+        ]
+      },
+      {
+        "date": "Nov 2022",
+        "title": "Getting Poppy",
+        "description": "Thanksgiving gave us more to be thankful for than expected this year",
+        "images": [
+          "./images/poppy1.webp",
+          "./images/poppy2.webp"
+        ]
       },
       {
         "date": "December 2024",
         "title": "The Proposal",
-        "description": "A surprise proposal at Baker Beach at sunset",
-        "image": "./images/proposal.jpg"
+        "description": "A surprise proposal at the Maroon Bells",
+        "images": [
+          "./images/engagement.webp"
+        ]
       }
     ]
   },
@@ -205,13 +240,13 @@
   "gallery": {
     "images": [
       {
-        "url": "./images/engagement-1.jpg",
-        "thumbnail": "./images/engagement-1-thumb.jpg",
+        "url": "./images/engagement-1.webp",
+        "thumbnail": "./images/engagement-1-thumb.webp",
         "caption": "Engagement photos at Golden Gate Park"
       },
       {
-        "url": "./images/engagement-2.jpg",
-        "thumbnail": "./images/engagement-2-thumb.jpg",
+        "url": "./images/engagement-2.webp",
+        "thumbnail": "./images/engagement-2-thumb.webp",
         "caption": "At the beach"
       }
     ]
