@@ -10,7 +10,7 @@ date:
 
 theme:
   primary: "#781b12"         # Deep burgundy - warm and sophisticated
-  font: "Montserrat"         # Clean mountain-appropriate font - Perandory Condensed
+  font: "Montserrat"         # Clean mountain-appropriate font
 
   # Light theme - warm and elegant with your colors
   text_primary: "#2c1810"    # Very dark brown for better readability than pure black
@@ -69,17 +69,19 @@ ceremony:
   venue: "Mountain Wedding Garden"
   address: "911 Gothic Rd"
   city: "Crested Butte, CO 81225"
-  dress_code: "Mountain Formal.           Outdoor venue so coats and warm layers are essential."
+  dress_code: "Mountain Formal at an outdoor venue so coats and warm layers required!"
 
 reception:
   time: "Saturday, September 19th 6-12 PM"
   venue: "Public House"
-  address: "202 Elk Ave"
+  address: "202 Elk Ave"  
   city: "Crested Butte, CO 81224"
-  dress_code: "Western Cocktail.           Lean into the Western and have fun with it."
+  dress_code: "Western Cocktail for the Colorado Saloon!"
 
-dress_code: "Bring warm clothes. Nature inspired colors and textures encouraged.  
-              See <a href=\"https://pin.it/2MKZfWCt5\">Pinterest Board</a> for inspiration. "
+dress_code: 
+  "Bring warm clothes!
+  Mountain Formal is semi-formal attire in nature inspired colors and textures. Western Cocktail is dressy Western, lean into the mountain vibe and have fun with it!
+         See <a href=\"https://pin.it/2MKZfWCt5\">Pinterest Board</a> for inspiration. "
 
 # Our Story section (optional)
 story:
@@ -100,11 +102,12 @@ timeline:
         - "./images/LouiseTyeCopenhagen.jpg"
 
     - date: "Summer 2017"
-      title: "Dating Adventures Begin"
+      title: "Dating Begins"
       description: "Road trips and exploring the great outdoors together as an official couple"
       images:
         - "./images/LouiseTyeCornPalace.JPG"
         - "./images/roadtrip2017.webp"
+        - "./images/SouthDakota.jpeg"
 
     - date: "Winter 2018"
       title: "Louise's first time in Aspen"
@@ -113,7 +116,7 @@ timeline:
         - "./images/louise_aspen.webp"
 
     - date: "Summer 2020"
-      title: "WFH, sort of"
+      title: "Work from Anywhere"
       description: "COVID opens the wonderful world of work from home and we spend the summer in Aspen"
       images:
         - "./images/LouiseTye4Passloup.jpg"
@@ -124,15 +127,15 @@ timeline:
       title: "Moving in Together in Raleigh"
       description: "Moving in together and making a space that's truly ours"
       images:
-        - "./images/move_in.webp"
-        - "./images/twin_oaks.webp"
+        - "./images/move_in.png"
+        - "./images/twin_oaks.png"
 
     - date: "Nov 2022"
       title: "Getting Poppy"
       description: "Thanksgiving gave us more to be thankful for than expected this year"
       images:
-        - "./images/poppy2.webp"
-        - "./images/poppy1.webp"
+        - "./images/poppy2.png"
+        - "./images/poppy1.png"
 
     - date: "2022-2024"
       title: "Post Graduation Fun"
@@ -149,13 +152,19 @@ timeline:
         - "./images/Proposal.jpg"
         - "./images/engagement.webp"
 
-    - date: "Now - ∞"
+    - date: "Summer 2025"
+      title: "Move to Durham"
+      description: "Compare to our previous apartment photo to see how much our Bird of Paradise has grown alongside us"
+      images:
+        - "./images/Apartment.jpg"
+
+    - date: "Now - Infinity"
       title: "Adventure Awaits"
       description: "Here's to a lifetime of laughter, love, and new adventures!!!"
       images:
         - "./images/LouiseTyeOktoberfest.jpg"
         - "./images/LouiseTyeIceland.jpg"
-        - "./images/Apartment.jpg"
+        # - "./images/Apartment.jpg"
 
 # Travel Information
 travel:
@@ -191,20 +200,8 @@ travel:
       
   driving_tips:
     - "Rental car recommended for mountain driving and local flexibility"
-    - "Check weather and road conditions, especially in September/winter months"
-    - "Mountain passes can be challenging - allow extra driving time"
-    - "Limited gas stations between airports and Crested Butte"
-    
-  alternative_transport:
-    - name: "Epic Mountain Express"
-      description: "Shuttle service from Denver Airport to Crested Butte"
-      cost: "$150-200 per person"
-      duration: "5-6 hours"
-      
-    - name: "Colorado Mountain Express"
-      description: "Private shuttles from Montrose and other airports"
-      cost: "Varies by airport and group size"
-      duration: "1.5-2 hours from Montrose"
+    - "There is a free bus available between Crested Butte Downtown and the Mountain Village - <a href=\"https:\\www.mtnexp.org\">Mountain Express</a>"
+    - "Please let us know if you have any questions or concerns about driving in the mountains! "
 
 # Accommodations
 hotels:
