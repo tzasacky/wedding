@@ -76,11 +76,11 @@ reception:
   venue: "Public House"
   address: "202 Elk Ave"  
   city: "Crested Butte, CO 81224"
-  dress_code: "Western Cocktail for the Colorado Saloon!"
+  dress_code: "Western Cocktail for the Historic Saloon built in 1882!"
 
 dress_code: 
   "Bring warm clothes!
-  Mountain Formal is semi-formal attire in nature inspired colors and textures. Western Cocktail is dressy Western, lean into the mountain vibe and have fun with it!
+  Mountain Formal is formal attire in nature inspired colors and textures. Western Cocktail is dressy Western, lean into the mountain vibe and have fun with it!
          See <a href=\"https://pin.it/2MKZfWCt5\">Pinterest Board</a> for inspiration. "
 
 # Our Story section (optional)
@@ -117,7 +117,7 @@ timeline:
 
     - date: "Summer 2020"
       title: "Work from Anywhere"
-      description: "COVID opens the wonderful world of work from home and we spend the summer in Aspen"
+      description: "We spend the summer in Aspen working from home"
       images:
         - "./images/LouiseTye4Passloup.jpg"
         - "./images/FourPassLoopVert.jpg"
@@ -164,7 +164,6 @@ timeline:
       images:
         - "./images/LouiseTyeOktoberfest.jpg"
         - "./images/LouiseTyeIceland.jpg"
-        # - "./images/Apartment.jpg"
 
 # Travel Information
 travel:
@@ -202,6 +201,7 @@ travel:
     - "Rental car recommended for mountain driving and local flexibility"
     - "There is a free bus available between Crested Butte Downtown and the Mountain Village - <a href=\"https:\\www.mtnexp.org\">Mountain Express</a>"
     - "Please let us know if you have any questions or concerns about driving in the mountains! "
+    - "Be aware that gas stations are extremely limited in some parts of Colorado"
 
 # Accommodations
 hotels:
