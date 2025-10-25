@@ -1348,7 +1348,7 @@
                         <div class="content-grid">
                             ${config.ceremony ? `
                                 <article class="card animate">
-                                    <h3>Ceremony</h3>
+                                    <h3>Friday Wedding</h3>
                                     <p><strong>${config.ceremony.time}</strong></p>
                                     <p>${config.ceremony.venue}<br>
                                     ${config.ceremony.address}<br>
@@ -1358,7 +1358,7 @@
                             ` : ''}
                             ${config.reception ? `
                                 <article class="card animate">
-                                    <h3>Reception</h3>
+                                    <h3>Saturday Party</h3>
                                     <p><strong>${config.reception.time}</strong></p>
                                     <p>${config.reception.venue}<br>
                                     ${config.reception.address}<br>
@@ -1368,7 +1368,7 @@
                             ` : ''}
                             ${config.dress_code ? `
                                 <article class="card animate">
-                                    <h3>Overall Dress Code</h3>
+                                    <h3>Dress Code Details</h3>
                                     <p>${config.dress_code}</p>
                                 </article>
                             ` : ''}
@@ -1411,7 +1411,7 @@
                         </div>
                         ${config.travel?.driving_tips ? `
                             <div class="travel-tips">
-                                <h3>Driving Tips</h3>
+                                <h3>Transportation Tips</h3>
                                 <ul>
                                     ${config.travel.driving_tips.map(tip => `<li>${tip}</li>`).join('')}
                                 </ul>
