@@ -32,15 +32,11 @@ sections:
     enabled: true
     
   - id: details
-    name: "Details"
+    name: "Schedule"
     enabled: true
     
-  - id: story
-    name: "Our Story"
-    enabled: false
-    
   - id: timeline
-    name: "Timeline"
+    name: "Our Story"
     enabled: true
     
   - id: travel
@@ -65,18 +61,16 @@ sections:
 
 # Event details
 ceremony:
-  time: "Friday, September 18th 4-10 PM"
+  time: "September 18th 4-10 PM"
   venue: "Mountain Wedding Garden"
-  address: "911 Gothic Rd"
-  city: "Crested Butte, CO 81225"
-  dress_code: "Mountain Formal at an outdoor venue so coats and warm layers required!"
+  maps_url: "https://www.google.com/maps/search/?api=1&query=Mountain+Wedding+Garden+Crested+Butte+CO"
+  dress_code: "Mountain Formal - the venue is indoor-outdoor, coats and/or layers strongly recommended!"
 
 reception:
-  time: "Saturday, September 19th 6-12 PM"
+  time: "September 19th 6-12 PM"
   venue: "Public House"
-  address: "202 Elk Ave"  
-  city: "Crested Butte, CO 81224"
-  dress_code: "Western Cocktail for the Historic Saloon built in 1882!"
+  maps_url: "https://maps.app.goo.gl/xVtrt1GBFYv4ygtH7"
+  dress_code: "Western Cocktail - for the Historic Saloon built in 1882!"
 
 dress_code: 
   "Bring warm clothes!
@@ -99,15 +93,15 @@ timeline:
       title: "Our First Trip"
       description: "We find cheap flights to Scandinavia and go on our first trip, as friends!"
       images:
-        - "./images/LouiseTyeCopenhagen.jpg"
+        - "./images/LouiseTyeCopenhagen.webp"
 
     - date: "Summer 2017"
       title: "Dating Begins"
       description: "Road trips and exploring the great outdoors together as an official couple"
       images:
-        - "./images/LouiseTyeCornPalace.JPG"
+        - "./images/LouiseTyeCornPalace.webp"
         - "./images/roadtrip2017.webp"
-        - "./images/SouthDakota.jpeg"
+        - "./images/SouthDakota.webp"
 
     - date: "Winter 2018"
       title: "Louise's first time in Aspen"
@@ -119,51 +113,51 @@ timeline:
       title: "Work from Anywhere"
       description: "We spend the summer in Aspen working from home"
       images:
-        - "./images/LouiseTye4Passloup.jpg"
-        - "./images/FourPassLoopVert.jpg"
-        - "./images/GreatSandDunes.jpg"
+        - "./images/LouiseTye4Passloup.webp"
+        - "./images/FourPassLoopVert.webp"
+        - "./images/GreatSandDunes.webp"
 
     - date: "Aug 2021"
       title: "Moving in Together in Raleigh"
       description: "Moving in together and making a space that's truly ours"
       images:
-        - "./images/move_in.png"
-        - "./images/twin_oaks.png"
+        - "./images/move_in.webp"
+        - "./images/twin_oaks.webp"
 
     - date: "Nov 2022"
       title: "Getting Poppy"
       description: "Thanksgiving gave us more to be thankful for than expected this year"
       images:
-        - "./images/poppy2.png"
-        - "./images/poppy1.png"
+        - "./images/poppy2.webp"
+        - "./images/poppy1.webp"
 
     - date: "2022-2024"
       title: "Post Graduation Fun"
       description: "Louise finishes grad school and opens a new world of adventures, on PTO!"
       images:
-        - "./images/LouiseTyeVietnam.jpg"
-        - "./images/LouiseTyeBoone.jpg"
-        - "./images/LouiseTyeBeach.jpg"
+        - "./images/LouiseTyeVietnam.webp"
+        - "./images/LouiseTyeBoone.webp"
+        - "./images/LouiseTyeBeach.webp"
 
     - date: "December 2024"
       title: "The Proposal"
       description: "A surprise proposal at the Maroon Bells"
       images:
-        - "./images/Proposal.jpg"
+        - "./images/Proposal.webp"
         - "./images/engagement.webp"
 
     - date: "Summer 2025"
       title: "Move to Durham"
       description: "Compare to our previous apartment photo to see how much our Bird of Paradise has grown alongside us"
       images:
-        - "./images/Apartment.jpg"
+        - "./images/Apartment.webp"
 
     - date: "Now - Infinity"
       title: "Adventure Awaits"
       description: "Here's to a lifetime of laughter, love, and new adventures!!!"
       images:
-        - "./images/LouiseTyeOktoberfest.jpg"
-        - "./images/LouiseTyeIceland.jpg"
+        - "./images/LouiseTyeOktoberfest.webp"
+        - "./images/LouiseTyeIceland.webp"
 
 # Travel Information
 travel:
@@ -205,23 +199,20 @@ travel:
 
 # Accommodations
 hotels:
-  - name: "The Grand Lodge Crested Butte"
-    address: "6 Emmons Loop"
-    city: "Mount Crested Butte, CO 81225"
+  - name: "Vaquera House"
     rate: "$$$"
-    link: "https://www.grandcrestedbutte.guestreservations.com"
-    
+    link: "https://vaquerahouse.com/"
+    maps_url: "https://maps.app.goo.gl/xU36CGnuC8xcDRLt5"
+
   - name: "Elk Mountain Lodge"
-    address: "129 Gothic Avenue"
-    city: "Crested Butte, CO 81224"
     rate: "$$"
     link: "https://www.elkmountainlodge.com"
-    
+    maps_url: "https://www.google.com/maps/search/?api=1&query=Elk+Mountain+Lodge+Crested+Butte"
+
   - name: "Old Town Inn"
-    address: "708 6th Street"
-    city: "Crested Butte, CO 81224"
     rate: "$"
     link: "https://www.oldtowninn.net"
+    maps_url: "https://www.google.com/maps/search/?api=1&query=Old+Town+Inn+Crested+Butte"
 
 # Registry
 registry:

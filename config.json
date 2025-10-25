@@ -28,17 +28,12 @@
     },
     {
       "id": "details",
-      "name": "Details",
+      "name": "Schedule",
       "enabled": true
     },
     {
-      "id": "story",
-      "name": "Our Story",
-      "enabled": false
-    },
-    {
       "id": "timeline",
-      "name": "Timeline",
+      "name": "Our Story",
       "enabled": true
     },
     {
@@ -68,32 +63,39 @@
     }
   ],
   "ceremony": {
-    "time": "4:00 PM",
+    "time": "September 18th 4-10 PM",
     "venue": "Mountain Wedding Garden",
-    "address": "911 Gothic Rd",
-    "city": "Crested Butte, CO 81225",
-    "dress_code": "Mountain Formal"
+    "maps_url": "https://www.google.com/maps/search/?api=1&query=Mountain+Wedding+Garden+Crested+Butte+CO",
+    "dress_code": "Mountain Formal - the venue is indoor-outdoor, coats and/or layers strongly recommended!"
   },
   "reception": {
-    "time": "6:00 PM",
-    "venue": "TBD",
-    "address": "TBD",
-    "city": "Crested Butte, CO 81224",
-    "dress_code": "Evening Formal. Bring warm clothes for the evening"
+    "time": "September 19th 6-12 PM",
+    "venue": "Public House",
+    "maps_url": "https://maps.app.goo.gl/xVtrt1GBFYv4ygtH7",
+    "dress_code": "Western Cocktail - for the Historic Saloon built in 1882!"
   },
-  "dress_code": "Mountain Formal. \nBring warm clothes for the evening",
+  "dress_code": "Bring warm clothes! Mountain Formal is formal attire in nature inspired colors and textures. Western Cocktail is dressy Western, lean into the mountain vibe and have fun with it! See <a href=\"https://pin.it/2MKZfWCt5\">Pinterest Board</a> for inspiration. ",
   "story": {
     "content": "<p>We met at a coffee shop on a rainy Tuesday morning. What started as a \nspilled latte turned into a conversation that lasted until closing time.</p>\n\n<p>Five years, countless adventures, and one perfect proposal later, \nwe're ready to say \"I do\" surrounded by our favorite people.</p>\n"
   },
   "timeline": {
     "events": [
       {
-        "date": "Summer 2017",
-        "title": "Adventures Begin",
-        "description": "Road trips and exploring the great outdoors together",
+        "date": "Winter 2016",
+        "title": "Our First Trip",
+        "description": "We find cheap flights to Scandinavia and go on our first trip, as friends!",
         "images": [
+          "./images/LouiseTyeCopenhagen.webp"
+        ]
+      },
+      {
+        "date": "Summer 2017",
+        "title": "Dating Begins",
+        "description": "Road trips and exploring the great outdoors together as an official couple",
+        "images": [
+          "./images/LouiseTyeCornPalace.webp",
           "./images/roadtrip2017.webp",
-          "./images/4pass_2.webp"
+          "./images/SouthDakota.webp"
         ]
       },
       {
@@ -102,6 +104,16 @@
         "description": "Hitting the slopes in Aspen - discovering our love for the mountains",
         "images": [
           "./images/louise_aspen.webp"
+        ]
+      },
+      {
+        "date": "Summer 2020",
+        "title": "Work from Anywhere",
+        "description": "We spend the summer in Aspen working from home",
+        "images": [
+          "./images/LouiseTye4Passloup.webp",
+          "./images/FourPassLoopVert.webp",
+          "./images/GreatSandDunes.webp"
         ]
       },
       {
@@ -118,8 +130,18 @@
         "title": "Getting Poppy",
         "description": "Thanksgiving gave us more to be thankful for than expected this year",
         "images": [
-          "./images/poppy1.webp",
-          "./images/poppy2.webp"
+          "./images/poppy2.webp",
+          "./images/poppy1.webp"
+        ]
+      },
+      {
+        "date": "2022-2024",
+        "title": "Post Graduation Fun",
+        "description": "Louise finishes grad school and opens a new world of adventures, on PTO!",
+        "images": [
+          "./images/LouiseTyeVietnam.webp",
+          "./images/LouiseTyeBoone.webp",
+          "./images/LouiseTyeBeach.webp"
         ]
       },
       {
@@ -127,7 +149,25 @@
         "title": "The Proposal",
         "description": "A surprise proposal at the Maroon Bells",
         "images": [
+          "./images/Proposal.webp",
           "./images/engagement.webp"
+        ]
+      },
+      {
+        "date": "Summer 2025",
+        "title": "Move to Durham",
+        "description": "Compare to our previous apartment photo to see how much our Bird of Paradise has grown alongside us",
+        "images": [
+          "./images/Apartment.webp"
+        ]
+      },
+      {
+        "date": "Now - Infinity",
+        "title": "Adventure Awaits",
+        "description": "Here's to a lifetime of laughter, love, and new adventures!!!",
+        "images": [
+          "./images/LouiseTyeOktoberfest.webp",
+          "./images/LouiseTyeIceland.webp"
         ]
       }
     ]
@@ -141,10 +181,9 @@
         "drive_time": "30 minutes",
         "cost_range": "$$$",
         "flight_availability": "Limited",
-        "description": "Closest airport to Crested Butte. For these dates, only three daily flights on United from Denver. Book early!",
+        "description": "Closest airport to Crested Butte. For these dates, only three daily flights on United from Denver. Book early! There is a free bus from the airport to Downtown.",
         "airlines": [
-          "United (3 daily flights from DEN)",
-          "Seasonal only: May 22 - Oct 25, 2025"
+          "United (3 daily flights from DEN)"
         ]
       },
       {
@@ -154,7 +193,7 @@
         "drive_time": "1 hour 30 minutes",
         "cost_range": "$$",
         "flight_availability": "Good",
-        "description": "Year-round flights with good availability. Scenic drive over mountain passes.",
+        "description": "Year-round flights with good availability. Scenic drive with sightseeing opportunity for the Black Canyon of the Gunnison National Park nearby!!",
         "airlines": [
           "United",
           "American",
@@ -177,46 +216,29 @@
     ],
     "driving_tips": [
       "Rental car recommended for mountain driving and local flexibility",
-      "Check weather and road conditions, especially in September/winter months",
-      "Mountain passes can be challenging - allow extra driving time",
-      "Limited gas stations between airports and Crested Butte"
-    ],
-    "alternative_transport": [
-      {
-        "name": "Epic Mountain Express",
-        "description": "Shuttle service from Denver Airport to Crested Butte",
-        "cost": "$150-200 per person",
-        "duration": "5-6 hours"
-      },
-      {
-        "name": "Colorado Mountain Express",
-        "description": "Private shuttles from Montrose and other airports",
-        "cost": "Varies by airport and group size",
-        "duration": "1.5-2 hours from Montrose"
-      }
+      "There is a free bus available between Crested Butte Downtown and the Mountain Village - <a href=\"https:\\www.mtnexp.org\">Mountain Express</a>",
+      "Please let us know if you have any questions or concerns about driving in the mountains! ",
+      "Be aware that gas stations are extremely limited in some parts of Colorado"
     ]
   },
   "hotels": [
     {
-      "name": "The Grand Lodge Crested Butte",
-      "address": "6 Emmons Loop",
-      "city": "Mount Crested Butte, CO 81225",
-      "rate": "$220/night",
-      "link": "https://www.grandlodgecrestedbutte.com"
+      "name": "Vaquera House",
+      "rate": "$$$",
+      "link": "https://vaquerahouse.com/",
+      "maps_url": "https://maps.app.goo.gl/xU36CGnuC8xcDRLt5"
     },
     {
       "name": "Elk Mountain Lodge",
-      "address": "129 Gothic Avenue",
-      "city": "Crested Butte, CO 81224",
-      "rate": "$180/night",
-      "link": "https://www.elkmountainlodge.net"
+      "rate": "$$",
+      "link": "https://www.elkmountainlodge.com",
+      "maps_url": "https://www.google.com/maps/search/?api=1&query=Elk+Mountain+Lodge+Crested+Butte"
     },
     {
       "name": "Old Town Inn",
-      "address": "708 6th Street",
-      "city": "Crested Butte, CO 81224",
-      "rate": "$160/night",
-      "link": "https://www.oldtowninn.net"
+      "rate": "$",
+      "link": "https://www.oldtowninn.net",
+      "maps_url": "https://www.google.com/maps/search/?api=1&query=Old+Town+Inn+Crested+Butte"
     }
   ],
   "registry": {
@@ -256,7 +278,7 @@
     "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScQsp7KoNxn12-ouZytcb1TNE5TPzPNDbLf9508iZBKJtVZxA/viewform?embedded=true"
   },
   "footer": {
-    "text": "Made with ❤️ by Tye",
+    "text": "Made with ❤️ by Tye and Louise",
     "github_url": "https://github.com/tzasacky/wedding"
   }
 }

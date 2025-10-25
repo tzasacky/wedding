@@ -4,7 +4,12 @@
   "scripts": {
     "dev": "bun run server.js",
     "build": "bun run build.js",
-    "prebuild": "echo '🧹 Cleaning old build...' && rm -f config.json"
+    "prebuild": "echo '🧹 Cleaning old build...' && rm -f config.json",
+    "convert-to-webp": "bun run convert-to-webp.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.5",
+    "yaml": "^2.6.1"
   },
   "engines": {
     "node": ">=18.0.0",
