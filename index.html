@@ -790,6 +790,7 @@
             scrollbar-width: none;
             -ms-overflow-style: none;
             min-height: auto;
+            align-items: start;
         }
 
         .timeline-horizontal::-webkit-scrollbar {
@@ -854,6 +855,8 @@
             grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 0.75rem;
             padding: 0 1.5rem 1.5rem;
+            flex: 1;
+            align-content: start;
         }
 
         .timeline-image-wrapper {
@@ -1015,28 +1018,32 @@
 
         .travel-metrics {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 1rem 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin: 0.75rem 0;
         }
 
         .metric {
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(var(--primary-rgb), 0.05);
+            border-radius: 6px;
         }
 
         .metric-label {
-            display: block;
             font-weight: 500;
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             margin-bottom: 0.25rem;
         }
 
         .metric-value {
-            display: block;
-            font-weight: 400;
-            font-size: 1rem;
-            line-height: 1.4;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
         }
 
         .cost-1 { color: #22c55e; } /* $ - green */
@@ -1144,8 +1151,8 @@
             }
 
             .travel-metrics {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
 
             .transport-details {
@@ -1345,6 +1352,12 @@
             margin: 0.5rem 0;
             font-size: 0.95rem;
         }
+        .hotel-description {
+            margin: 0.75rem 0 1rem 0 !important;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-muted);
+        }
 
         .hotel-info {
             display: flex;
@@ -1368,34 +1381,45 @@
 
         /* Hotel actions container */
         .hotel-actions {
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 0.75rem;
             margin-top: auto;
-            flex-wrap: nowrap;
         }
 
-        /* Book Now button styling */
-        .book-button {
+        /* Hotel button base styling */
+        .book-button,
+        .maps-button.compact {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
-            padding: 0.875rem 1.25rem;
-            background: var(--primary);
-            color: white;
+            padding: 0.875rem 1rem;
             text-decoration: none;
             border-radius: 8px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: all var(--transition-speed) ease;
             cursor: pointer;
             white-space: nowrap;
-            flex: 1;
-            justify-content: center;
-            min-width: fit-content;
+            min-height: 44px;
+            text-align: center;
+            border: 1.5px solid transparent;
+            width: auto;
+            margin: 0;
+        }
+
+        /* Book Now button - filled style */
+        .book-button {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            line-height: 1.2;
         }
 
         .book-button:hover {
             background: var(--text-secondary);
+            border-color: var(--text-secondary);
             transform: translateY(-1px);
             box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.25);
         }
@@ -1405,24 +1429,54 @@
             box-shadow: 0 1px 4px rgba(var(--primary-rgb), 0.2);
         }
 
-        /* Compact maps button for hotels */
-        .maps-button.compact {
-            width: auto;
-            flex: 1;
+        /* Override maps button styling for hotel compact version */
+        .hotel-actions .maps-button.compact {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 0.875rem 1rem;
+            font-size: 0.85rem;
+            min-height: 44px;
+            line-height: 1.2;
+            box-sizing: border-box;
             margin: 0;
-            justify-content: center;
-            min-width: fit-content;
+            width: auto;
         }
 
-        /* Dark mode book button */
+        .hotel-actions .maps-button.compact:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .hotel-actions .maps-button.compact:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Dark mode hotel buttons */
         [data-theme="dark"] .book-button {
             background: var(--text-secondary);
             color: var(--bg-dark);
+            border-color: var(--text-secondary);
         }
 
         [data-theme="dark"] .book-button:hover {
             background: var(--primary);
             color: white;
+            border-color: var(--primary);
+        }
+
+        [data-theme="dark"] .hotel-actions .maps-button.compact {
+            color: var(--text-secondary);
+            border-color: var(--text-secondary);
+            background: transparent;
+        }
+
+        [data-theme="dark"] .hotel-actions .maps-button.compact:hover {
+            background: var(--text-secondary);
+            color: var(--bg-dark);
         }
 
         /* Dark mode hotel styling */
@@ -1442,14 +1496,19 @@
             }
 
             .hotel-actions {
-                flex-direction: column;
+                grid-template-columns: 1fr;
                 gap: 0.5rem;
             }
 
             .book-button,
             .maps-button.compact {
                 width: 100%;
-                flex: none;
+            }
+            
+            .registry-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 400px;
             }
         }
 
@@ -1593,6 +1652,85 @@
             transform: translate(2px, -2px);
         }
 
+        /* Registry card styling */
+        .registry-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .registry-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2.5rem 2rem;
+        }
+
+        .registry-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .registry-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .registry-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .registry-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+            white-space: nowrap;
+            min-width: 200px;
+            margin-top: auto;
+        }
+
+        .registry-button:hover {
+            background: var(--text-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .registry-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Dark mode registry styling */
+        [data-theme="dark"] .registry-button {
+            background: var(--text-secondary);
+            color: var(--bg-dark);
+        }
+
+        [data-theme="dark"] .registry-button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+
         /* Dark mode dress code */
         [data-theme="dark"] .dress-code {
             background: rgba(243, 145, 43, 0.1);
@@ -1664,106 +1802,9 @@
             }
         }
 
-        // Google Maps URL utility function
-        function createGoogleMapsUrl(addressOrUrl, venue = null) {
-            if (!addressOrUrl) return null;
 
-            // If address is already a Google Maps URL, use it directly
-            if (addressOrUrl.includes('maps.app.goo.gl') || addressOrUrl.includes('google.com/maps')) {
-                return addressOrUrl;
-            }
 
-            // Otherwise, generate search URL
-            const searchQuery = venue ? `${venue}, ${addressOrUrl}` : addressOrUrl;
-            return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(searchQuery)}`;
-        }
 
-        // Google Maps button component
-        function createMapsButton(mapsUrl, labelText, customClass = '') {
-            if (!mapsUrl || !labelText) return '';
-
-            return `
-                <a href="${mapsUrl}" target="_blank" rel="noopener noreferrer" class="maps-button ${customClass}">
-                    <span class="maps-icon">📍</span>
-                    <span class="maps-text">${labelText}</span>
-                    <span class="maps-arrow">↗</span>
-                </a>
-            `;
-        }
-
-        // Parse dress code into title and description
-        function parseDressCode(dressCode) {
-            if (!dressCode) return null;
-
-            // Split by " - " to separate title and description
-            const parts = dressCode.split(' - ');
-            if (parts.length >= 2) {
-                return {
-                    title: parts[0].trim(),
-                    description: parts.slice(1).join(' - ').trim()
-                };
-            }
-
-            // Fallback: just use the whole thing as title
-            return {
-                title: dressCode.trim(),
-                description: null
-            };
-        }
-
-        // Parse dress code details section dynamically
-        function parseDressCodeDetails(dressCodeText) {
-            if (!dressCodeText) return null;
-
-            // Extract sections and links
-            const sections = [];
-            let introText = '';
-            let pinterestLink = null;
-
-            // Look for Pinterest link
-            const pinterestMatch = dressCodeText.match(/<a[^>]*href="([^"]*pin\.it[^"]*)"[^>]*>([^<]*)<\/a>/i);
-            if (pinterestMatch) {
-                pinterestLink = {
-                    url: pinterestMatch[1],
-                    text: pinterestMatch[2]
-                };
-            }
-
-            // Split by common patterns and extract dress code types
-            const text = dressCodeText.replace(/<a[^>]*>.*?<\/a>/gi, '').trim();
-
-            // Look for Mountain Formal
-            const mountainMatch = text.match(/Mountain Formal[^.]*\./i);
-            if (mountainMatch) {
-                sections.push({
-                    title: 'Mountain Formal',
-                    icon: '👔',
-                    description: mountainMatch[0].replace(/^Mountain Formal[^\w]*/, '').trim()
-                });
-            }
-
-            // Look for Western Cocktail
-            const westernMatch = text.match(/Western Cocktail[^.]*\./i);
-            if (westernMatch) {
-                sections.push({
-                    title: 'Western Cocktail',
-                    icon: '🤠',
-                    description: westernMatch[0].replace(/^Western Cocktail[^\w]*/, '').trim()
-                });
-            }
-
-            // Extract intro text (everything before the first dress code mention)
-            const firstDressCode = text.search(/(Mountain Formal|Western Cocktail)/i);
-            if (firstDressCode > 0) {
-                introText = text.substring(0, firstDressCode).trim().replace(/\s+/g, ' ');
-            }
-
-            return {
-                intro: introText,
-                sections: sections,
-                pinterestLink: pinterestLink
-            };
-        }
 
         // Generic section renderer
         function renderSection(section, config) {
@@ -1822,55 +1863,37 @@
                                 <article class="card animate">
                                     <h3>Friday Wedding</h3>
                                     <p><strong>${config.ceremony.time}</strong></p>
-                                    ${createMapsButton(config.ceremony.maps_url, config.ceremony.venue)}
-                                    ${config.ceremony.dress_code ? (() => {
-                                        const dressCode = parseDressCode(config.ceremony.dress_code);
-                                        return `<div class="dress-code">
-                                            <div class="dress-code-title">${dressCode.title}</div>
-                                            ${dressCode.description ? `<div class="dress-code-description">${dressCode.description}</div>` : ''}
-                                        </div>`;
-                                    })() : ''}
+                                    ${config.ceremony.maps_url ? `<a href="${config.ceremony.maps_url}" target="_blank" rel="noopener noreferrer" class="maps-button"><span class="maps-icon">📍</span><span class="maps-text">${config.ceremony.venue}</span><span class="maps-arrow">↗</span></a>` : ''}
+                                    ${config.ceremony.dress_code ? `<div class="dress-code"><div class="dress-code-title">${config.ceremony.dress_code.title}</div>${config.ceremony.dress_code.description ? `<div class="dress-code-description">${config.ceremony.dress_code.description}</div>` : ''}</div>` : ''}
                                 </article>
                             ` : ''}
                             ${config.reception ? `
                                 <article class="card animate">
                                     <h3>Saturday Party</h3>
                                     <p><strong>${config.reception.time}</strong></p>
-                                    ${createMapsButton(config.reception.maps_url, config.reception.venue)}
-                                    ${config.reception.dress_code ? (() => {
-                                        const dressCode = parseDressCode(config.reception.dress_code);
-                                        return `<div class="dress-code">
-                                            <div class="dress-code-title">${dressCode.title}</div>
-                                            ${dressCode.description ? `<div class="dress-code-description">${dressCode.description}</div>` : ''}
-                                        </div>`;
-                                    })() : ''}
+                                    ${config.reception.maps_url ? `<a href="${config.reception.maps_url}" target="_blank" rel="noopener noreferrer" class="maps-button"><span class="maps-icon">📍</span><span class="maps-text">${config.reception.venue}</span><span class="maps-arrow">↗</span></a>` : ''}
+                                    ${config.reception.dress_code ? `<div class="dress-code"><div class="dress-code-title">${config.reception.dress_code.title}</div>${config.reception.dress_code.description ? `<div class="dress-code-description">${config.reception.dress_code.description}</div>` : ''}</div>` : ''}
                                 </article>
                             ` : ''}
-                            ${config.dress_code ? (() => {
-                                const dressCodeData = parseDressCodeDetails(config.dress_code);
-                                if (!dressCodeData) return '';
-
-                                return `
+                            ${config.dress_code ? `
                                 <article class="card animate">
                                     <h3>Dress Code Details</h3>
-                                    <div class="dress-code-details">
-                                        ${dressCodeData.sections.map(section => `
-                                            <div class="dress-code-section">
-                                                <h4 class="dress-code-heading">${section.icon} ${section.title}</h4>
-                                                <p>${section.description}</p>
-                                            </div>
-                                        `).join('')}
-
-                                        ${dressCodeData.pinterestLink ? `
-                                            <a href="${dressCodeData.pinterestLink.url}" target="_blank" rel="noopener" class="pinterest-button">
-                                                <span class="pinterest-icon">📌</span>
-                                                <span class="pinterest-text">${dressCodeData.pinterestLink.text}</span>
-                                                <span class="pinterest-arrow">↗</span>
-                                            </a>
-                                        ` : ''}
-                                    </div>
-                                </article>`;
-                            })() : ''}
+                                    ${config.dress_code.intro ? `<p style="margin-bottom: 1.5rem; font-weight: 500;">${config.dress_code.intro}</p>` : ''}
+                                    ${config.dress_code.sections ? config.dress_code.sections.map(section => `
+                                        <div class="dress-code-section">
+                                            <h4 class="dress-code-heading">👔 ${section.title}</h4>
+                                            <p>${section.description}</p>
+                                        </div>
+                                    `).join('') : ''}
+                                    ${config.dress_code.pinterest ? `
+                                        <a href="${config.dress_code.pinterest.url}" target="_blank" rel="noopener" class="pinterest-button">
+                                            <span class="pinterest-icon">📌</span>
+                                            <span class="pinterest-text">${config.dress_code.pinterest.text}</span>
+                                            <span class="pinterest-arrow">↗</span>
+                                        </a>
+                                    ` : ''}
+                                </article>
+                            ` : ''}
                         </div>
                     `;
                     
@@ -1941,13 +1964,14 @@
                             ${(config.hotels || []).map(hotel => `
                                 <article class="card animate hotel-card">
                                     <h3 title="${hotel.name}">${hotel.name}</h3>
+                                    ${hotel.description ? `<p class="hotel-description">${hotel.description}</p>` : ''}
                                     <div class="hotel-info">
                                         ${hotel.rate ? `<div class="hotel-rate">${hotel.rate}</div>` : ''}
                                         ${hotel.code ? `<div class="hotel-code">Booking Code: <strong>${hotel.code}</strong></div>` : ''}
                                     </div>
                                     <div class="hotel-actions">
                                         ${hotel.link ? `<a href="${hotel.link}" target="_blank" rel="noopener" class="book-button">Book Now</a>` : ''}
-                                        ${createMapsButton(hotel.maps_url, 'Get Directions', 'compact')}
+                                        ${hotel.maps_url ? `<a href="${hotel.maps_url}" target="_blank" rel="noopener noreferrer" class="maps-button compact"><span class="maps-icon">📍</span><span class="maps-text">Get Directions</span><span class="maps-arrow">↗</span></a>` : ''}
                                     </div>
                                 </article>
                             `).join('')}
@@ -1960,48 +1984,17 @@
                             <p style="font-size: 1.125rem; margin-bottom: 2rem;">
                                 ${config.registry?.message || 'Your presence is the greatest gift of all.'}
                             </p>
-                            <div class="content-grid" style="max-width: 600px; margin: 0 auto;">
-                                ${(config.registry?.stores || []).map(store => {
-                                    if (store.payment_options) {
-                                        // Render store with payment options and QR codes
-                                        return `
-                                            <div class="card animate" style="text-align: center;">
-                                                <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem;">${store.name}</h3>
-                                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                                                    ${store.payment_options.map(option => `
-                                                        <div style="text-align: center;">
-                                                            <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--primary);">${option.name}</h4>
-                                                            ${option.qr_code ? `
-                                                                <div style="margin-bottom: 1rem;">
-                                                                    <img src="${option.qr_code}" alt="${option.name} QR Code" 
-                                                                         style="width: 150px; height: 150px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                                                </div>
-                                                            ` : ''}
-                                                            ${option.url ? `
-                                                                <a href="${option.url}" target="_blank" rel="noopener" 
-                                                                   style="display: inline-block; padding: 0.5rem 1rem; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.875rem;">
-                                                                    Open ${option.name}
-                                                                </a>
-                                                            ` : ''}
-                                                            ${option.details ? `
-                                                                <p style="font-size: 0.875rem; margin-top: 0.5rem; font-family: monospace; background: #f5f5f5; padding: 0.5rem; border-radius: 4px;">
-                                                                    ${option.details}
-                                                                </p>
-                                                            ` : ''}
-                                                        </div>
-                                                    `).join('')}
-                                                </div>
-                                            </div>
-                                        `;
-                                    } else {
-                                        // Render regular store link
-                                        return `
-                                            <a href="${store.url}" target="_blank" rel="noopener" class="card animate" style="text-decoration: none; color: inherit;">
-                                                <h3 style="font-size: 1.25rem;">${store.name}</h3>
-                                            </a>
-                                        `;
-                                    }
-                                }).join('')}
+                            <div class="registry-grid">
+                                ${(config.registry?.stores || []).map(store => `
+                                    <article class="card animate registry-card">
+                                        <div class="registry-icon">${store.icon || '🎁'}</div>
+                                        <h3>${store.name}</h3>
+                                        ${store.description ? `<p class="registry-description">${store.description}</p>` : ''}
+                                        <a href="${store.url}" target="_blank" rel="noopener" class="registry-button">
+                                            ${store.button_text || `Visit ${store.name}`}
+                                        </a>
+                                    </article>
+                                `).join('')}
                             </div>
                         </div>
                     `;
@@ -2385,6 +2378,40 @@
                 const items = document.querySelectorAll('.timeline-item-horizontal');
                 const totalItems = items.length;
 
+                // Set equal heights for timeline cards
+                function setEqualTimelineHeights() {
+                    const cards = document.querySelectorAll('.timeline-card');
+                    if (cards.length === 0) return;
+                    
+                    // Reset heights first
+                    cards.forEach(card => card.style.height = 'auto');
+                    
+                    // Find the tallest card
+                    let maxHeight = 0;
+                    cards.forEach(card => {
+                        const height = card.offsetHeight;
+                        if (height > maxHeight) {
+                            maxHeight = height;
+                        }
+                    });
+                    
+                    // Apply the max height to all cards
+                    cards.forEach(card => {
+                        card.style.height = maxHeight + 'px';
+                    });
+                }
+                
+                // Make function globally accessible for image load events
+                window.setEqualTimelineHeights = setEqualTimelineHeights;
+
+                // Set equal heights after a delay to ensure content is loaded
+                setTimeout(setEqualTimelineHeights, 100);
+                
+                // Also set equal heights on window resize
+                window.addEventListener('resize', () => {
+                    setTimeout(setEqualTimelineHeights, 100);
+                });
+
                 function updateTimelinePosition() {
                     if (totalItems === 0) return;
 
@@ -2487,6 +2514,15 @@
                 // Browser supports lazy loading
                 document.querySelectorAll('img[loading="lazy"]').forEach(img => {
                     img.src = img.dataset.src || img.src;
+                    // Recalculate timeline heights when images load
+                    if (img.closest('.timeline-card')) {
+                        img.addEventListener('load', () => {
+                            setTimeout(() => {
+                                const setEqualHeights = window.setEqualTimelineHeights;
+                                if (setEqualHeights) setEqualHeights();
+                            }, 50);
+                        });
+                    }
                 });
             } else {
                 // Polyfill for older browsers
@@ -2496,6 +2532,15 @@
                             const img = entry.target;
                             img.src = img.dataset.src || img.src;
                             imageObserver.unobserve(img);
+                            // Recalculate timeline heights when images load
+                            if (img.closest('.timeline-card')) {
+                                img.addEventListener('load', () => {
+                                    setTimeout(() => {
+                                        const setEqualHeights = window.setEqualTimelineHeights;
+                                        if (setEqualHeights) setEqualHeights();
+                                    }, 50);
+                                });
+                            }
                         }
                     });
                 });

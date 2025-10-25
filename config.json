@@ -18,6 +18,40 @@
       "text_secondary": "#f3912b",
       "text_muted": "#e5e1e3",
       "text_light": "#000000"
+    },
+    "css_vars": {
+      "light": {
+        "primary": "#8B4513",
+        "secondary": "#f3912b",
+        "accent": "#e5e1e3",
+        "text_dark": "#2c1810",
+        "text_secondary": "#781b12",
+        "text_muted": "#41512d",
+        "text_light": "#ffffff",
+        "bg_light": "#ffffff",
+        "bg_dark": "#e5e1e3",
+        "mountain_gradient": "linear-gradient(135deg, #781b12 0%, #f3912b 50%, #e5e1e3 100%)"
+      },
+      "dark": {
+        "text_dark": "#F8F8F8",
+        "text_secondary": "#f3912b",
+        "text_muted": "#CCCCCC",
+        "text_light": "#000000",
+        "bg_light": "#1C1C1C",
+        "bg_dark": "#2A2A2A",
+        "mountain_gradient": "linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%)"
+      }
+    },
+    "cost_colors": {
+      "cost_1": "#22c55e",
+      "cost_2": "#eab308",
+      "cost_3": "#f97316",
+      "cost_4": "#ef4444"
+    },
+    "availability_colors": {
+      "excellent": "#22c55e",
+      "good": "#eab308",
+      "limited": "#f97316"
     }
   },
   "sections": [
@@ -66,17 +100,37 @@
     "time": "September 18th 4-10 PM",
     "venue": "Mountain Wedding Garden",
     "maps_url": "https://www.google.com/maps/search/?api=1&query=Mountain+Wedding+Garden+Crested+Butte+CO",
-    "dress_code": "Mountain Formal - the venue is indoor-outdoor, coats and/or layers strongly recommended!"
+    "dress_code": {
+      "title": "Mountain Formal",
+      "description": "the venue is indoor-outdoor, coats and/or layers strongly recommended!"
+    }
   },
   "reception": {
     "time": "September 19th 6-12 PM",
     "venue": "Public House",
     "maps_url": "https://maps.app.goo.gl/xVtrt1GBFYv4ygtH7",
-    "dress_code": "Western Cocktail - for the Historic Saloon built in 1882!"
+    "dress_code": {
+      "title": "Western Cocktail",
+      "description": "for the Historic Saloon built in 1882!"
+    }
   },
-  "dress_code": "Bring warm clothes! Mountain Formal is formal attire in nature inspired colors and textures. Western Cocktail is dressy Western, lean into the mountain vibe and have fun with it! See <a href=\"https://pin.it/2MKZfWCt5\">Pinterest Board</a> for inspiration. ",
-  "story": {
-    "content": "<p>We met at a coffee shop on a rainy Tuesday morning. What started as a \nspilled latte turned into a conversation that lasted until closing time.</p>\n\n<p>Five years, countless adventures, and one perfect proposal later, \nwe're ready to say \"I do\" surrounded by our favorite people.</p>\n"
+  "dress_code": {
+    "intro": "Bring warm clothes!",
+    "sections": [
+      {
+        "title": "Mountain Formal",
+        "description": "formal attire in nature inspired colors and textures"
+      },
+      {
+        "title": "Western Cocktail",
+        "description": "dressy Western, lean into the mountain vibe and have fun with it!"
+      }
+    ],
+    "pinterest": {
+      "url": "https://pin.it/2MKZfWCt5",
+      "text": "Pinterest Board",
+      "description": "for inspiration"
+    }
   },
   "timeline": {
     "events": [
@@ -217,7 +271,6 @@
     "driving_tips": [
       "Rental car recommended for mountain driving and local flexibility",
       "There is a free bus available between Crested Butte Downtown and the Mountain Village - <a href=\"https:\\www.mtnexp.org\">Mountain Express</a>",
-      "Please let us know if you have any questions or concerns about driving in the mountains! ",
       "Be aware that gas stations are extremely limited in some parts of Colorado"
     ]
   },
@@ -225,37 +278,41 @@
     {
       "name": "Vaquera House",
       "rate": "$$$",
+      "description": "Luxury boutique hotel in downtown Crested Butte with modern amenities and stunning mountain views. Walking distance to restaurants and shops.",
       "link": "https://vaquerahouse.com/",
       "maps_url": "https://maps.app.goo.gl/xU36CGnuC8xcDRLt5"
     },
     {
       "name": "Elk Mountain Lodge",
       "rate": "$$",
+      "description": "Cozy mountain lodge offering comfortable accommodations with rustic charm. Features heated pool, hot tub, and continental breakfast.",
       "link": "https://www.elkmountainlodge.com",
       "maps_url": "https://www.google.com/maps/search/?api=1&query=Elk+Mountain+Lodge+Crested+Butte"
     },
     {
       "name": "Old Town Inn",
       "rate": "$",
+      "description": "Historic inn in the heart of Crested Butte offering affordable rooms with authentic mountain character. Perfect for budget-conscious travelers.",
       "link": "https://www.oldtowninn.net",
       "maps_url": "https://www.google.com/maps/search/?api=1&query=Old+Town+Inn+Crested+Butte"
     }
   ],
   "registry": {
-    "message": "Your presence at our wedding is the greatest gift of all. However, if you wish to honor us with a gift, we've registered at the following stores.",
+    "message": "Your presence at our wedding is the greatest gift of all, however if you'd like to honor us with a gift we've provided registry options below. We're thankful to have most of what we need, so honeymoon fund is preferred.",
     "stores": [
       {
         "name": "Honeymoon Fund",
-        "payment_options": [
-          {
-            "name": "Honeyfund",
-            "url": "https://www.honeyfund.com/site/zasacky-lindegaard-09-18-2026"
-          }
-        ]
+        "description": "Help us create amazing memories on our honeymoon",
+        "url": "https://buy.stripe.com/your-stripe-link",
+        "button_text": "Contribute to Honeymoon",
+        "icon": "✈️"
       },
       {
-        "name": "Amazon",
-        "url": "https://www.amazon.com/wedding/registry/3SGD7UOZNH1VH"
+        "name": "Amazon Registry",
+        "description": "Traditional wedding gifts we'd love to receive",
+        "url": "https://www.amazon.com/wedding/registry/3SGD7UOZNH1VH",
+        "button_text": "View Amazon Registry",
+        "icon": "🎁"
       }
     ]
   },
@@ -277,8 +334,25 @@
     "deadline": "2026-08-01",
     "form_url": "https://docs.google.com/forms/d/e/1FAIpQLScQsp7KoNxn12-ouZytcb1TNE5TPzPNDbLf9508iZBKJtVZxA/viewform?embedded=true"
   },
+  "site": {
+    "title": "Mountain Wedding - Tye & Louise",
+    "description": "Join Tye & Louise for their mountain wedding celebration in Crested Butte, Colorado on September 12, 2026",
+    "author": "Tye & Louise",
+    "generator": "Wedding Site Builder v2.0",
+    "favicon_emoji": "🏔️",
+    "background_image": "./images/crested_butte.webp",
+    "pwa": {
+      "name": "Tye & Louise Wedding",
+      "short_name": "Wedding",
+      "background_color": "#FEFEFE",
+      "theme_color": "#8B4513"
+    }
+  },
   "footer": {
     "text": "Made with ❤️ by Tye and Louise",
-    "github_url": "https://github.com/tzasacky/wedding"
+    "github_url": "https://github.com/tzasacky/wedding",
+    "github_text": "Make Your Own",
+    "stats_url": "./stats.html",
+    "stats_text": "Stats for Nerds"
   }
 }
