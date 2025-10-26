@@ -206,8 +206,7 @@ travel:
       drive_time: "30 minutes"
       cost_range: "$$$"
       flight_availability: "Limited"
-      description: "Closest airport to Crested Butte. For these dates, only three daily flights on United from Denver. Book early! 
-        There is a free bus from the airport to Downtown."
+      description: "Closest airport to Crested Butte. Flights are extremely limited, book early! Free bus from the airport to Downtown."
       airlines: ["United (3 daily flights from DEN)"]
       
     - name: "Montrose Regional Airport"
@@ -216,8 +215,7 @@ travel:
       drive_time: "1 hour 30 minutes"
       cost_range: "$$"
       flight_availability: "Good"
-      description: "Year-round flights with good availability. 
-        Scenic drive with sightseeing opportunity for the Black Canyon of the Gunnison National Park nearby!!"
+      description: "Scenic drive with sightseeing opportunity for the Black Canyon of the Gunnison National Park nearby!!"
       airlines: ["United", "American", "Delta", "Alaska"]
       
     - name: "Denver International Airport"
@@ -269,21 +267,10 @@ registry:
       button_text: "View Amazon Registry"
       icon: "🎁"
 
-# Photo gallery (optional)
-gallery:
-  images:
-    - url: "./images/engagement-1.webp"
-      thumbnail: "./images/engagement-1-thumb.webp"
-      caption: "Engagement photos at Golden Gate Park"
-      
-    - url: "./images/engagement-2.webp"
-      thumbnail: "./images/engagement-2-thumb.webp"
-      caption: "At the beach"
-
 # RSVP Configuration
 rsvp:
   deadline: "2026-08-01"
-  form_url: "https://docs.google.com/forms/d/e/1FAIpQLScQsp7KoNxn12-ouZytcb1TNE5TPzPNDbLf9508iZBKJtVZxA/viewform?embedded=true"
+  script_url: "https://script.google.com/macros/s/AKfycbxUP0kCkbeFzlgb9i8-6lXBgCGKk7F1qQtNQOd5wCH0mLBTpIxPNZ0Jse-FFf37CvPm/exec"
 
 
 # Site metadata

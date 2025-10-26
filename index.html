@@ -668,28 +668,172 @@
 
     <!-- Non-critical CSS -->
     <style id="additional-css">
-        /* Google Form styles */
+        /* RSVP Form styles */
         .form-container {
             background: white;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
             margin-top: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Dark mode form container - keep background white to match iframe content */
+        /* Dark mode form container */
         [data-theme="dark"] .form-container {
-            background: white;
+            background: #2A2A2A;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        /* Note: Google forms are embedded iframes and cannot inherit dark theme styling */
+        .rsvp-form {
+            padding: 2rem;
+            text-align: left;
+        }
 
-        .google-form {
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            font-size: 0.95rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
             width: 100%;
-            height: 800px;
+            padding: 0.75rem;
+            border: 2px solid var(--accent);
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.2s ease;
+            background: white;
+            color: #2c1810;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="text"]:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .radio-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-weight: normal;
+        }
+
+        .radio-label input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--primary);
+        }
+
+        .plus-one-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary);
+            color: white;
             border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 1rem;
+        }
+
+        .submit-button:hover:not(:disabled) {
+            background: var(--text-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(120, 27, 18, 0.3);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        /* Dark mode form styles */
+        [data-theme="dark"] .form-group label {
+            color: var(--text-dark);
+        }
+
+        [data-theme="dark"] .form-group input[type="text"],
+        [data-theme="dark"] .form-group textarea {
+            background: #1C1C1C;
+            color: #F8F8F8;
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        [data-theme="dark"] .form-group input[type="text"]:focus,
+        [data-theme="dark"] .form-group textarea:focus {
+            border-color: var(--secondary);
+        }
+
+        [data-theme="dark"] .submit-button:hover:not(:disabled) {
+            background: var(--secondary);
+        }
+
+        /* Responsive form styles */
+        @media (max-width: 768px) {
+            .rsvp-form {
+                padding: 1.5rem;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
 
         /* Custom scrollbar */
@@ -2002,18 +2146,86 @@
                 case 'rsvp':
                     return `
                         <div style="text-align: center;">
-                            <p>Please RSVP by ${new Date(config.rsvp.deadline).toLocaleDateString('en-US', { 
-                                year: 'numeric', 
-                                month: 'long', 
-                                day: 'numeric' 
+                            <p>Please RSVP by ${new Date(config.rsvp.deadline).toLocaleDateString('en-US', {
+                                year: 'numeric',
+                                month: 'long',
+                                day: 'numeric'
                             })}</p>
                             <div class="form-container">
-                                <iframe 
-                                    src="${config.rsvp.form_url}" 
-                                    class="google-form no-print"
-                                    loading="lazy"
-                                    title="RSVP Form">
-                                </iframe>
+                                <form id="rsvp-form" class="rsvp-form no-print">
+                                    <div class="form-group">
+                                        <label for="firstName">First Name *</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="lastName">Last Name *</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Attending Ceremony? *</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="attendingCeremony" value="yes" required>
+                                                <span>Yes</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="attendingCeremony" value="no">
+                                                <span>No</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Attending Reception? *</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="attendingReception" value="yes" required>
+                                                <span>Yes</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="attendingReception" value="no">
+                                                <span>No</span>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="dietaryRestrictions">Dietary Restrictions</label>
+                                        <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="3" placeholder="Please let us know if you have any dietary restrictions or allergies"></textarea>
+                                    </div>
+
+                                    <!-- Plus one section - hidden by default -->
+                                    <div id="plus-one-section" class="plus-one-section" style="display: none;">
+                                        <hr style="margin: 2rem 0; border: none; border-top: 1px solid var(--accent);">
+
+                                        <div class="form-group">
+                                            <label>Will you bring a plus one?</label>
+                                            <div class="radio-group">
+                                                <label class="radio-label">
+                                                    <input type="radio" name="hasPlusOne" value="yes">
+                                                    <span>Yes</span>
+                                                </label>
+                                                <label class="radio-label">
+                                                    <input type="radio" name="hasPlusOne" value="no">
+                                                    <span>No</span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div id="plus-one-name-group" class="form-group" style="display: none;">
+                                            <label for="plusOneName">Plus One Name</label>
+                                            <input type="text" id="plusOneName" name="plusOneName" placeholder="Full name of your plus one">
+                                        </div>
+                                    </div>
+
+                                    <div id="form-message" class="form-message"></div>
+
+                                    <button type="submit" class="submit-button" id="submit-button">
+                                        Submit RSVP
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     `;
@@ -2551,6 +2763,138 @@
             }
         }
 
+        // Initialize RSVP form functionality
+        function initializeRSVPForm(config) {
+            const form = document.getElementById('rsvp-form');
+            if (!form) return; // RSVP section not enabled
+
+            const firstNameInput = document.getElementById('firstName');
+            const lastNameInput = document.getElementById('lastName');
+            const plusOneSection = document.getElementById('plus-one-section');
+            const plusOneNameGroup = document.getElementById('plus-one-name-group');
+            const hasPlusOneRadios = document.getElementsByName('hasPlusOne');
+            const submitButton = document.getElementById('submit-button');
+            const formMessage = document.getElementById('form-message');
+
+            let guestCanHavePlusOne = false;
+            let hasCheckedGuest = false;
+
+            // Check guest eligibility when both names are filled
+            async function checkGuestEligibility() {
+                const firstName = firstNameInput.value.trim();
+                const lastName = lastNameInput.value.trim();
+
+                if (!firstName || !lastName) return;
+
+                try {
+                    const url = `${config.rsvp.script_url}?action=getFormConfig&firstName=${encodeURIComponent(firstName)}&lastName=${encodeURIComponent(lastName)}`;
+                    const response = await fetch(url, {
+                        method: 'GET',
+                        redirect: 'follow'
+                    });
+                    const data = await response.json();
+
+                    if (data.status === 'success') {
+                        guestCanHavePlusOne = data.showPlusOne;
+                        hasCheckedGuest = true;
+
+                        // Show/hide plus one section based on eligibility
+                        if (guestCanHavePlusOne) {
+                            plusOneSection.style.display = 'block';
+                        } else {
+                            plusOneSection.style.display = 'none';
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error checking guest eligibility:', error);
+                }
+            }
+
+            // Add event listeners to name inputs
+            firstNameInput.addEventListener('blur', checkGuestEligibility);
+            lastNameInput.addEventListener('blur', checkGuestEligibility);
+
+            // Show/hide plus one name field based on selection
+            hasPlusOneRadios.forEach(radio => {
+                radio.addEventListener('change', (e) => {
+                    if (e.target.value === 'yes') {
+                        plusOneNameGroup.style.display = 'block';
+                        document.getElementById('plusOneName').required = true;
+                    } else {
+                        plusOneNameGroup.style.display = 'none';
+                        document.getElementById('plusOneName').required = false;
+                        document.getElementById('plusOneName').value = '';
+                    }
+                });
+            });
+
+            // Handle form submission
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // Disable submit button and show loading state
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+                formMessage.textContent = '';
+                formMessage.className = 'form-message';
+
+                // Collect form data
+                const formData = {
+                    firstName: firstNameInput.value.trim(),
+                    lastName: lastNameInput.value.trim(),
+                    attendingCeremony: document.querySelector('input[name="attendingCeremony"]:checked')?.value || '',
+                    attendingReception: document.querySelector('input[name="attendingReception"]:checked')?.value || '',
+                    dietaryRestrictions: document.getElementById('dietaryRestrictions').value.trim()
+                };
+
+                // Only include plus one fields if guest is allowed
+                if (guestCanHavePlusOne) {
+                    const hasPlusOne = document.querySelector('input[name="hasPlusOne"]:checked')?.value || 'no';
+                    formData.hasPlusOne = hasPlusOne;
+
+                    if (hasPlusOne === 'yes') {
+                        formData.plusOneName = document.getElementById('plusOneName').value.trim();
+                    }
+                }
+
+                try {
+                    // Use URLSearchParams to avoid CORS preflight
+                    const params = new URLSearchParams();
+                    for (const [key, value] of Object.entries(formData)) {
+                        params.append(key, value);
+                    }
+
+                    const response = await fetch(config.rsvp.script_url, {
+                        method: 'POST',
+                        redirect: 'follow',
+                        body: params
+                    });
+
+                    const data = await response.json();
+
+                    if (data.status === 'success') {
+                        formMessage.textContent = '✓ ' + data.message + ' Thank you!';
+                        formMessage.className = 'form-message success';
+                        form.reset();
+                        plusOneSection.style.display = 'none';
+                        plusOneNameGroup.style.display = 'none';
+                        hasCheckedGuest = false;
+                        guestCanHavePlusOne = false;
+                    } else {
+                        formMessage.textContent = '✗ ' + data.message;
+                        formMessage.className = 'form-message error';
+                    }
+                } catch (error) {
+                    console.error('Error submitting RSVP:', error);
+                    formMessage.textContent = '✗ Failed to submit RSVP. Please try again or contact us directly.';
+                    formMessage.className = 'form-message error';
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Submit RSVP';
+                }
+            });
+        }
+
         // Initialize everything
         async function init() {
             // Initialize theme immediately to prevent flash
@@ -2560,6 +2904,7 @@
                 const config = await loadConfig();
                 if (config) {
                     await buildPage(config);
+                    initializeRSVPForm(config);
                 } else {
                     throw new Error('Configuration not found');
                 }
