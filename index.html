@@ -244,7 +244,7 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: url('./images/crested_butte.jpg') no-repeat center/cover;
+            background: url('./images/crested_butte.webp') no-repeat center/cover;
             z-index: 0;
         }
 
@@ -775,6 +775,7 @@
             align-items: center;
             gap: 2rem;
             margin-top: 3rem;
+            min-height: fit-content;
         }
 
         .timeline-horizontal {
@@ -784,47 +785,26 @@
             overflow-y: visible;
             scroll-behavior: smooth;
             gap: 3rem;
-            padding: 2rem 0 4rem 0;
+            padding: 2rem 0;
             flex: 1;
             scrollbar-width: none;
             -ms-overflow-style: none;
+            min-height: auto;
+            align-items: start;
         }
 
         .timeline-horizontal::-webkit-scrollbar {
             display: none;
         }
 
-        .timeline-line {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: linear-gradient(to right, var(--primary), rgba(var(--primary-rgb), 0.7), var(--primary));
-            transform: translateY(-50%);
-            z-index: 1;
-            border-radius: 2px;
-        }
-
         .timeline-item-horizontal {
             position: relative;
-            flex: 0 0 400px;
+            flex: 0 0 700px;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
 
-        .timeline-dot {
-            position: relative;
-            width: 20px;
-            height: 20px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 4px solid white;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-            z-index: 2;
-            margin-bottom: 1.5rem;
-        }
 
         .timeline-card {
             background: var(--bg-light);
@@ -833,7 +813,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all var(--transition-speed) ease;
             width: 100%;
-            max-width: 380px;
+            max-width: 680px;
             color: var(--text-dark);
         }
 
@@ -871,26 +851,28 @@
         }
 
         .timeline-images-horizontal {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
             gap: 0.75rem;
             padding: 0 1.5rem 1.5rem;
+            flex: 1;
+            align-content: start;
         }
 
         .timeline-image-wrapper {
             display: flex;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             background: var(--accent);
             border-radius: 12px;
-            padding: 1rem;
-            margin: 0.5rem 0;
+            padding: 0.5rem;
+            width: 100%;
         }
 
         .timeline-photo {
             max-width: 100%;
+            width: 100%;
             height: auto;
-            width: auto;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: all var(--transition-speed) ease;
@@ -917,6 +899,10 @@
             font-weight: bold;
             flex-shrink: 0;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            align-self: flex-start;
+            top: calc(50vh - 25px);
+            z-index: 10;
         }
 
         .timeline-nav:hover {
@@ -966,11 +952,7 @@
 
             .timeline-images-horizontal {
                 padding: 0 1.25rem 1.25rem;
-            }
-
-            .timeline-image-wrapper {
-                min-height: 150px;
-                max-height: 250px;
+                grid-template-columns: 1fr;
             }
         }
 
@@ -1036,28 +1018,32 @@
 
         .travel-metrics {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1rem;
-            margin: 1rem 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.75rem;
+            margin: 0.75rem 0;
         }
 
         .metric {
-            text-align: left;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 0.5rem;
+            background: rgba(var(--primary-rgb), 0.05);
+            border-radius: 6px;
         }
 
         .metric-label {
-            display: block;
             font-weight: 500;
             color: var(--text-secondary);
-            font-size: 0.875rem;
+            font-size: 0.8rem;
             margin-bottom: 0.25rem;
         }
 
         .metric-value {
-            display: block;
-            font-weight: 400;
-            font-size: 1rem;
-            line-height: 1.4;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
         }
 
         .cost-1 { color: #22c55e; } /* $ - green */
@@ -1165,8 +1151,8 @@
             }
 
             .travel-metrics {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.5rem;
             }
 
             .transport-details {
@@ -1254,6 +1240,529 @@
         [data-theme="dark"] .gallery-item {
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Sleek Google Maps Button Styles */
+        .maps-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.25rem;
+            background: var(--bg-light);
+            color: var(--text-secondary);
+            text-decoration: none;
+            border: 1.5px solid var(--primary);
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition-speed) ease;
+            margin: 0 0 1rem 0;
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .maps-button:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .maps-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(var(--primary-rgb), 0.2);
+        }
+
+        .maps-icon {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        .maps-button:hover .maps-icon {
+            opacity: 1;
+        }
+
+        .maps-text {
+            flex: 1;
+        }
+
+        .maps-arrow {
+            font-size: 0.75rem;
+            opacity: 0.6;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .maps-button:hover .maps-arrow {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
+
+        /* Dark mode maps button */
+        [data-theme="dark"] .maps-button {
+            background: var(--bg-dark);
+            border-color: var(--text-secondary);
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .maps-button:hover {
+            background: var(--text-secondary);
+            color: var(--bg-dark);
+        }
+
+        /* Responsive maps button */
+        @media (max-width: 768px) {
+            .maps-button {
+                padding: 0.625rem 0.875rem;
+                font-size: 0.8rem;
+                gap: 0.375rem;
+            }
+
+            .maps-icon {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Accessibility */
+        .maps-button:focus {
+            outline: 2px solid var(--primary);
+            outline-offset: 2px;
+        }
+
+        .maps-button:focus:not(:focus-visible) {
+            outline: none;
+        }
+
+        /* Hotel/Accommodations section styling */
+        .hotel-card {
+            position: relative;
+        }
+
+        .hotel-card h3 {
+            font-size: 1.25rem !important;
+            margin-bottom: 0.75rem !important;
+            line-height: 1.2;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .hotel-card p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+        .hotel-description {
+            margin: 0.75rem 0 1rem 0 !important;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: var(--text-muted);
+        }
+
+        .hotel-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(var(--primary-rgb), 0.1);
+        }
+
+        .hotel-rate {
+            color: var(--primary);
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .hotel-code {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Hotel actions container */
+        .hotel-actions {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.75rem;
+            margin-top: auto;
+        }
+
+        /* Hotel button base styling */
+        .book-button,
+        .maps-button.compact {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1rem;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+            white-space: nowrap;
+            min-height: 44px;
+            text-align: center;
+            border: 1.5px solid transparent;
+            width: auto;
+            margin: 0;
+        }
+
+        /* Book Now button - filled style */
+        .book-button {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .book-button:hover {
+            background: var(--text-secondary);
+            border-color: var(--text-secondary);
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .book-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Override maps button styling for hotel compact version */
+        .hotel-actions .maps-button.compact {
+            background: transparent;
+            color: var(--primary);
+            border: 1.5px solid var(--primary);
+            padding: 0.875rem 1rem;
+            font-size: 0.85rem;
+            min-height: 44px;
+            line-height: 1.2;
+            box-sizing: border-box;
+            margin: 0;
+            width: auto;
+        }
+
+        .hotel-actions .maps-button.compact:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .hotel-actions .maps-button.compact:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Dark mode hotel buttons */
+        [data-theme="dark"] .book-button {
+            background: var(--text-secondary);
+            color: var(--bg-dark);
+            border-color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .book-button:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        [data-theme="dark"] .hotel-actions .maps-button.compact {
+            color: var(--text-secondary);
+            border-color: var(--text-secondary);
+            background: transparent;
+        }
+
+        [data-theme="dark"] .hotel-actions .maps-button.compact:hover {
+            background: var(--text-secondary);
+            color: var(--bg-dark);
+        }
+
+        /* Dark mode hotel styling */
+        [data-theme="dark"] .hotel-info {
+            border-bottom-color: rgba(243, 145, 43, 0.2);
+        }
+
+        [data-theme="dark"] .hotel-rate {
+            color: var(--text-secondary);
+        }
+
+        /* Responsive hotel actions */
+        @media (max-width: 768px) {
+            .hotel-card h3 {
+                font-size: 1.1rem !important;
+                white-space: normal;
+            }
+
+            .hotel-actions {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .book-button,
+            .maps-button.compact {
+                width: 100%;
+            }
+            
+            .registry-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                max-width: 400px;
+            }
+        }
+
+        /* Dress code styling */
+        .dress-code {
+            background: rgba(var(--primary-rgb), 0.05);
+            border-left: 3px solid var(--primary);
+            padding: 1rem 1.25rem;
+            margin: 1.25rem 0 0 0;
+            border-radius: 0 8px 8px 0;
+            font-style: normal;
+            line-height: 1.4;
+        }
+
+        .dress-code-title {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .dress-code-title::before {
+            content: "👔";
+            opacity: 0.8;
+        }
+
+        .dress-code-description {
+            font-size: 0.825rem;
+            line-height: 1.5;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* Schedule card spacing improvements */
+        .card .maps-button {
+            margin: 1rem 0 0.5rem 0;
+        }
+
+        .card p {
+            margin: 0.5rem 0;
+        }
+
+        .card p:first-of-type {
+            margin-top: 0.75rem;
+        }
+
+        /* Dress code details section */
+        .dress-code-details {
+            background: rgba(var(--primary-rgb), 0.03);
+            padding: 1.25rem;
+            border-radius: 8px;
+            margin-top: 0.75rem;
+            border: 1px solid rgba(var(--primary-rgb), 0.1);
+            line-height: 1.6;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+        }
+
+        .dress-code-section {
+            margin: 0.75rem 0;
+            padding: 0.875rem 1rem;
+            background: rgba(var(--primary-rgb), 0.02);
+            border-radius: 6px;
+            border-left: 3px solid var(--primary);
+        }
+
+        .dress-code-section:first-child {
+            margin-top: 0;
+        }
+
+        .dress-code-section:last-of-type {
+            margin-bottom: 0.5rem;
+        }
+
+        .dress-code-heading {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin: 0 0 0.375rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dress-code-section p {
+            margin: 0;
+            color: var(--text-muted);
+            font-size: 0.875rem;
+            line-height: 1.4;
+        }
+
+        /* Pinterest button */
+        .pinterest-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.25rem;
+            background: #BD081C;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all var(--transition-speed) ease;
+            margin-top: 1rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .pinterest-button:hover {
+            background: #A0061A;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(189, 8, 28, 0.25);
+        }
+
+        .pinterest-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(189, 8, 28, 0.2);
+        }
+
+        .pinterest-icon {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .pinterest-text {
+            flex: 1;
+        }
+
+        .pinterest-arrow {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            transition: all var(--transition-speed) ease;
+        }
+
+        .pinterest-button:hover .pinterest-arrow {
+            opacity: 1;
+            transform: translate(2px, -2px);
+        }
+
+        /* Registry card styling */
+        .registry-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .registry-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            padding: 2.5rem 2rem;
+        }
+
+        .registry-icon {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .registry-card h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        .registry-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .registry-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all var(--transition-speed) ease;
+            cursor: pointer;
+            white-space: nowrap;
+            min-width: 200px;
+            margin-top: auto;
+        }
+
+        .registry-button:hover {
+            background: var(--text-secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.25);
+        }
+
+        .registry-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 6px rgba(var(--primary-rgb), 0.2);
+        }
+
+        /* Dark mode registry styling */
+        [data-theme="dark"] .registry-button {
+            background: var(--text-secondary);
+            color: var(--bg-dark);
+        }
+
+        [data-theme="dark"] .registry-button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+
+        /* Dark mode dress code */
+        [data-theme="dark"] .dress-code {
+            background: rgba(243, 145, 43, 0.1);
+            border-left-color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .dress-code-title {
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .dress-code-description {
+            color: var(--text-muted);
+        }
+
+        [data-theme="dark"] .dress-code-details {
+            background: rgba(243, 145, 43, 0.05);
+            border-color: rgba(243, 145, 43, 0.1);
+            color: var(--text-muted);
+        }
+
+        [data-theme="dark"] .dress-code-section {
+            background: rgba(243, 145, 43, 0.03);
+            border-left-color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .dress-code-heading {
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .dress-code-details > p:first-child {
+            color: var(--text-secondary);
+        }
     </style>
 
     <script type="module">
@@ -1292,6 +1801,10 @@
                 return null;
             }
         }
+
+
+
+
 
         // Generic section renderer
         function renderSection(section, config) {
@@ -1350,26 +1863,35 @@
                                 <article class="card animate">
                                     <h3>Friday Wedding</h3>
                                     <p><strong>${config.ceremony.time}</strong></p>
-                                    <p>${config.ceremony.venue}<br>
-                                    ${config.ceremony.address}<br>
-                                    ${config.ceremony.city}</p>
-                                    ${config.ceremony.dress_code ? `<p><em>Dress Code: ${config.ceremony.dress_code}</em></p>` : ''}
+                                    ${config.ceremony.maps_url ? `<a href="${config.ceremony.maps_url}" target="_blank" rel="noopener noreferrer" class="maps-button"><span class="maps-icon">📍</span><span class="maps-text">${config.ceremony.venue}</span><span class="maps-arrow">↗</span></a>` : ''}
+                                    ${config.ceremony.dress_code ? `<div class="dress-code"><div class="dress-code-title">${config.ceremony.dress_code.title}</div>${config.ceremony.dress_code.description ? `<div class="dress-code-description">${config.ceremony.dress_code.description}</div>` : ''}</div>` : ''}
                                 </article>
                             ` : ''}
                             ${config.reception ? `
                                 <article class="card animate">
                                     <h3>Saturday Party</h3>
                                     <p><strong>${config.reception.time}</strong></p>
-                                    <p>${config.reception.venue}<br>
-                                    ${config.reception.address}<br>
-                                    ${config.reception.city}</p>
-                                    ${config.reception.dress_code ? `<p><em>Dress Code: ${config.reception.dress_code}</em></p>` : ''}
+                                    ${config.reception.maps_url ? `<a href="${config.reception.maps_url}" target="_blank" rel="noopener noreferrer" class="maps-button"><span class="maps-icon">📍</span><span class="maps-text">${config.reception.venue}</span><span class="maps-arrow">↗</span></a>` : ''}
+                                    ${config.reception.dress_code ? `<div class="dress-code"><div class="dress-code-title">${config.reception.dress_code.title}</div>${config.reception.dress_code.description ? `<div class="dress-code-description">${config.reception.dress_code.description}</div>` : ''}</div>` : ''}
                                 </article>
                             ` : ''}
                             ${config.dress_code ? `
                                 <article class="card animate">
                                     <h3>Dress Code Details</h3>
-                                    <p>${config.dress_code}</p>
+                                    ${config.dress_code.intro ? `<p style="margin-bottom: 1.5rem; font-weight: 500;">${config.dress_code.intro}</p>` : ''}
+                                    ${config.dress_code.sections ? config.dress_code.sections.map(section => `
+                                        <div class="dress-code-section">
+                                            <h4 class="dress-code-heading">👔 ${section.title}</h4>
+                                            <p>${section.description}</p>
+                                        </div>
+                                    `).join('') : ''}
+                                    ${config.dress_code.pinterest ? `
+                                        <a href="${config.dress_code.pinterest.url}" target="_blank" rel="noopener" class="pinterest-button">
+                                            <span class="pinterest-icon">📌</span>
+                                            <span class="pinterest-text">${config.dress_code.pinterest.text}</span>
+                                            <span class="pinterest-arrow">↗</span>
+                                        </a>
+                                    ` : ''}
                                 </article>
                             ` : ''}
                         </div>
@@ -1440,13 +1962,17 @@
                     return `
                         <div class="content-grid">
                             ${(config.hotels || []).map(hotel => `
-                                <article class="card animate">
-                                    <h3>${hotel.name}</h3>
-                                    <p>${hotel.address || ''}<br>
-                                    ${hotel.city || ''}</p>
-                                    ${hotel.rate ? `<p><strong>${hotel.rate}</strong></p>` : ''}
-                                    ${hotel.code ? `<p>Code: <strong>${hotel.code}</strong></p>` : ''}
-                                    ${hotel.link ? `<p><a href="${hotel.link}" target="_blank" rel="noopener">Book Now</a></p>` : ''}
+                                <article class="card animate hotel-card">
+                                    <h3 title="${hotel.name}">${hotel.name}</h3>
+                                    ${hotel.description ? `<p class="hotel-description">${hotel.description}</p>` : ''}
+                                    <div class="hotel-info">
+                                        ${hotel.rate ? `<div class="hotel-rate">${hotel.rate}</div>` : ''}
+                                        ${hotel.code ? `<div class="hotel-code">Booking Code: <strong>${hotel.code}</strong></div>` : ''}
+                                    </div>
+                                    <div class="hotel-actions">
+                                        ${hotel.link ? `<a href="${hotel.link}" target="_blank" rel="noopener" class="book-button">Book Now</a>` : ''}
+                                        ${hotel.maps_url ? `<a href="${hotel.maps_url}" target="_blank" rel="noopener noreferrer" class="maps-button compact"><span class="maps-icon">📍</span><span class="maps-text">Get Directions</span><span class="maps-arrow">↗</span></a>` : ''}
+                                    </div>
                                 </article>
                             `).join('')}
                         </div>
@@ -1458,48 +1984,17 @@
                             <p style="font-size: 1.125rem; margin-bottom: 2rem;">
                                 ${config.registry?.message || 'Your presence is the greatest gift of all.'}
                             </p>
-                            <div class="content-grid" style="max-width: 600px; margin: 0 auto;">
-                                ${(config.registry?.stores || []).map(store => {
-                                    if (store.payment_options) {
-                                        // Render store with payment options and QR codes
-                                        return `
-                                            <div class="card animate" style="text-align: center;">
-                                                <h3 style="font-size: 1.25rem; margin-bottom: 1.5rem;">${store.name}</h3>
-                                                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
-                                                    ${store.payment_options.map(option => `
-                                                        <div style="text-align: center;">
-                                                            <h4 style="font-size: 1rem; margin-bottom: 1rem; color: var(--primary);">${option.name}</h4>
-                                                            ${option.qr_code ? `
-                                                                <div style="margin-bottom: 1rem;">
-                                                                    <img src="${option.qr_code}" alt="${option.name} QR Code" 
-                                                                         style="width: 150px; height: 150px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                                                </div>
-                                                            ` : ''}
-                                                            ${option.url ? `
-                                                                <a href="${option.url}" target="_blank" rel="noopener" 
-                                                                   style="display: inline-block; padding: 0.5rem 1rem; background: var(--primary); color: white; text-decoration: none; border-radius: 6px; font-size: 0.875rem;">
-                                                                    Open ${option.name}
-                                                                </a>
-                                                            ` : ''}
-                                                            ${option.details ? `
-                                                                <p style="font-size: 0.875rem; margin-top: 0.5rem; font-family: monospace; background: #f5f5f5; padding: 0.5rem; border-radius: 4px;">
-                                                                    ${option.details}
-                                                                </p>
-                                                            ` : ''}
-                                                        </div>
-                                                    `).join('')}
-                                                </div>
-                                            </div>
-                                        `;
-                                    } else {
-                                        // Render regular store link
-                                        return `
-                                            <a href="${store.url}" target="_blank" rel="noopener" class="card animate" style="text-decoration: none; color: inherit;">
-                                                <h3 style="font-size: 1.25rem;">${store.name}</h3>
-                                            </a>
-                                        `;
-                                    }
-                                }).join('')}
+                            <div class="registry-grid">
+                                ${(config.registry?.stores || []).map(store => `
+                                    <article class="card animate registry-card">
+                                        <div class="registry-icon">${store.icon || '🎁'}</div>
+                                        <h3>${store.name}</h3>
+                                        ${store.description ? `<p class="registry-description">${store.description}</p>` : ''}
+                                        <a href="${store.url}" target="_blank" rel="noopener" class="registry-button">
+                                            ${store.button_text || `Visit ${store.name}`}
+                                        </a>
+                                    </article>
+                                `).join('')}
                             </div>
                         </div>
                     `;
@@ -1530,14 +2025,12 @@
                                 <span>‹</span>
                             </button>
                             <div class="timeline-horizontal">
-                                <div class="timeline-line"></div>
                                 ${(config.timeline?.events || []).map((event, index) => {
                                     // Support both single image and multiple images
                                     const images = event.images || (event.image ? [event.image] : []);
 
                                     return `
                                         <article class="timeline-item-horizontal animate" data-index="${index}">
-                                            <div class="timeline-dot"></div>
                                             <div class="timeline-card">
                                                 <div class="timeline-text">
                                                     <h3 class="timeline-date">${event.date}</h3>
@@ -1885,6 +2378,40 @@
                 const items = document.querySelectorAll('.timeline-item-horizontal');
                 const totalItems = items.length;
 
+                // Set equal heights for timeline cards
+                function setEqualTimelineHeights() {
+                    const cards = document.querySelectorAll('.timeline-card');
+                    if (cards.length === 0) return;
+                    
+                    // Reset heights first
+                    cards.forEach(card => card.style.height = 'auto');
+                    
+                    // Find the tallest card
+                    let maxHeight = 0;
+                    cards.forEach(card => {
+                        const height = card.offsetHeight;
+                        if (height > maxHeight) {
+                            maxHeight = height;
+                        }
+                    });
+                    
+                    // Apply the max height to all cards
+                    cards.forEach(card => {
+                        card.style.height = maxHeight + 'px';
+                    });
+                }
+                
+                // Make function globally accessible for image load events
+                window.setEqualTimelineHeights = setEqualTimelineHeights;
+
+                // Set equal heights after a delay to ensure content is loaded
+                setTimeout(setEqualTimelineHeights, 100);
+                
+                // Also set equal heights on window resize
+                window.addEventListener('resize', () => {
+                    setTimeout(setEqualTimelineHeights, 100);
+                });
+
                 function updateTimelinePosition() {
                     if (totalItems === 0) return;
 
@@ -1987,6 +2514,15 @@
                 // Browser supports lazy loading
                 document.querySelectorAll('img[loading="lazy"]').forEach(img => {
                     img.src = img.dataset.src || img.src;
+                    // Recalculate timeline heights when images load
+                    if (img.closest('.timeline-card')) {
+                        img.addEventListener('load', () => {
+                            setTimeout(() => {
+                                const setEqualHeights = window.setEqualTimelineHeights;
+                                if (setEqualHeights) setEqualHeights();
+                            }, 50);
+                        });
+                    }
                 });
             } else {
                 // Polyfill for older browsers
@@ -1996,6 +2532,15 @@
                             const img = entry.target;
                             img.src = img.dataset.src || img.src;
                             imageObserver.unobserve(img);
+                            // Recalculate timeline heights when images load
+                            if (img.closest('.timeline-card')) {
+                                img.addEventListener('load', () => {
+                                    setTimeout(() => {
+                                        const setEqualHeights = window.setEqualTimelineHeights;
+                                        if (setEqualHeights) setEqualHeights();
+                                    }, 50);
+                                });
+                            }
                         }
                     });
                 });
