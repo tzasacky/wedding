@@ -528,6 +528,17 @@
             background: rgba(42, 42, 42, 1);
         }
 
+        /* Mobile adjustments for theme toggle to avoid navbar overlap */
+        @media (max-width: 768px) {
+            .theme-toggle {
+                top: 70px;
+                right: 10px;
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
 
         /* Initialize theme before config loads to prevent flash */
         :root {
@@ -591,6 +602,12 @@
 
         /* Mobile optimizations */
         @media (max-width: 768px) {
+            #nav {
+                height: auto;
+                min-height: 60px;
+                padding: 0.5rem 0;
+            }
+            
             #nav ul {
                 gap: 0.25rem;
                 font-size: 0.75rem;
@@ -598,6 +615,7 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 align-items: center;
+                height: auto;
             }
             
             #nav a {
@@ -1274,13 +1292,14 @@
 
             .timeline-horizontal {
                 padding: 0;
-                scroll-snap-type: x mandatory;
+                scroll-snap-type: none;
                 -webkit-overflow-scrolling: touch;
+                overscroll-behavior-x: contain;
             }
 
             .timeline-item-horizontal {
                 flex: 0 0 calc(100vw - 2rem);
-                scroll-snap-align: start;
+                scroll-snap-align: none;
                 max-width: calc(100vw - 2rem);
                 transition: opacity 0.3s ease, transform 0.3s ease;
             }
@@ -1701,6 +1720,8 @@
         /* Hotel/Accommodations section styling */
         .hotel-card {
             position: relative;
+            min-height: auto !important;
+            height: auto !important;
         }
 
         .hotel-card h3 {
@@ -1886,11 +1907,16 @@
             }
             
             .registry-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr !important;
                 gap: 1.5rem;
-                max-width: 500px;
+                max-width: none;
                 margin: 0 auto;
                 padding: 0 1rem;
+            }
+            
+            .registry-card {
+                padding: 2rem 1.5rem !important;
+                max-width: 100%;
             }
         }
 
@@ -2939,8 +2965,11 @@
 
                 // Only add touch events on mobile devices
                 if (isMobileDevice()) {
+                    let startY = 0;
+                    
                     timelineContainer.addEventListener('touchstart', (e) => {
                         startX = e.touches[0].clientX;
+                        startY = e.touches[0].clientY;
                         scrollStart = timelineContainer.scrollLeft;
                         isDragging = true;
                         startTime = Date.now();
@@ -2952,12 +2981,17 @@
                     timelineContainer.addEventListener('touchmove', (e) => {
                         if (!startX || !isDragging) return;
 
-                        // Prevent default to avoid page scrolling conflicts
-                        e.preventDefault();
-
                         const currentX = e.touches[0].clientX;
-                        const diff = startX - currentX;
-                        timelineContainer.scrollLeft = scrollStart + diff;
+                        const currentY = e.touches[0].clientY;
+                        const diffX = Math.abs(startX - currentX);
+                        const diffY = Math.abs(startY - currentY);
+
+                        // Only prevent default if horizontal movement is greater than vertical
+                        if (diffX > diffY && diffX > 10) {
+                            e.preventDefault();
+                            const diff = startX - currentX;
+                            timelineContainer.scrollLeft = scrollStart + diff;
+                        }
                     }, { passive: false });
 
                     timelineContainer.addEventListener('touchend', (e) => {
