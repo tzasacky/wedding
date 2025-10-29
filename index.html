@@ -3012,14 +3012,22 @@
 
                         // Enhanced snapping with velocity consideration
                         const itemWidth = items[0] ? items[0].offsetWidth + 32 : 300;
-                        let newIndex = Math.round(timelineContainer.scrollLeft / itemWidth);
+                        const currentScrollIndex = timelineContainer.scrollLeft / itemWidth;
+                        let newIndex = Math.round(currentScrollIndex);
                         
-                        // Apply velocity-based adjustment for fast swipes
-                        if (velocity > 0.5 && duration < 300) {
+                        // More sensitive swipe detection - lower thresholds for better UX
+                        const swipeDistance = Math.abs(endX - startX);
+                        const isQuickSwipe = velocity > 0.3 && duration < 500;
+                        const isSignificantSwipe = swipeDistance > 50;
+                        
+                        // Apply velocity-based or distance-based adjustment
+                        if (isQuickSwipe || isSignificantSwipe) {
                             if (endX < startX) {
-                                newIndex = Math.min(newIndex + 1, totalItems - 1);
+                                // Swiping left (next)
+                                newIndex = Math.min(Math.ceil(currentScrollIndex), totalItems - 1);
                             } else {
-                                newIndex = Math.max(newIndex - 1, 0);
+                                // Swiping right (previous)  
+                                newIndex = Math.max(Math.floor(currentScrollIndex), 0);
                             }
                         }
                         
