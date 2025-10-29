@@ -714,13 +714,8 @@
                 margin: 0.25rem;
             }
 
-            .timeline-item-horizontal {
-                flex: 0 0 calc(100vw - 1rem);
-                max-width: calc(100vw - 1rem);
-            }
-
             .timeline-container {
-                padding: 0 0.5rem;
+                padding: 0;
             }
 
             .timeline-card {
@@ -1282,7 +1277,13 @@
         @media (max-width: 768px) {
             .timeline-container {
                 gap: 0;
-                padding: 0 1rem;
+                padding: 0;
+                max-height: calc(100vh - 100px);
+                overflow: hidden;
+                /* Break out of section padding */
+                margin-left: -0.75rem;
+                margin-right: -0.75rem;
+                width: 100vw;
             }
 
             /* Hide navigation arrows on mobile - use swipe instead */
@@ -1291,22 +1292,37 @@
             }
 
             .timeline-horizontal {
-                padding: 0;
                 scroll-snap-type: none;
                 -webkit-overflow-scrolling: touch;
                 overscroll-behavior-x: contain;
+                max-height: calc(100vh - 120px);
+                align-items: flex-start;
+                gap: 0;
+                padding: 0;
+                margin: 0;
             }
 
             .timeline-item-horizontal {
-                flex: 0 0 calc(100vw - 2rem);
+                flex: 0 0 100vw;
+                width: 100vw;
+                max-width: 100vw;
                 scroll-snap-align: none;
-                max-width: calc(100vw - 2rem);
                 transition: opacity 0.3s ease, transform 0.3s ease;
+                max-height: calc(100vh - 140px);
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding: 0 1rem;
+                margin: 0;
+                box-sizing: border-box;
             }
 
             .timeline-card {
-                max-width: 100%;
-                margin: 0 auto;
+                max-width: calc(100vw - 2rem);
+                width: 100%;
+                margin: 0;
             }
 
             .timeline-text {
@@ -2410,7 +2426,7 @@
                 case 'rsvp':
                     return `
                         <div style="text-align: center;">
-                            <p>Please RSVP by ${new Date(config.rsvp.deadline).toLocaleDateString('en-US', {
+                            <p>${config.rsvp.labels?.deadline_text || 'Please RSVP by'} ${new Date(config.rsvp.deadline).toLocaleDateString('en-US', {
                                 year: 'numeric',
                                 month: 'long',
                                 day: 'numeric'
@@ -2437,11 +2453,11 @@
                                         <div class="radio-group">
                                             <label class="radio-label">
                                                 <input type="radio" name="attendingCeremony" value="yes" required>
-                                                <span>Yes</span>
+                                                <span>${config.rsvp.radio_options?.yes || 'Yes'}</span>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio" name="attendingCeremony" value="no" required>
-                                                <span>No</span>
+                                                <span>${config.rsvp.radio_options?.no || 'No'}</span>
                                             </label>
                                         </div>
                                     </div>
@@ -2451,18 +2467,18 @@
                                         <div class="radio-group">
                                             <label class="radio-label">
                                                 <input type="radio" name="attendingReception" value="yes" required>
-                                                <span>Yes</span>
+                                                <span>${config.rsvp.radio_options?.yes || 'Yes'}</span>
                                             </label>
                                             <label class="radio-label">
                                                 <input type="radio" name="attendingReception" value="no" required>
-                                                <span>No</span>
+                                                <span>${config.rsvp.radio_options?.no || 'No'}</span>
                                             </label>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="dietaryRestrictions">${config.rsvp.form_fields?.dietary_restrictions || 'Dietary Restrictions'}</label>
-                                        <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="3" placeholder="Please let us know if you have any dietary restrictions or allergies"></textarea>
+                                        <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="3" placeholder="${config.rsvp.placeholders?.dietary_restrictions || 'Please let us know if you have any dietary restrictions or allergies'}"></textarea>
                                     </div>
 
                                     <!-- Plus one section - hidden by default -->
@@ -2474,30 +2490,30 @@
                                             <div class="radio-group">
                                                 <label class="radio-label">
                                                     <input type="radio" name="hasPlusOne" value="yes" required>
-                                                    <span>Yes</span>
+                                                    <span>${config.rsvp.radio_options?.yes || 'Yes'}</span>
                                                 </label>
                                                 <label class="radio-label">
                                                     <input type="radio" name="hasPlusOne" value="no" required>
-                                                    <span>No</span>
+                                                    <span>${config.rsvp.radio_options?.no || 'No'}</span>
                                                 </label>
                                             </div>
                                         </div>
 
                                         <div id="plus-one-name-group" class="form-group" style="display: none;">
                                             <label for="plusOneName">${config.rsvp.form_fields?.plus_one_name || 'Plus One Name'} *</label>
-                                            <input type="text" id="plusOneName" name="plusOneName" placeholder="Full name of your plus one" required>
+                                            <input type="text" id="plusOneName" name="plusOneName" placeholder="${config.rsvp.placeholders?.plus_one_name || 'Full name of your plus one'}" required>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="anythingElse">${config.rsvp.form_fields?.anything_else || 'Anything else to note (song requests, feedback, etc.)?'}</label>
-                                        <textarea id="anythingElse" name="anythingElse" rows="3" placeholder="Optional - any additional notes, song requests, or feedback"></textarea>
+                                        <label for="anythingElse">${config.rsvp.form_fields?.anything_else || 'Song requests?'}</label>
+                                        <textarea id="anythingElse" name="anythingElse" rows="3" placeholder="${config.rsvp.placeholders?.anything_else || 'Optional - any song requests or feedback'}"></textarea>
                                     </div>
 
                                     <div id="form-message" class="form-message"></div>
 
                                     <button type="submit" class="submit-button" id="submit-button">
-                                        Submit RSVP
+                                        ${config.rsvp.labels?.submit_button || 'Submit RSVP'}
                                     </button>
                                 </form>
                             </div>
@@ -2905,9 +2921,9 @@
                 function updateTimelinePosition() {
                     if (totalItems === 0) return;
 
-                    // Responsive gap calculation
+                    // Responsive gap calculation - mobile has no gap, items fill viewport
                     const isMobile = window.innerWidth <= 768;
-                    const gap = isMobile ? 32 : 48; // 2rem on mobile, 3rem on desktop
+                    const gap = isMobile ? 0 : 48; // 0 on mobile (items fill viewport), 3rem on desktop
                     const itemWidth = items[0].offsetWidth + gap;
                     const scrollPosition = currentIndex * itemWidth;
 
@@ -3010,16 +3026,24 @@
                         // Restore smooth scrolling
                         timelineContainer.style.scrollBehavior = 'smooth';
 
-                        // Enhanced snapping with velocity consideration
-                        const itemWidth = items[0] ? items[0].offsetWidth + 32 : 300;
-                        let newIndex = Math.round(timelineContainer.scrollLeft / itemWidth);
+                        // Enhanced snapping with velocity consideration - no gap on mobile
+                        const itemWidth = items[0] ? items[0].offsetWidth : 300;
+                        const currentScrollIndex = timelineContainer.scrollLeft / itemWidth;
+                        let newIndex = Math.round(currentScrollIndex);
                         
-                        // Apply velocity-based adjustment for fast swipes
-                        if (velocity > 0.5 && duration < 300) {
+                        // Swipe detection with single threshold
+                        const swipeThreshold = 15;
+                        const swipeDistance = Math.abs(endX - startX);
+                        const isSignificantSwipe = swipeDistance > swipeThreshold;
+                        
+                        // Apply swipe direction
+                        if (isSignificantSwipe) {
                             if (endX < startX) {
-                                newIndex = Math.min(newIndex + 1, totalItems - 1);
+                                // Swiping left = go to next item (higher index)
+                                newIndex = Math.min(Math.ceil(currentScrollIndex), totalItems - 1);
                             } else {
-                                newIndex = Math.max(newIndex - 1, 0);
+                                // Swiping right = go to previous item (lower index)
+                                newIndex = Math.max(Math.floor(currentScrollIndex), 0);
                             }
                         }
                         

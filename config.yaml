@@ -126,75 +126,81 @@ dress_code:
 # Timeline section (optional)
 timeline:
   events:
+    - date: "Winter 2015"
+      title: "Meeting on the Ski Team"
+      description: "We met on the UNC Chapel Hill club ski team skiing the illustrious slopes of the south"
+      images:
+        - "/images/unc_ski_team.webp"
+
     - date: "Winter 2016"
       title: "Our First Trip"
       description: "We find cheap flights to Scandinavia and go on our first trip, as friends!"
       images:
-        - "./images/LouiseTyeCopenhagen.webp"
+        - "/images/LouiseTyeCopenhagen.webp"
 
     - date: "Summer 2017"
-      title: "Dating Begins"
+      title: "Going 'official'"
       description: "Road trips and exploring the great outdoors together as an official couple"
       images:
-        - "./images/LouiseTyeCornPalace.webp"
-        - "./images/roadtrip2017.webp"
-        - "./images/SouthDakota.webp"
+        - "/images/LouiseTyeCornPalace.webp"
+        - "/images/roadtrip2017.webp"
+        - "/images/SouthDakota.webp"
 
     - date: "Winter 2018"
       title: "Louise's first time in Aspen"
       description: "Hitting the slopes in Aspen - discovering our love for the mountains"
       images:
-        - "./images/louise_aspen.webp"
+        - "/images/louise_aspen.webp"
 
     - date: "Summer 2020"
       title: "Work from Anywhere"
       description: "We spend the summer in Aspen working from home"
       images:
-        - "./images/LouiseTye4Passloup.webp"
-        - "./images/FourPassLoopVert.webp"
-        - "./images/GreatSandDunes.webp"
+        - "/images/LouiseTye4Passloup.webp"
+        - "/images/FourPassLoopVert.webp"
+        - "/images/GreatSandDunes.webp"
 
     - date: "Aug 2021"
       title: "Moving in Together in Raleigh"
       description: "Moving in together and making a space that's truly ours"
       images:
-        - "./images/move_in.webp"
-        - "./images/twin_oaks.webp"
+        - "/images/move_in.webp"
+        - "/images/twin_oaks.webp"
 
     - date: "Nov 2022"
       title: "Getting Poppy"
       description: "Thanksgiving gave us more to be thankful for than expected this year"
       images:
-        - "./images/poppy2.webp"
-        - "./images/poppy1.webp"
+        - "/images/poppy2.webp"
+        - "/images/poppy1.webp"
 
     - date: "2022-2024"
       title: "Post Graduation Fun"
       description: "Louise finishes grad school and opens a new world of adventures, on PTO!"
       images:
-        - "./images/LouiseTyeVietnam.webp"
-        - "./images/LouiseTyeBoone.webp"
-        - "./images/LouiseTyeBeach.webp"
+        - "/images/LouiseTyeVietnam.webp"
+        - "/images/LouiseTyeBoone.webp"
+        - "/images/LouiseTyeBeach.webp"
 
     - date: "December 2024"
       title: "The Proposal"
       description: "A surprise proposal at the Maroon Bells"
       images:
-        - "./images/Proposal.webp"
-        - "./images/engagement.webp"
+        - "/images/Proposal.webp"
+        - "/images/engagement.webp"
 
     - date: "Summer 2025"
       title: "Move to Durham"
       description: "Compare to our previous apartment photo to see how much our Bird of Paradise has grown alongside us"
       images:
-        - "./images/Apartment.webp"
+        - "/images/Apartment.webp"
 
     - date: "Now - Death"
       title: "Adventure Awaits"
       description: "Here's to a lifetime of laughter, love, and new adventures!!!"
       images:
-        - "./images/LouiseTyeOktoberfest.webp"
-        - "./images/LouiseTyeIceland.webp"
+        - "/images/LouiseTyeOktoberfest.webp"
+        - "/images/LouiseTyeIceland.webp"
 
 # Travel Information
 travel:
@@ -205,7 +211,7 @@ travel:
       drive_time: "30 minutes"
       cost_range: "$$$"
       flight_availability: "Limited"
-      description: "Closest airport to Crested Butte. Flights are extremely limited, book early! Free bus from the airport to Downtown."
+      description: "Closest airport to Crested Butte. Flights are extremely limited, book early!"
       airlines: ["United (3 daily flights from DEN)"]
       
     - name: "Montrose Regional Airport"
@@ -279,7 +285,17 @@ rsvp:
     dietary_restrictions: "Dietary Restrictions"
     plus_one_question: "Will you bring a plus one?"
     plus_one_name: "Plus One Name"
-    anything_else: "Anything else"
+    anything_else: "Song requests?"
+  labels:
+    deadline_text: "Please RSVP by"
+    submit_button: "Submit RSVP"
+  radio_options:
+    yes: "Yes"
+    no: "No"
+  placeholders:
+    dietary_restrictions: "Please let us know if you have any dietary restrictions or allergies"
+    plus_one_name: "Full name of your plus one"
+    anything_else: "Optional - any song requests or feedback"
 
 
 # Site metadata
@@ -289,7 +305,7 @@ site:
   author: "Tye & Louise"
   generator: "Wedding Site Builder v2.0"
   favicon_emoji: "🏔️"
-  background_image: "./images/crested_butte.webp"
+  background_image: "/images/crested_butte.webp"
   
   # PWA settings
   pwa:
@@ -303,5 +319,5 @@ footer:
   text: "Made with ❤️ by Tye and Louise"
   github_url: "https://github.com/tzasacky/wedding"
   github_text: "Make Your Own"
-  stats_url: "./stats.html"
+  stats_url: "/stats.html"
   stats_text: "Stats for Nerds"
