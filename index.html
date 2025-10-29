@@ -53,7 +53,7 @@
             --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --font-body: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             --transition-speed: 200ms;
-            --section-padding: clamp(2rem, 8vh, 4rem);
+            --section-padding: clamp(0.5rem, 2vh, 1rem);
             --content-width: 1200px;
             --nav-height: 60px;
 
@@ -231,7 +231,6 @@
             display: grid;
             place-items: center;
             text-align: center;
-            padding: clamp(3rem, 10vw, 6rem) 2rem;
             padding: var(--section-padding) 2rem;
             position: relative;
             overflow: hidden;
@@ -325,12 +324,17 @@
 
         /* Sections with Intersection Observer ready */
         section {
-            padding: var(--section-padding) 2rem;
+            min-height: 100vh; /* Each section takes full viewport */
+            padding-top: calc(var(--nav-height) + 0.5rem); /* Minimal padding below navbar */
+            padding-bottom: 50vh; /* Large bottom padding to prevent overlap */
+            padding-left: 2rem;
+            padding-right: 2rem;
             max-width: 1200px;
             max-width: var(--content-width);
             margin: 0 auto;
             contain: layout style;
             overflow: visible;
+            box-sizing: border-box;
         }
 
         .section-title {
@@ -588,16 +592,23 @@
         /* Mobile optimizations */
         @media (max-width: 768px) {
             #nav ul {
-                gap: 0.5rem;
-                font-size: 0.7rem;
-                padding: 0 1rem;
+                gap: 0.25rem;
+                font-size: 0.75rem;
+                padding: 0 0.5rem;
                 flex-wrap: wrap;
                 justify-content: center;
+                align-items: center;
             }
             
             #nav a {
-                padding: 0.25rem 0.5rem;
+                padding: 0.5rem 0.75rem;
                 white-space: nowrap;
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                border-radius: 6px;
+                margin: 0.125rem;
+                touch-action: manipulation;
             }
             
             .hero h1 {
@@ -606,6 +617,121 @@
             
             .section-title {
                 font-size: 2rem;
+            }
+
+            /* Ensure proper spacing for all sections */
+            section {
+                min-height: 100vh; /* Full viewport on mobile too */
+                padding-top: calc(var(--nav-height) + 0.5rem); /* Minimal padding below navbar */
+                padding-bottom: 40vh; /* Large bottom padding to prevent overlap */
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            /* Prevent button overlapping */
+            .hotel-actions {
+                gap: 0.75rem !important;
+            }
+
+            .book-button,
+            .maps-button {
+                padding: 0.75rem 1rem !important;
+                font-size: 0.875rem !important;
+                min-height: 44px !important;
+                touch-action: manipulation;
+            }
+
+            /* Improve countdown grid spacing */
+            .countdown-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
+                margin: 0 -0.5rem;
+            }
+
+            .countdown-item {
+                padding: 0.875rem 0.5rem;
+                margin: 0.5rem;
+            }
+
+            /* Photo grid improvements */
+            .photo-grid {
+                gap: 1rem;
+                margin: 0 -0.5rem;
+            }
+
+            .photo-item {
+                margin: 0.5rem;
+            }
+        }
+
+        /* Extra small screen optimizations */
+        @media (max-width: 480px) {
+            #nav ul {
+                gap: 0.125rem;
+                font-size: 0.7rem;
+                padding: 0 0.25rem;
+            }
+
+            #nav a {
+                padding: 0.375rem 0.5rem;
+                font-size: 0.7rem;
+            }
+
+            .hero h1 {
+                font-size: clamp(2rem, 10vw, 3rem);
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .countdown-grid {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+                margin: 0;
+            }
+
+            .countdown-item {
+                padding: 1rem;
+                margin: 0.25rem;
+            }
+
+            .timeline-item-horizontal {
+                flex: 0 0 calc(100vw - 1rem);
+                max-width: calc(100vw - 1rem);
+            }
+
+            .timeline-container {
+                padding: 0 0.5rem;
+            }
+
+            .timeline-card {
+                margin: 0;
+            }
+
+            .timeline-text {
+                padding: 0.5rem 0.875rem;
+            }
+
+            .registry-grid {
+                padding: 0 0.5rem;
+            }
+
+            .hotel-card {
+                padding: 1rem;
+            }
+
+            .rsvp-form {
+                padding: 1rem 0.75rem;
+                margin: 0.5rem;
+            }
+
+            section {
+                min-height: 100vh; /* Full viewport on small screens too */
+                padding-top: calc(var(--nav-height) + 0.5rem); /* Minimal padding below navbar */
+                padding-bottom: 30vh; /* Large bottom padding to prevent overlap */
+                padding-left: 0.75rem;
+                padding-right: 0.75rem;
             }
         }
 
@@ -839,12 +965,38 @@
         /* Responsive form styles */
         @media (max-width: 768px) {
             .rsvp-form {
-                padding: 1.5rem;
+                padding: 1.5rem 1rem;
+                margin: 1rem;
+                max-width: calc(100vw - 2rem);
             }
 
             .radio-group {
                 flex-direction: column;
                 gap: 1rem;
+            }
+
+            .form-group input,
+            .form-group textarea,
+            .form-group select {
+                font-size: 16px; /* Prevents zoom on iOS */
+                padding: 0.875rem;
+                min-height: 48px;
+                touch-action: manipulation;
+            }
+
+            .submit-button {
+                padding: 1rem;
+                min-height: 48px;
+                font-size: 1rem;
+                touch-action: manipulation;
+                margin-top: 1.5rem;
+            }
+
+            .form-message {
+                margin: 1rem;
+                padding: 1rem;
+                border-radius: 8px;
+                font-size: 0.95rem;
             }
         }
 
@@ -930,9 +1082,10 @@
             display: flex;
             align-items: center;
             gap: 2rem;
-            margin-top: 1.5rem;
+            margin-top: 1rem;
             min-height: fit-content;
-            padding-bottom: 2rem;
+            max-height: calc(100vh - 120px); /* Use more viewport space */
+            padding-bottom: 1rem;
         }
 
         .timeline-horizontal {
@@ -972,6 +1125,8 @@
             width: 100%;
             max-width: 680px;
             color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
         }
 
         .timeline-card:hover {
@@ -980,7 +1135,7 @@
         }
 
         .timeline-text {
-            padding: 1.5rem;
+            padding: 1rem 1.5rem;
         }
 
         .timeline-date {
@@ -1008,36 +1163,62 @@
         }
 
         .timeline-images-horizontal {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 0.75rem;
             padding: 0 1.5rem 1.5rem;
-            flex: 1;
-            align-content: start;
         }
 
         .timeline-image-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: var(--accent);
             border-radius: 12px;
             padding: 0.5rem;
-            width: 100%;
+            overflow: hidden;
         }
 
         .timeline-photo {
-            max-width: 100%;
             width: 100%;
             height: auto;
+            object-fit: contain;
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: all var(--transition-speed) ease;
             display: block;
         }
 
+        /* Portrait photos container - place side by side */
+        .portrait-row {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .portrait-row .timeline-image-wrapper {
+            flex: 1;
+            max-width: calc(50% - 0.375rem);
+        }
+
         .timeline-photo:hover {
             transform: scale(1.02);
+        }
+
+        /* Scrollbar styling for photo grids */
+        .timeline-images-horizontal::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        .timeline-images-horizontal::-webkit-scrollbar-track {
+            background: var(--accent);
+            border-radius: 3px;
+        }
+
+        .timeline-images-horizontal::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 3px;
+        }
+
+        .timeline-images-horizontal::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary);
         }
 
         .timeline-nav {
@@ -1082,25 +1263,35 @@
 
         @media (max-width: 768px) {
             .timeline-container {
-                gap: 1rem;
+                gap: 0;
+                padding: 0 1rem;
             }
 
+            /* Hide navigation arrows on mobile - use swipe instead */
             .timeline-nav {
-                width: 44px;
-                height: 44px;
-                font-size: 1.25rem;
+                display: none;
+            }
+
+            .timeline-horizontal {
+                padding: 0;
+                scroll-snap-type: x mandatory;
+                -webkit-overflow-scrolling: touch;
             }
 
             .timeline-item-horizontal {
-                flex: 0 0 320px;
+                flex: 0 0 calc(100vw - 2rem);
+                scroll-snap-align: start;
+                max-width: calc(100vw - 2rem);
+                transition: opacity 0.3s ease, transform 0.3s ease;
             }
 
             .timeline-card {
-                max-width: 300px;
+                max-width: 100%;
+                margin: 0 auto;
             }
 
             .timeline-text {
-                padding: 1.25rem;
+                padding: 1rem;
             }
 
             .timeline-title {
@@ -1108,8 +1299,24 @@
             }
 
             .timeline-images-horizontal {
-                padding: 0 1.25rem 1.25rem;
-                grid-template-columns: 1fr;
+                padding: 0 1rem 1rem;
+                gap: 0.5rem;
+            }
+
+            .portrait-row .timeline-image-wrapper {
+                max-width: calc(50% - 0.25rem);
+            }
+        }
+
+        /* Tablet-specific optimizations */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .timeline-item-horizontal {
+                flex: 0 0 400px;
+            }
+
+            .timeline-nav {
+                width: 48px;
+                height: 48px;
             }
         }
 
@@ -1654,20 +1861,36 @@
 
             .hotel-actions {
                 grid-template-columns: 1fr;
-                gap: 0.5rem;
+                gap: 0.75rem;
+                padding: 0 0.5rem;
             }
 
             .book-button,
             .maps-button.compact {
                 width: 100%;
+                min-height: 48px;
+                padding: 0.875rem 1rem;
+                font-size: 0.9rem;
+                touch-action: manipulation;
+                border-radius: 8px;
+            }
+
+            .hotel-card {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .hotel-description {
+                margin: 1rem 0 !important;
+                line-height: 1.5;
             }
             
             .registry-grid {
                 grid-template-columns: 1fr;
                 gap: 1.5rem;
                 max-width: 500px;
-                margin-left: 1rem;
-                margin-right: 1rem;
+                margin: 0 auto;
+                padding: 0 1rem;
             }
         }
 
@@ -2615,44 +2838,51 @@
                 const items = document.querySelectorAll('.timeline-item-horizontal');
                 const totalItems = items.length;
 
-                // Set equal heights for timeline cards
+                // Simple timeline card heights
                 function setEqualTimelineHeights() {
                     const cards = document.querySelectorAll('.timeline-card');
                     if (cards.length === 0) return;
                     
-                    // Reset heights first
-                    cards.forEach(card => card.style.height = 'auto');
+                    const isMobile = window.innerWidth <= 768;
                     
-                    // Find the tallest card
-                    let maxHeight = 0;
-                    cards.forEach(card => {
-                        const height = card.offsetHeight;
-                        if (height > maxHeight) {
-                            maxHeight = height;
-                        }
-                    });
-                    
-                    // Apply the max height to all cards
-                    cards.forEach(card => {
-                        card.style.height = maxHeight + 'px';
-                    });
+                    if (!isMobile) {
+                        // On desktop, make all cards equal height
+                        cards.forEach(card => card.style.height = 'auto');
+                        
+                        let maxHeight = 0;
+                        cards.forEach(card => {
+                            if (card.offsetHeight > maxHeight) {
+                                maxHeight = card.offsetHeight;
+                            }
+                        });
+                        
+                        cards.forEach(card => {
+                            card.style.height = maxHeight + 'px';
+                        });
+                    } else {
+                        // On mobile, let cards size naturally
+                        cards.forEach(card => {
+                            card.style.height = 'auto';
+                        });
+                    }
                 }
                 
                 // Make function globally accessible for image load events
                 window.setEqualTimelineHeights = setEqualTimelineHeights;
 
-                // Set equal heights after a delay to ensure content is loaded
-                setTimeout(setEqualTimelineHeights, 100);
+                // Set heights immediately
+                setEqualTimelineHeights();
                 
-                // Also set equal heights on window resize
-                window.addEventListener('resize', () => {
-                    setTimeout(setEqualTimelineHeights, 100);
-                });
+                // Also update heights on window resize
+                window.addEventListener('resize', setEqualTimelineHeights);
 
                 function updateTimelinePosition() {
                     if (totalItems === 0) return;
 
-                    const itemWidth = items[0].offsetWidth + 48; // item width + gap
+                    // Responsive gap calculation
+                    const isMobile = window.innerWidth <= 768;
+                    const gap = isMobile ? 32 : 48; // 2rem on mobile, 3rem on desktop
+                    const itemWidth = items[0].offsetWidth + gap;
                     const scrollPosition = currentIndex * itemWidth;
 
                     timelineContainer.scrollTo({
@@ -2660,9 +2890,25 @@
                         behavior: 'smooth'
                     });
 
-                    // Update button states
-                    prevBtn.disabled = currentIndex === 0;
-                    nextBtn.disabled = currentIndex >= totalItems - 1;
+                    // Update button states (only if buttons exist - hidden on mobile)
+                    if (prevBtn && nextBtn) {
+                        prevBtn.disabled = currentIndex === 0;
+                        nextBtn.disabled = currentIndex >= totalItems - 1;
+                    }
+
+                    // Add visual indicator for current item on mobile
+                    if (isMobile) {
+                        items.forEach((item, index) => {
+                            item.style.opacity = index === currentIndex ? '1' : '0.7';
+                            item.style.transform = index === currentIndex ? 'scale(1)' : 'scale(0.95)';
+                        });
+                    } else {
+                        // Reset mobile-specific styles on desktop
+                        items.forEach(item => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        });
+                    }
                 }
 
                 function navigateTimeline(direction) {
@@ -2680,31 +2926,87 @@
                 // Initialize
                 updateTimelinePosition();
 
-                // Handle touch/swipe on mobile
+                // Touch/swipe handling - ONLY on mobile devices
                 let startX = 0;
                 let scrollStart = 0;
+                let isDragging = false;
+                let startTime = 0;
 
-                timelineContainer.addEventListener('touchstart', (e) => {
-                    startX = e.touches[0].clientX;
-                    scrollStart = timelineContainer.scrollLeft;
-                });
+                function isMobileDevice() {
+                    return window.innerWidth <= 768 || 
+                           /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+                }
 
-                timelineContainer.addEventListener('touchmove', (e) => {
-                    if (!startX) return;
+                // Only add touch events on mobile devices
+                if (isMobileDevice()) {
+                    timelineContainer.addEventListener('touchstart', (e) => {
+                        startX = e.touches[0].clientX;
+                        scrollStart = timelineContainer.scrollLeft;
+                        isDragging = true;
+                        startTime = Date.now();
+                        
+                        // Prevent momentum scrolling interference
+                        timelineContainer.style.scrollBehavior = 'auto';
+                    });
 
-                    const currentX = e.touches[0].clientX;
-                    const diff = startX - currentX;
-                    timelineContainer.scrollLeft = scrollStart + diff;
-                });
+                    timelineContainer.addEventListener('touchmove', (e) => {
+                        if (!startX || !isDragging) return;
 
-                timelineContainer.addEventListener('touchend', () => {
-                    startX = 0;
+                        // Prevent default to avoid page scrolling conflicts
+                        e.preventDefault();
 
-                    // Snap to nearest item
-                    const itemWidth = items[0].offsetWidth + 48;
-                    const newIndex = Math.round(timelineContainer.scrollLeft / itemWidth);
-                    currentIndex = Math.max(0, Math.min(newIndex, totalItems - 1));
-                    updateTimelinePosition();
+                        const currentX = e.touches[0].clientX;
+                        const diff = startX - currentX;
+                        timelineContainer.scrollLeft = scrollStart + diff;
+                    }, { passive: false });
+
+                    timelineContainer.addEventListener('touchend', (e) => {
+                        if (!isDragging) return;
+                        
+                        const endTime = Date.now();
+                        const endX = e.changedTouches[0].clientX;
+                        const distance = Math.abs(endX - startX);
+                        const duration = endTime - startTime;
+                        const velocity = distance / duration;
+
+                        // Reset values
+                        startX = 0;
+                        isDragging = false;
+                        
+                        // Restore smooth scrolling
+                        timelineContainer.style.scrollBehavior = 'smooth';
+
+                        // Enhanced snapping with velocity consideration
+                        const itemWidth = items[0] ? items[0].offsetWidth + 32 : 300;
+                        let newIndex = Math.round(timelineContainer.scrollLeft / itemWidth);
+                        
+                        // Apply velocity-based adjustment for fast swipes
+                        if (velocity > 0.5 && duration < 300) {
+                            if (endX < startX) {
+                                newIndex = Math.min(newIndex + 1, totalItems - 1);
+                            } else {
+                                newIndex = Math.max(newIndex - 1, 0);
+                            }
+                        }
+                        
+                        currentIndex = Math.max(0, Math.min(newIndex, totalItems - 1));
+                        updateTimelinePosition();
+                    });
+                }
+
+                // Desktop: No swipe/scroll navigation - use buttons only
+
+                // Keyboard navigation for accessibility
+                document.addEventListener('keydown', (e) => {
+                    if (timelineContainer && timelineContainer.matches(':hover, :focus-within')) {
+                        if (e.key === 'ArrowLeft') {
+                            e.preventDefault();
+                            navigateTimeline('prev');
+                        } else if (e.key === 'ArrowRight') {
+                            e.preventDefault();
+                            navigateTimeline('next');
+                        }
+                    }
                 });
             }
 
@@ -2714,6 +3016,120 @@
                     // Future: could add lightbox functionality here
                     console.log('Photo clicked:', e.target.src);
                 }
+            });
+
+            // Smart photo layout based on orientation
+            function optimizePhotoLayouts() {
+                const imageContainers = document.querySelectorAll('.timeline-images-horizontal');
+                
+                imageContainers.forEach(container => {
+                    const photos = container.querySelectorAll('.timeline-photo');
+                    const wrappers = container.querySelectorAll('.timeline-image-wrapper');
+                    
+                    if (photos.length === 0) return;
+                    
+                    // Reset container to flex column
+                    container.style.display = 'flex';
+                    container.style.flexDirection = 'column';
+                    
+                    // Remove existing portrait rows
+                    const existingRows = container.querySelectorAll('.portrait-row');
+                    existingRows.forEach(row => {
+                        while (row.firstChild) {
+                            container.insertBefore(row.firstChild, row);
+                        }
+                        row.remove();
+                    });
+                    
+                    // Process all photos for this container
+                    processContainerPhotos(container, photos, wrappers);
+                });
+            }
+            
+            function processContainerPhotos(container, photos, wrappers) {
+                const photoData = [];
+                let loadedCount = 0;
+                
+                // Collect all photo orientation data
+                photos.forEach((photo, index) => {
+                    if (photo.complete && photo.naturalWidth > 0) {
+                        photoData[index] = photo.naturalHeight > photo.naturalWidth;
+                        loadedCount++;
+                    } else {
+                        photo.addEventListener('load', () => {
+                            photoData[index] = photo.naturalHeight > photo.naturalWidth;
+                            loadedCount++;
+                            if (loadedCount === photos.length) {
+                                arrangePhotos(container, wrappers, photoData);
+                            }
+                        });
+                    }
+                });
+                
+                // If all photos are already loaded, arrange immediately
+                if (loadedCount === photos.length) {
+                    arrangePhotos(container, wrappers, photoData);
+                }
+            }
+            
+            function arrangePhotos(container, wrappers, photoData) {
+                const photos = container.querySelectorAll('.timeline-photo');
+                const availableHeight = window.innerHeight - 250;
+                const containerWidth = container.offsetWidth - 48; // Account for padding
+                
+                // Calculate total natural height of all photos
+                let totalHeight = 0;
+                photos.forEach(photo => {
+                    const naturalRatio = photo.naturalHeight / photo.naturalWidth;
+                    const naturalHeight = containerWidth * naturalRatio;
+                    totalHeight += naturalHeight;
+                });
+                
+                // Add gap space
+                totalHeight += (photos.length - 1) * 12; // 0.75rem gaps
+                
+                // Scale all photos proportionally to fit viewport
+                const scaleFactor = totalHeight > availableHeight ? availableHeight / totalHeight : 1;
+                
+                photos.forEach(photo => {
+                    const naturalRatio = photo.naturalHeight / photo.naturalWidth;
+                    const naturalHeight = containerWidth * naturalRatio;
+                    const scaledHeight = naturalHeight * scaleFactor;
+                    
+                    photo.style.height = scaledHeight + 'px';
+                    photo.style.maxHeight = 'none';
+                });
+            }
+            
+            function createPortraitRow(wrappers, container) {
+                const row = document.createElement('div');
+                row.className = 'portrait-row';
+                
+                // Insert row before the first wrapper
+                const firstWrapper = wrappers[0];
+                if (firstWrapper && firstWrapper.parentNode === container) {
+                    container.insertBefore(row, firstWrapper);
+                    
+                    // Move wrappers to the row
+                    wrappers.forEach(wrapper => {
+                        if (wrapper.parentNode === container) {
+                            row.appendChild(wrapper);
+                        }
+                    });
+                }
+            }
+
+            // Apply smart layouts after images load
+            window.addEventListener('load', optimizePhotoLayouts);
+            
+            // Also apply when new content is loaded dynamically
+            const photoLayoutObserver = new MutationObserver(() => {
+                setTimeout(optimizePhotoLayouts, 100);
+            });
+            
+            photoLayoutObserver.observe(document.body, {
+                childList: true,
+                subtree: true
             });
 
             // Web Share API
@@ -2826,8 +3242,21 @@
                         // Show/hide plus one section based on eligibility
                         if (guestCanHavePlusOne) {
                             plusOneSection.style.display = 'block';
+                            // Re-enable required validation for plus-one fields
+                            hasPlusOneRadios.forEach(radio => {
+                                radio.required = true;
+                            });
                         } else {
                             plusOneSection.style.display = 'none';
+                            // Remove required validation for plus-one fields when not allowed
+                            hasPlusOneRadios.forEach(radio => {
+                                radio.required = false;
+                                radio.checked = false; // Clear any previous selections
+                            });
+                            // Also clear plus-one name field
+                            document.getElementById('plusOneName').required = false;
+                            document.getElementById('plusOneName').value = '';
+                            plusOneNameGroup.style.display = 'none';
                         }
                     }
                 } catch (error) {
