@@ -96,33 +96,32 @@ sections:
 
 # Event details
 ceremony:
-  time: "September 18th 4-10 PM"
+  time: "September 18th 4:30-10PM"
   venue: "Mountain Wedding Garden"
   maps_url: "https://www.google.com/maps/search/?api=1&query=Mountain+Wedding+Garden+Crested+Butte+CO"
   dress_code:
     title: "Mountain Formal"
-    description: "the venue is indoor-outdoor, coats and/or layers strongly recommended!"
+    description: "Indoor-outdoor venue, coats and/or layers strongly recommended!"
 
 reception:
-  time: "September 19th 6-12 PM"
+  time: "September 19th 6-12PM"
   venue: "Public House"
   maps_url: "https://maps.app.goo.gl/xVtrt1GBFYv4ygtH7"
   dress_code:
     title: "Western Cocktail"
-    description: "for the Historic Saloon built in 1882!"
+    description: "Historic Saloon built in 1882!"
 
 # Detailed dress code information
 dress_code:
   intro: "Bring warm clothes!"
   sections:
     - title: "Mountain Formal"
-      description: "formal attire in nature inspired colors and textures"
+      description: "Formal attire in nature inspired colors and textures"
     - title: "Western Cocktail" 
-      description: "dressy Western, lean into the mountain vibe and have fun with it!"
+      description: "Dressy Western, lean into the mountain vibe and have fun with it!"
   pinterest:
     url: "https://pin.it/2MKZfWCt5"
-    text: "Pinterest Board"
-    description: "for inspiration"
+    text: "Pinterest inspiration"
 
 # Timeline section (optional)
 timeline:
@@ -190,7 +189,7 @@ timeline:
       images:
         - "./images/Apartment.webp"
 
-    - date: "Now - Infinity"
+    - date: "Now - Death"
       title: "Adventure Awaits"
       description: "Here's to a lifetime of laughter, love, and new adventures!!!"
       images:
@@ -258,19 +257,29 @@ registry:
   stores:
     - name: "Honeymoon Fund"
       description: "Help us create amazing memories on our honeymoon"
-      url: "https://buy.stripe.com/your-stripe-link"
-      button_text: "Contribute to Honeymoon"
+      url: "https://www.paypal.com/pool/9jAZLS5Ssb"
+      button_text: "Contribute"
       icon: "✈️"
-    - name: "Amazon Registry"
+    - name: "Registry"
       description: "Traditional wedding gifts we'd love to receive"
       url: "https://www.amazon.com/wedding/registry/3SGD7UOZNH1VH"
-      button_text: "View Amazon Registry"
+      button_text: "Registry - Amazon"
       icon: "🎁"
 
 # RSVP Configuration
 rsvp:
   deadline: "2026-08-01"
   script_url: "https://script.google.com/macros/s/AKfycbxUP0kCkbeFzlgb9i8-6lXBgCGKk7F1qQtNQOd5wCH0mLBTpIxPNZ0Jse-FFf37CvPm/exec"
+  form_fields:
+    first_name: "First Name"
+    last_name: "Last Name"
+    email: "Email Address"
+    attending_ceremony: "Attending Friday Ceremony?"
+    attending_reception: "Attending Saturday Reception?"
+    dietary_restrictions: "Dietary Restrictions"
+    plus_one_question: "Will you bring a plus one?"
+    plus_one_name: "Plus One Name"
+    anything_else: "Anything else"
 
 
 # Site metadata
