@@ -21,20 +21,20 @@
         }
 
         [data-theme="dark"] {
-            --text: #F8F8F8;
-            --bg: #1C1C1C;
-            --card-bg: #2A2A2A;
-            --border: #404040;
-            --gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+            --text: #F8FAFC;
+            --bg: #030712;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.05);
+            --gradient: linear-gradient(135deg, #030712 0%, #0B1120 50%, #151F32 100%);
         }
 
         @media (prefers-color-scheme: dark) {
             :root:not([data-theme]) {
-                --text: #F8F8F8;
-                --bg: #1C1C1C;
-                --card-bg: #2A2A2A;
-                --border: #404040;
-                --gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+                --text: #F8FAFC;
+                --bg: #030712;
+                --card-bg: rgba(255, 255, 255, 0.03);
+                --border: rgba(255, 255, 255, 0.05);
+                --gradient: linear-gradient(135deg, #030712 0%, #0B1120 50%, #151F32 100%);
             }
         }
 
@@ -161,6 +161,8 @@
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1rem;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             transition: all 0.2s ease;
             position: relative;
             overflow: hidden;
@@ -690,6 +692,9 @@
                 document.documentElement.setAttribute('data-theme', theme);
                 themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
                 localStorage.setItem('theme', theme);
+                if (window.applyConfigThemeVars) {
+                    window.applyConfigThemeVars(theme);
+                }
             }
             
             applyTheme(defaultTheme);
@@ -755,6 +760,36 @@
 
         // Start tracking when page loads
         window.addEventListener('load', async () => {
+            // Define global theme applicator
+            window.applyConfigThemeVars = function(theme) {
+                if (!window.siteConfig?.theme?.css_vars) return;
+                const lightVars = window.siteConfig.theme.css_vars.light || {};
+                const darkVars = window.siteConfig.theme.css_vars.dark || {};
+                const activeVars = theme === 'dark' ? { ...lightVars, ...darkVars } : lightVars;
+                for (const [key, value] of Object.entries(activeVars)) {
+                    document.documentElement.style.setProperty(`--${key.replace(/_/g, '-')}`, value);
+                }
+                const primaryColor = activeVars.primary || lightVars.primary;
+                if (primaryColor) {
+                    const hex = primaryColor.replace('#', '');
+                    const r = parseInt(hex.substr(0, 2), 16);
+                    const g = parseInt(hex.substr(2, 2), 16);
+                    const b = parseInt(hex.substr(4, 2), 16);
+                    document.documentElement.style.setProperty('--primary-rgb', `${r}, ${g}, ${b}`);
+                }
+            };
+
+            try {
+                const response = await fetch('./config.json');
+                if (response.ok) {
+                    window.siteConfig = await response.json();
+                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+                    window.applyConfigThemeVars(currentTheme);
+                }
+            } catch (e) {
+                console.error("Failed to load config for stats:", e);
+            }
+
             initializeTheme();
             await new Promise(resolve => setTimeout(resolve, 100));
             await trackWebVitals();

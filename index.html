@@ -173,12 +173,15 @@
 
         /* Dark mode navigation */
         [data-theme="dark"] #nav {
-            background: rgba(28, 28, 28, 0.9);
+            background: rgba(3, 7, 18, 0.7);
+            backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-dark);
         }
 
         [data-theme="dark"] #nav.scrolled {
-            box-shadow: 0 1px 3px rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
         }
 
         #nav ul {
@@ -405,14 +408,17 @@
 
         /* Dark mode card styling */
         [data-theme="dark"] .card {
-            background: var(--bg-dark);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         [data-theme="dark"] .card:hover {
-            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(243, 145, 43, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(var(--primary-rgb), 0.15);
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
         }
 
         .card:hover::before {
@@ -468,7 +474,8 @@
 
         /* Dark mode footer */
         [data-theme="dark"] footer {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            background: #030712;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         footer a {
@@ -517,15 +524,17 @@
 
         /* Dark theme toggle styles */
         [data-theme="dark"] .theme-toggle {
-            background: rgba(42, 42, 42, 0.9);
-            color: #F8F8F8;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            color: #F8FAFC;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         [data-theme="dark"] .theme-toggle:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-            background: rgba(42, 42, 42, 1);
+            box-shadow: 0 4px 16px rgba(var(--primary-rgb), 0.2);
+            border-color: rgba(var(--primary-rgb), 0.4);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         /* Mobile adjustments for theme toggle to avoid navbar overlap */
@@ -558,25 +567,25 @@
 
         /* Dark theme overrides - consistent with stats page */
         [data-theme="dark"] {
-            --text-dark: #F8F8F8;
-            --text-secondary: #f3912b;
-            --text-muted: #CCCCCC;
-            --text-light: #000000;
-            --bg-light: #1C1C1C;
-            --bg-dark: #2A2A2A;
-            --mountain-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+            --text-dark: #F5F5F5;
+            --text-secondary: #D4AF37;
+            --text-muted: #A3A3A3;
+            --text-light: #1A1A1A;
+            --bg-light: #0A0A0A;
+            --bg-dark: #131415;
+            --mountain-gradient: linear-gradient(135deg, #0A0A0A 0%, #131415 50%, #1A1A1A 100%);
         }
 
         /* System preference detection only for initial load */
         @media (prefers-color-scheme: dark) {
             :root:not([data-theme]) {
-                --text-dark: #F8F8F8;
-                --text-secondary: #f3912b;
-                --text-muted: #CCCCCC;
-                --text-light: #000000;
-                --bg-light: #1C1C1C;
-                --bg-dark: #2A2A2A;
-                --mountain-gradient: linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%);
+                --text-dark: #F5F5F5;
+                --text-secondary: #D4AF37;
+                --text-muted: #A3A3A3;
+                --text-light: #1A1A1A;
+                --bg-light: #0A0A0A;
+                --bg-dark: #131415;
+                --mountain-gradient: linear-gradient(135deg, #0A0A0A 0%, #131415 50%, #1A1A1A 100%);
             }
         }
 
@@ -829,9 +838,11 @@
 
         /* Dark mode form container */
         [data-theme="dark"] .form-container {
-            background: #2A2A2A;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .rsvp-form {
@@ -960,15 +971,17 @@
         [data-theme="dark"] .form-group input[type="text"],
         [data-theme="dark"] .form-group input[type="email"],
         [data-theme="dark"] .form-group textarea {
-            background: #1C1C1C;
-            color: #F8F8F8;
-            border-color: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.03);
+            color: #F8FAFC;
+            border-color: rgba(255, 255, 255, 0.1);
         }
 
         [data-theme="dark"] .form-group input[type="text"]:focus,
         [data-theme="dark"] .form-group input[type="email"]:focus,
         [data-theme="dark"] .form-group textarea:focus {
-            border-color: var(--secondary);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.2);
+            background: rgba(255, 255, 255, 0.05);
         }
 
         [data-theme="dark"] .submit-button:hover:not(:disabled) {
@@ -1600,13 +1613,13 @@
         [data-theme="dark"] .timeline-card {
             background: var(--bg-dark);
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            border: 2px solid rgba(243, 145, 43, 0.2);
+            border: 2px solid rgba(var(--primary-rgb), 0.2);
         }
 
         [data-theme="dark"] .timeline-card:hover {
             box-shadow: 0 20px 48px rgba(0, 0, 0, 0.4);
-            border: 2px solid rgba(243, 145, 43, 0.4);
-            transform: translateY(-8px);
+            transform: translateY(-5px);
+            border: 2px solid rgba(var(--primary-rgb), 0.4);
         }
 
         [data-theme="dark"] .timeline-nav {
@@ -1882,7 +1895,7 @@
 
         /* Dark mode hotel styling */
         [data-theme="dark"] .hotel-info {
-            border-bottom-color: rgba(243, 145, 43, 0.2);
+            border-bottom-color: rgba(var(--primary-rgb), 0.2);
         }
 
         [data-theme="dark"] .hotel-rate {
@@ -2056,6 +2069,17 @@
             box-shadow: 0 1px 4px rgba(189, 8, 28, 0.2);
         }
 
+        [data-theme="dark"] .pinterest-button {
+            background: rgba(var(--primary-rgb), 0.1);
+            color: var(--text-secondary);
+            border: 1px solid rgba(var(--primary-rgb), 0.3);
+        }
+        
+        [data-theme="dark"] .pinterest-button:hover {
+            background: rgba(var(--primary-rgb), 0.2);
+            box-shadow: 0 4px 12px rgba(var(--primary-rgb), 0.2);
+        }
+
         .pinterest-icon {
             font-size: 1rem;
             opacity: 0.9;
@@ -2157,7 +2181,7 @@
 
         /* Dark mode dress code */
         [data-theme="dark"] .dress-code {
-            background: rgba(243, 145, 43, 0.1);
+            background: rgba(var(--primary-rgb), 0.1);
             border-left-color: var(--text-secondary);
         }
 
@@ -2170,13 +2194,13 @@
         }
 
         [data-theme="dark"] .dress-code-details {
-            background: rgba(243, 145, 43, 0.05);
-            border-color: rgba(243, 145, 43, 0.1);
+            background: rgba(var(--primary-rgb), 0.05);
+            border-color: rgba(var(--primary-rgb), 0.1);
             color: var(--text-muted);
         }
 
         [data-theme="dark"] .dress-code-section {
-            background: rgba(243, 145, 43, 0.03);
+            background: rgba(var(--primary-rgb), 0.03);
             border-left-color: var(--text-secondary);
         }
 
@@ -2605,15 +2629,13 @@
                 document.documentElement.style.setProperty('--font-body', `'${config.theme.font}', ${fallbacks}`);
             }
             
-            // Update theme colors from config if provided (preserving theme state)
-            if (config.theme?.primary) {
-                document.documentElement.style.setProperty('--primary', config.theme.primary);
-                // Calculate RGB values for transparent versions
-                const hex = config.theme.primary.replace('#', '');
-                const r = parseInt(hex.substr(0, 2), 16);
-                const g = parseInt(hex.substr(2, 2), 16);
-                const b = parseInt(hex.substr(4, 2), 16);
-                document.documentElement.style.setProperty('--primary-rgb', `${r}, ${g}, ${b}`);
+            // Update theme colors from config dynamically
+            window.siteConfig = config;
+            
+            // Apply current theme variables based on config
+            const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+            if (window.applyConfigThemeVars) {
+                window.applyConfigThemeVars(currentTheme);
             }
             
             // Build navigation
@@ -2688,6 +2710,30 @@
             const themeToggle = document.getElementById('theme-toggle');
             const themeIcon = document.getElementById('theme-icon');
 
+            // Define dynamic theme applicator
+            window.applyConfigThemeVars = function(theme) {
+                if (!window.siteConfig?.theme?.css_vars) return;
+                
+                // Merge default light vars into dark vars so missing keys fallback to light
+                const lightVars = window.siteConfig.theme.css_vars.light || {};
+                const darkVars = window.siteConfig.theme.css_vars.dark || {};
+                const activeVars = theme === 'dark' ? { ...lightVars, ...darkVars } : lightVars;
+                
+                for (const [key, value] of Object.entries(activeVars)) {
+                    document.documentElement.style.setProperty(`--${key.replace(/_/g, '-')}`, value);
+                }
+                
+                // Special handling for primary RGB
+                const primaryColor = activeVars.primary || lightVars.primary;
+                if (primaryColor) {
+                    const hex = primaryColor.replace('#', '');
+                    const r = parseInt(hex.substr(0, 2), 16);
+                    const g = parseInt(hex.substr(2, 2), 16);
+                    const b = parseInt(hex.substr(4, 2), 16);
+                    document.documentElement.style.setProperty('--primary-rgb', `${r}, ${g}, ${b}`);
+                }
+            };
+
             // Get saved theme or system preference
             const savedTheme = localStorage.getItem('theme');
             const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -2700,6 +2746,10 @@
                     themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
                 }
                 localStorage.setItem('theme', theme);
+                
+                if (window.siteConfig) {
+                    window.applyConfigThemeVars(theme);
+                }
             }
 
             // Set initial theme immediately

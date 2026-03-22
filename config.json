@@ -14,10 +14,10 @@
     "text_muted": "#41512d",
     "text_light": "#ffffff",
     "dark": {
-      "text_primary": "#ffffff",
-      "text_secondary": "#f3912b",
-      "text_muted": "#e5e1e3",
-      "text_light": "#000000"
+      "text_primary": "#F5F5F5",
+      "text_secondary": "#D4AF37",
+      "text_muted": "#A3A3A3",
+      "text_light": "#1A1A1A"
     },
     "css_vars": {
       "light": {
@@ -33,13 +33,16 @@
         "mountain_gradient": "linear-gradient(135deg, #781b12 0%, #f3912b 50%, #e5e1e3 100%)"
       },
       "dark": {
-        "text_dark": "#F8F8F8",
-        "text_secondary": "#f3912b",
-        "text_muted": "#CCCCCC",
-        "text_light": "#000000",
-        "bg_light": "#1C1C1C",
-        "bg_dark": "#2A2A2A",
-        "mountain_gradient": "linear-gradient(135deg, #2C3E50 0%, #34495E 50%, #4A6741 100%)"
+        "primary": "#D4AF37",
+        "secondary": "#E5Cca3",
+        "accent": "#FCE8B2",
+        "text_dark": "#F5F5F5",
+        "text_secondary": "#D4AF37",
+        "text_muted": "#A3A3A3",
+        "text_light": "#1A1A1A",
+        "bg_light": "#0A0A0A",
+        "bg_dark": "#131415",
+        "mountain_gradient": "linear-gradient(135deg, #0A0A0A 0%, #131415 50%, #1A1A1A 100%)"
       }
     },
     "cost_colors": {
