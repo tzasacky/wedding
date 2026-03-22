@@ -99,6 +99,7 @@ sections:
 
 # Event details
 ceremony:
+  label: "Friday Wedding"
   time: "September 18th 4:30-10PM"
   venue: "Mountain Wedding Garden"
   maps_url: "https://www.google.com/maps/search/?api=1&query=Mountain+Wedding+Garden+Crested+Butte+CO"
@@ -107,6 +108,7 @@ ceremony:
     description: "Indoor-outdoor venue, coats and/or layers strongly recommended!"
 
 reception:
+  label: "Saturday Party"
   time: "September 19th 6-12PM"
   venue: "Public House"
   maps_url: "https://maps.app.goo.gl/xVtrt1GBFYv4ygtH7"
@@ -116,6 +118,7 @@ reception:
 
 # Detailed dress code information
 dress_code:
+  label: "Dress Code Details"
   intro: "Bring warm clothes!"
   sections:
     - title: "Mountain Formal"
@@ -235,6 +238,7 @@ travel:
       description: "Most flight options and best prices. Beautiful mountain drive but long journey."
       airlines: ["All major airlines"]
       
+  tips_label: "Transportation Tips"
   driving_tips:
     - "Rental car recommended for mountain driving and local flexibility"
     - "There is a free bus available between Crested Butte Downtown and the Mountain Village - <a href=\"https:\\www.mtnexp.org\">Mountain Express</a>"

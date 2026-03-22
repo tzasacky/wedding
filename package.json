@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "bun run server.js",
     "build": "bun run build.js",
-    "prebuild": "echo '🧹 Cleaning old build...' && rm -f config.json",
+    "clean": "bun run build.js --clean",
     "convert-to-webp": "bun run convert-to-webp.js"
   },
   "devDependencies": {

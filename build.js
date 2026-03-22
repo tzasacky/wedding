@@ -1,39 +1,54 @@
 #!/usr/bin/env bun
 
-// Build script - converts YAML config to JSON for production
+// Build script — injects meta tags into index.html from config.yaml
+// No config.json is generated; the browser loads config.yaml directly via js-yaml CDN.
 import { existsSync } from 'fs';
 import { parse } from 'yaml';
+import { injectMeta, revertMeta } from './scripts/meta.js';
 
 async function build() {
-    console.log('🔨 Building wedding site...');
-    
-    // Check if config.yaml exists
+    console.log('Building wedding site...');
+
     if (!existsSync('config.yaml')) {
-        console.error('❌ config.yaml not found');
+        console.error('config.yaml not found');
         process.exit(1);
     }
-    
+
     try {
-        // Read and parse YAML using Bun's native YAML support
         const yamlContent = await Bun.file('config.yaml').text();
         const config = parse(yamlContent);
-        
-        // Write JSON file
-        const jsonContent = JSON.stringify(config, null, 2);
-        await Bun.write('config.json', jsonContent);
-        
-        console.log('✅ Generated config.json');
-        console.log('📦 Build complete! Ready for GitHub Pages.');
-        
+
+        const html = await Bun.file('index.html').text();
+        await Bun.write('index.html', injectMeta(html, config));
+        console.log('Injected meta tags into index.html');
+
+        console.log('Build complete!');
     } catch (error) {
-        console.error('❌ Build failed:', error.message);
+        console.error('Build failed:', error.message);
         process.exit(1);
     }
 }
 
-// Only run if called directly
-if (import.meta.main) {
-    build();
+async function clean() {
+    console.log('Cleaning build artifacts...');
+
+    try {
+        const html = await Bun.file('index.html').text();
+        await Bun.write('index.html', revertMeta(html));
+        console.log('Restored index.html placeholders');
+    } catch (error) {
+        console.error('Failed to revert index.html:', error.message);
+    }
+
+    console.log('Clean complete.');
 }
 
-export { build };
+if (import.meta.main) {
+    if (process.argv.includes('--clean')) {
+        clean();
+    } else {
+        build();
+    }
+}
+
+export { build, clean };

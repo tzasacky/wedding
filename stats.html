@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stats for Nerds - Mountain Wedding</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🏔️</text></svg>">
+    <title>Stats for Nerds</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>📊</text></svg>">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
+    <script src="scripts/theme.js"></script>
     <style>
         :root {
             --primary: #8B4513;
@@ -28,21 +30,7 @@
             --gradient: linear-gradient(135deg, #030712 0%, #0B1120 50%, #151F32 100%);
         }
 
-        @media (prefers-color-scheme: dark) {
-            :root:not([data-theme]) {
-                --text: #F8FAFC;
-                --bg: #030712;
-                --card-bg: rgba(255, 255, 255, 0.03);
-                --border: rgba(255, 255, 255, 0.05);
-                --gradient: linear-gradient(135deg, #030712 0%, #0B1120 50%, #151F32 100%);
-            }
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
             font-family: 'Montserrat', system-ui, -apple-system, sans-serif;
@@ -58,9 +46,7 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 150px;
             background: var(--gradient);
             opacity: 0.1;
@@ -86,9 +72,7 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .theme-toggle:hover {
-            transform: scale(1.1);
-        }
+        .theme-toggle:hover { transform: scale(1.1); }
 
         .container {
             height: 100vh;
@@ -101,7 +85,6 @@
         header {
             text-align: center;
             margin-bottom: 1rem;
-            position: relative;
             flex-shrink: 0;
         }
 
@@ -115,11 +98,7 @@
             font-weight: 600;
         }
 
-        .subtitle {
-            opacity: 0.7;
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
+        .subtitle { opacity: 0.7; font-size: 1.125rem; margin-bottom: 1rem; }
 
         .performance-summary {
             display: inline-flex;
@@ -131,22 +110,9 @@
             margin-top: 0.5rem;
         }
 
-        .summary-item {
-            text-align: center;
-        }
-
-        .summary-label {
-            font-size: 0.75rem;
-            opacity: 0.7;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        .summary-value {
-            font-weight: 600;
-            font-size: 1.25rem;
-            margin-top: 0.25rem;
-        }
+        .summary-item { text-align: center; }
+        .summary-label { font-size: 0.75rem; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.05em; }
+        .summary-value { font-weight: 600; font-size: 1.25rem; margin-top: 0.25rem; }
 
         .stats-grid {
             display: grid;
@@ -174,23 +140,15 @@
         .stat-card::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
+            top: 0; left: 0; right: 0;
             height: 3px;
             background: var(--gradient);
             transform: translateX(-100%);
             transition: transform 0.3s ease;
         }
 
-        .stat-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15);
-        }
-
-        .stat-card:hover::before {
-            transform: translateX(0);
-        }
+        .stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15); }
+        .stat-card:hover::before { transform: translateX(0); }
 
         .stat-card h3 {
             color: var(--primary);
@@ -203,14 +161,8 @@
             flex-shrink: 0;
         }
 
-        .card-icon {
-            font-size: 1.5rem;
-        }
-
-        .metrics {
-            flex: 1;
-            overflow-y: auto;
-        }
+        .card-icon { font-size: 1.5rem; }
+        .metrics { flex: 1; overflow-y: auto; }
 
         .metric {
             display: flex;
@@ -221,9 +173,7 @@
             font-size: 0.875rem;
         }
 
-        .metric-name {
-            font-weight: 500;
-        }
+        .metric-name { font-weight: 500; }
 
         .metric-value {
             font-family: 'Courier New', monospace;
@@ -232,89 +182,36 @@
             font-size: 0.8rem;
         }
 
-        .good { 
-            color: var(--success); 
-            position: relative;
-        }
-        .good::before {
-            content: '●';
-            margin-right: 0.5rem;
-        }
-        .needs-improvement { 
-            color: var(--warning);
-            position: relative;
-        }
-        .needs-improvement::before {
-            content: '●';
-            margin-right: 0.5rem;
-        }
-        .poor { 
-            color: var(--error);
-            position: relative;
-        }
-        .poor::before {
-            content: '●';
-            margin-right: 0.5rem;
-        }
+        .good { color: var(--success); position: relative; }
+        .good::before { content: '\25CF'; margin-right: 0.5rem; }
+        .needs-improvement { color: var(--warning); position: relative; }
+        .needs-improvement::before { content: '\25CF'; margin-right: 0.5rem; }
+        .poor { color: var(--error); position: relative; }
+        .poor::before { content: '\25CF'; margin-right: 0.5rem; }
 
-        .back-link {
-            text-align: center;
-            margin-top: 2rem;
-        }
-
-        .back-link a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .back-link a:hover {
-            text-decoration: underline;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            opacity: 0.7;
-            font-style: italic;
-        }
+        .back-link { text-align: center; margin-top: 2rem; }
+        .back-link a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .back-link a:hover { text-decoration: underline; }
+        .loading { text-align: center; padding: 2rem; opacity: 0.7; font-style: italic; }
 
         @media (max-width: 768px) {
-            body {
-                padding: 0.5rem;
-            }
-            
-            h1 {
-                font-size: 1.75rem;
-            }
-            
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 0.75rem;
-            }
-            
-            .performance-summary {
-                flex-direction: column;
-                gap: 0.25rem;
-                padding: 0.5rem;
-            }
-            
-            .stat-card {
-                padding: 0.75rem;
-            }
+            body { padding: 0.5rem; }
+            h1 { font-size: 1.75rem; }
+            .stats-grid { grid-template-columns: 1fr; gap: 0.75rem; }
+            .performance-summary { flex-direction: column; gap: 0.25rem; padding: 0.5rem; }
+            .stat-card { padding: 0.75rem; }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Theme Toggle -->
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
             <span id="theme-icon">🌙</span>
         </button>
 
         <header>
-            <h1>🏔️ Performance Analytics</h1>
-            <p class="subtitle">Mountain Wedding Site • Real-time Performance Metrics</p>
+            <h1>📊 Performance Analytics</h1>
+            <p class="subtitle">Real-time Performance Metrics</p>
             <div class="performance-summary" id="performance-summary">
                 <div class="summary-item">
                     <div class="summary-label">Overall Score</div>
@@ -332,472 +229,150 @@
         </div>
 
         <div class="back-link">
-            <a href="/">← Back to Wedding Site</a>
+            <a href="/">&larr; Back to Wedding Site</a>
         </div>
     </div>
 
     <script>
-        // Performance metrics collection
-        const stats = {
-            vitals: {},
-            performance: {},
-            technical: {},
-            loaded: false
+        const T = {
+            lcp: [2500, 4000], fcp: [1800, 3000], fid: [100, 300], inp: [200, 500],
+            cls: [0.1, 0.25], ttfb: [800, 1800], tbt: [200, 600],
+            load: [1000, 2000], score: [90, 75]
         };
+        const stats = { vitals: {}, performance: {}, technical: {}, loaded: false };
 
-        // Core Web Vitals tracking with benchmarks
         async function trackWebVitals() {
-            // Web Vitals benchmarks (good thresholds)
-            const benchmarks = {
-                lcp: 2500,    // Good: <2.5s
-                fid: 100,     // Good: <100ms  
-                cls: 0.1,     // Good: <0.1
-                ttfb: 800,    // Good: <800ms
-                fcp: 1800,    // Good: <1.8s
-                inp: 200,     // Good: <200ms
-                tbt: 200      // Good: <200ms
-            };
-
-            // Navigation timing - get immediately and properly
             try {
-                const navEntries = performance.getEntriesByType('navigation');
-                const nav = navEntries[0];
-                
-                if (nav && nav.responseStart && nav.navigationStart) {
-                    const ttfb = Math.round(nav.responseStart - nav.navigationStart);
-                    const domLoad = nav.domContentLoadedEventEnd ? Math.round(nav.domContentLoadedEventEnd - nav.navigationStart) : null;
-                    const fullLoad = nav.loadEventEnd ? Math.round(nav.loadEventEnd - nav.navigationStart) : null;
-                    const domInteractive = nav.domInteractive ? Math.round(nav.domInteractive - nav.navigationStart) : null;
-                    const domComplete = nav.domComplete ? Math.round(nav.domComplete - nav.navigationStart) : null;
-                    
+                const nav = performance.getEntriesByType('navigation')[0];
+                if (nav && nav.responseStart) {
                     stats.performance = {
-                        ttfb: ttfb,
-                        domContentLoaded: domLoad,
-                        loadComplete: fullLoad,
-                        domInteractive: domInteractive,
-                        domComplete: domComplete
+                        ttfb: Math.round(nav.responseStart - nav.navigationStart),
+                        domContentLoaded: nav.domContentLoadedEventEnd ? Math.round(nav.domContentLoadedEventEnd - nav.navigationStart) : null,
+                        loadComplete: nav.loadEventEnd ? Math.round(nav.loadEventEnd - nav.navigationStart) : null,
+                        domInteractive: nav.domInteractive ? Math.round(nav.domInteractive - nav.navigationStart) : null,
+                        domComplete: nav.domComplete ? Math.round(nav.domComplete - nav.navigationStart) : null
                     };
-                    
-                    // Also add TTFB to vitals for consistency
-                    stats.vitals.ttfb = ttfb;
-                } else {
-                    // Fallback to performance.timing for older browsers
-                    const timing = performance.timing;
-                    if (timing && timing.responseStart && timing.navigationStart) {
-                        const ttfb = Math.round(timing.responseStart - timing.navigationStart);
-                        const domLoad = timing.domContentLoadedEventEnd ? Math.round(timing.domContentLoadedEventEnd - timing.navigationStart) : null;
-                        const fullLoad = timing.loadEventEnd ? Math.round(timing.loadEventEnd - timing.navigationStart) : null;
-                        const domInteractive = timing.domInteractive ? Math.round(timing.domInteractive - timing.navigationStart) : null;
-                        const domComplete = timing.domComplete ? Math.round(timing.domComplete - timing.navigationStart) : null;
-                        
-                        stats.performance = {
-                            ttfb: ttfb,
-                            domContentLoaded: domLoad,
-                            loadComplete: fullLoad,
-                            domInteractive: domInteractive,
-                            domComplete: domComplete
-                        };
-                        
-                        stats.vitals.ttfb = ttfb;
-                    }
+                    stats.vitals.ttfb = stats.performance.ttfb;
                 }
-            } catch (e) {
-                console.log('Navigation timing not available:', e);
-            }
+            } catch (e) {}
 
-            // Get paint timing immediately
-            const paintEntries = performance.getEntriesByType('paint');
-            paintEntries.forEach(entry => {
-                if (entry.name === 'first-contentful-paint') {
-                    const fcp = Math.round(entry.startTime);
-                    stats.vitals.fcp = fcp;
-                }
-                if (entry.name === 'first-paint') {
-                    const fp = Math.round(entry.startTime);
-                    stats.vitals.fp = fp;
-                }
+            performance.getEntriesByType('paint').forEach(entry => {
+                if (entry.name === 'first-contentful-paint') stats.vitals.fcp = Math.round(entry.startTime);
+                if (entry.name === 'first-paint') stats.vitals.fp = Math.round(entry.startTime);
             });
 
             if ('PerformanceObserver' in window) {
-                // Largest Contentful Paint (LCP)
-                try {
-                    new PerformanceObserver((list) => {
-                        const entries = list.getEntries();
-                        const lastEntry = entries[entries.length - 1];
-                        const lcp = Math.round(lastEntry.startTime);
-                        stats.vitals.lcp = lcp;
-                        updateDisplay();
-                    }).observe({ entryTypes: ['largest-contentful-paint'] });
-                } catch (e) {}
-
-                // First Input Delay (FID)
-                try {
-                    new PerformanceObserver((list) => {
-                        const entries = list.getEntries();
-                        entries.forEach(entry => {
-                            const fid = Math.round(entry.processingStart - entry.startTime);
-                            stats.vitals.fid = fid;
-                            updateDisplay();
-                        });
-                    }).observe({ entryTypes: ['first-input'] });
-                } catch (e) {}
-
-                // Interaction to Next Paint (INP) - newer Core Web Vital
-                try {
-                    let maxINP = 0;
-                    new PerformanceObserver((list) => {
-                        const entries = list.getEntries();
-                        entries.forEach(entry => {
-                            if (entry.processingStart && entry.startTime) {
-                                const inp = Math.round(entry.processingStart - entry.startTime);
-                                if (inp > maxINP) {
-                                    maxINP = inp;
-                                    stats.vitals.inp = inp;
-                                    updateDisplay();
-                                }
-                            }
-                        });
-                    }).observe({ entryTypes: ['event'] });
-                } catch (e) {}
-
-                // Cumulative Layout Shift (CLS)
-                try {
-                    let clsValue = 0;
-                    new PerformanceObserver((list) => {
-                        for (const entry of list.getEntries()) {
-                            if (!entry.hadRecentInput) {
-                                clsValue += entry.value;
-                            }
-                        }
-                        const cls = parseFloat(clsValue.toFixed(3));
-                        stats.vitals.cls = cls;
-                        updateDisplay();
-                    }).observe({ entryTypes: ['layout-shift'] });
-                } catch (e) {}
-
-                // Long Task tracking for performance insights
-                try {
-                    let longTaskCount = 0;
-                    let totalBlockingTime = 0;
-                    new PerformanceObserver((list) => {
-                        const entries = list.getEntries();
-                        entries.forEach(entry => {
-                            longTaskCount++;
-                            totalBlockingTime += entry.duration - 50; // Tasks >50ms are "long"
-                        });
-                        stats.vitals.longTasks = longTaskCount;
-                        stats.vitals.totalBlockingTime = Math.round(totalBlockingTime);
-                        updateDisplay();
-                    }).observe({ entryTypes: ['longtask'] });
-                } catch (e) {}
+                try { new PerformanceObserver((list) => { stats.vitals.lcp = Math.round(list.getEntries().at(-1).startTime); updateDisplay(); }).observe({ entryTypes: ['largest-contentful-paint'] }); } catch (e) {}
+                try { new PerformanceObserver((list) => { list.getEntries().forEach(e => { stats.vitals.fid = Math.round(e.processingStart - e.startTime); updateDisplay(); }); }).observe({ entryTypes: ['first-input'] }); } catch (e) {}
+                try { let maxINP = 0; new PerformanceObserver((list) => { list.getEntries().forEach(e => { if (e.processingStart) { const inp = Math.round(e.processingStart - e.startTime); if (inp > maxINP) { maxINP = inp; stats.vitals.inp = inp; updateDisplay(); } } }); }).observe({ entryTypes: ['event'] }); } catch (e) {}
+                try { let clsValue = 0; new PerformanceObserver((list) => { for (const e of list.getEntries()) { if (!e.hadRecentInput) clsValue += e.value; } stats.vitals.cls = parseFloat(clsValue.toFixed(3)); updateDisplay(); }).observe({ entryTypes: ['layout-shift'] }); } catch (e) {}
+                try { let longTaskCount = 0, tbt = 0; new PerformanceObserver((list) => { list.getEntries().forEach(e => { longTaskCount++; tbt += e.duration - 50; }); stats.vitals.longTasks = longTaskCount; stats.vitals.totalBlockingTime = Math.round(tbt); updateDisplay(); }).observe({ entryTypes: ['longtask'] }); } catch (e) {}
             }
 
-            // Display info only
-            const screen = window.screen;
-            
             stats.technical = {
-                // Display & Device
-                viewport: `${window.innerWidth}×${window.innerHeight}`,
+                viewport: `${window.innerWidth}\u00D7${window.innerHeight}`,
                 devicePixelRatio: window.devicePixelRatio || 1,
-                screen: `${screen.width}×${screen.height}`,
+                screen: `${screen.width}\u00D7${screen.height}`,
                 colorDepth: `${screen.colorDepth}-bit`,
                 colorScheme: window.matchMedia('(prefers-color-scheme: dark)').matches ? 'Dark' : 'Light'
             };
 
             stats.loaded = true;
-            
-            // Force initial display update
             updateDisplay();
-            
-            // Set up listeners for load events that may still be pending
+
             if (document.readyState !== 'complete') {
                 window.addEventListener('load', () => {
                     setTimeout(() => {
-                        // Re-capture navigation timing after load completes
                         try {
-                            const nav = performance.getEntriesByType('navigation')[0] || performance.timing;
-                            if (nav) {
-                                if (nav.loadEventEnd) {
-                                    stats.performance.loadComplete = nav.loadEventEnd - (nav.navigationStart || 0);
-                                }
-                                if (nav.domComplete) {
-                                    stats.performance.domComplete = nav.domComplete - (nav.navigationStart || 0);
-                                }
-                                updateDisplay();
-                            }
+                            const nav = performance.getEntriesByType('navigation')[0];
+                            if (nav?.loadEventEnd) stats.performance.loadComplete = nav.loadEventEnd - nav.navigationStart;
+                            if (nav?.domComplete) stats.performance.domComplete = nav.domComplete - nav.navigationStart;
+                            updateDisplay();
                         } catch (e) {}
                     }, 100);
                 });
             }
         }
 
-        // Rating functions
-        function getLCPRating(value) {
-            if (value <= 2500) return 'good';
-            if (value <= 4000) return 'needs-improvement';
-            return 'poor';
-        }
+        function rate(value, good, mid) { return value <= good ? 'good' : value <= mid ? 'needs-improvement' : 'poor'; }
 
-        function getFIDRating(value) {
-            if (value <= 100) return 'good';
-            if (value <= 300) return 'needs-improvement';
-            return 'poor';
-        }
-
-        function getCLSRating(value) {
-            if (value <= 0.1) return 'good';
-            if (value <= 0.25) return 'needs-improvement';
-            return 'poor';
-        }
-
-        function getTTFBRating(value) {
-            if (value <= 800) return 'good';
-            if (value <= 1800) return 'needs-improvement';
-            return 'poor';
-        }
-
-        function getFCPRating(value) {
-            if (value <= 1800) return 'good';
-            if (value <= 3000) return 'needs-improvement';
-            return 'poor';
-        }
-
-        function getINPRating(value) {
-            if (value <= 200) return 'good';
-            if (value <= 500) return 'needs-improvement';
-            return 'poor';
-        }
-
-        function getTBTRating(value) {
-            if (value <= 200) return 'good';
-            if (value <= 600) return 'needs-improvement';
-            return 'poor';
-        }
-
-        // Update display
         function updateDisplay() {
-            const container = document.getElementById('stats-container');
-            
             if (!stats.loaded) return;
+            const v = stats.vitals, p = stats.performance, t = stats.technical;
 
-            container.innerHTML = `
+            document.getElementById('stats-container').innerHTML = `
                 <div class="stats-grid">
-                    <!-- Core Web Vitals -->
                     <div class="stat-card">
-                        <h3><span class="card-icon">🚀</span>Core Web Vitals</h3>
+                        <h3><span class="card-icon">\uD83D\uDE80</span>Core Web Vitals</h3>
                         <div class="metrics">
-                            ${stats.vitals.lcp ? `<div class="metric">
-                                <span class="metric-name">LCP (Largest Contentful Paint)</span>
-                                <span class="metric-value ${getLCPRating(stats.vitals.lcp)}">${stats.vitals.lcp}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.fcp ? `<div class="metric">
-                                <span class="metric-name">FCP (First Contentful Paint)</span>
-                                <span class="metric-value ${getFCPRating(stats.vitals.fcp)}">${stats.vitals.fcp}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.fp ? `<div class="metric">
-                                <span class="metric-name">FP (First Paint)</span>
-                                <span class="metric-value">${stats.vitals.fp}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.fid !== undefined ? `<div class="metric">
-                                <span class="metric-name">FID (First Input Delay)</span>
-                                <span class="metric-value ${getFIDRating(stats.vitals.fid)}">${stats.vitals.fid}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.inp ? `<div class="metric">
-                                <span class="metric-name">INP (Interaction to Next Paint)</span>
-                                <span class="metric-value ${getINPRating(stats.vitals.inp)}">${stats.vitals.inp}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.cls !== undefined ? `<div class="metric">
-                                <span class="metric-name">CLS (Cumulative Layout Shift)</span>
-                                <span class="metric-value ${getCLSRating(stats.vitals.cls)}">${stats.vitals.cls}</span>
-                            </div>` : ''}
-                            ${stats.vitals.ttfb ? `<div class="metric">
-                                <span class="metric-name">TTFB (Time to First Byte)</span>
-                                <span class="metric-value ${getTTFBRating(stats.vitals.ttfb)}">${stats.vitals.ttfb}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.totalBlockingTime !== undefined ? `<div class="metric">
-                                <span class="metric-name">TBT (Total Blocking Time)</span>
-                                <span class="metric-value ${getTBTRating(stats.vitals.totalBlockingTime)}">${stats.vitals.totalBlockingTime}ms</span>
-                            </div>` : ''}
-                            ${stats.vitals.longTasks !== undefined ? `<div class="metric">
-                                <span class="metric-name">Long Tasks</span>
-                                <span class="metric-value">${stats.vitals.longTasks} tasks</span>
-                            </div>` : ''}
+                            ${v.lcp ? `<div class="metric"><span class="metric-name">LCP</span><span class="metric-value ${rate(v.lcp, ...T.lcp)}">${v.lcp}ms</span></div>` : ''}
+                            ${v.fcp ? `<div class="metric"><span class="metric-name">FCP</span><span class="metric-value ${rate(v.fcp, ...T.fcp)}">${v.fcp}ms</span></div>` : ''}
+                            ${v.fp ? `<div class="metric"><span class="metric-name">FP</span><span class="metric-value">${v.fp}ms</span></div>` : ''}
+                            ${v.fid !== undefined ? `<div class="metric"><span class="metric-name">FID</span><span class="metric-value ${rate(v.fid, ...T.fid)}">${v.fid}ms</span></div>` : ''}
+                            ${v.inp ? `<div class="metric"><span class="metric-name">INP</span><span class="metric-value ${rate(v.inp, ...T.inp)}">${v.inp}ms</span></div>` : ''}
+                            ${v.cls !== undefined ? `<div class="metric"><span class="metric-name">CLS</span><span class="metric-value ${rate(v.cls, ...T.cls)}">${v.cls}</span></div>` : ''}
+                            ${v.ttfb ? `<div class="metric"><span class="metric-name">TTFB</span><span class="metric-value ${rate(v.ttfb, ...T.ttfb)}">${v.ttfb}ms</span></div>` : ''}
+                            ${v.totalBlockingTime !== undefined ? `<div class="metric"><span class="metric-name">TBT</span><span class="metric-value ${rate(v.totalBlockingTime, ...T.tbt)}">${v.totalBlockingTime}ms</span></div>` : ''}
+                            ${v.longTasks !== undefined ? `<div class="metric"><span class="metric-name">Long Tasks</span><span class="metric-value">${v.longTasks}</span></div>` : ''}
                         </div>
                     </div>
-
-                    <!-- Load Performance -->
                     <div class="stat-card">
-                        <h3><span class="card-icon">⏱️</span>Load Performance</h3>
+                        <h3><span class="card-icon">\u23F1\uFE0F</span>Load Performance</h3>
                         <div class="metrics">
-                            ${stats.performance && stats.performance.domContentLoaded ? `<div class="metric">
-                                <span class="metric-name">DOM Content Loaded</span>
-                                <span class="metric-value">${stats.performance.domContentLoaded}ms</span>
-                            </div>` : ''}
-                            ${stats.performance && stats.performance.domInteractive ? `<div class="metric">
-                                <span class="metric-name">DOM Interactive</span>
-                                <span class="metric-value">${stats.performance.domInteractive}ms</span>
-                            </div>` : ''}
-                            ${stats.performance && stats.performance.domComplete ? `<div class="metric">
-                                <span class="metric-name">DOM Complete</span>
-                                <span class="metric-value">${stats.performance.domComplete}ms</span>
-                            </div>` : ''}
-                            ${stats.performance && stats.performance.loadComplete ? `<div class="metric">
-                                <span class="metric-name">Full Page Load</span>
-                                <span class="metric-value">${stats.performance.loadComplete}ms</span>
-                            </div>` : ''}
-                            ${!stats.performance || (!stats.performance.domContentLoaded && !stats.performance.domInteractive && !stats.performance.domComplete && !stats.performance.loadComplete) ? '<div class="loading" style="padding: 1rem; font-size: 0.875rem;">Collecting load metrics...</div>' : ''}
+                            ${p.domContentLoaded ? `<div class="metric"><span class="metric-name">DOM Content Loaded</span><span class="metric-value">${p.domContentLoaded}ms</span></div>` : ''}
+                            ${p.domInteractive ? `<div class="metric"><span class="metric-name">DOM Interactive</span><span class="metric-value">${p.domInteractive}ms</span></div>` : ''}
+                            ${p.domComplete ? `<div class="metric"><span class="metric-name">DOM Complete</span><span class="metric-value">${p.domComplete}ms</span></div>` : ''}
+                            ${p.loadComplete ? `<div class="metric"><span class="metric-name">Full Page Load</span><span class="metric-value">${p.loadComplete}ms</span></div>` : ''}
+                            ${!p.domContentLoaded && !p.domInteractive ? '<div class="loading">Collecting...</div>' : ''}
                         </div>
                     </div>
-
-                    <!-- Display Info -->
                     <div class="stat-card">
-                        <h3><span class="card-icon">💻</span>Display</h3>
+                        <h3><span class="card-icon">\uD83D\uDCBB</span>Display</h3>
                         <div class="metrics">
-                            <div class="metric">
-                                <span class="metric-name">Screen Resolution</span>
-                                <span class="metric-value">${stats.technical.screen}</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-name">Viewport Size</span>
-                                <span class="metric-value">${stats.technical.viewport}</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-name">Device Pixel Ratio</span>
-                                <span class="metric-value">${stats.technical.devicePixelRatio}x</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-name">Color Depth</span>
-                                <span class="metric-value">${stats.technical.colorDepth}</span>
-                            </div>
-                            <div class="metric">
-                                <span class="metric-name">Color Scheme</span>
-                                <span class="metric-value">${stats.technical.colorScheme}</span>
-                            </div>
+                            <div class="metric"><span class="metric-name">Screen</span><span class="metric-value">${t.screen}</span></div>
+                            <div class="metric"><span class="metric-name">Viewport</span><span class="metric-value">${t.viewport}</span></div>
+                            <div class="metric"><span class="metric-name">DPR</span><span class="metric-value">${t.devicePixelRatio}x</span></div>
+                            <div class="metric"><span class="metric-name">Color Depth</span><span class="metric-value">${t.colorDepth}</span></div>
+                            <div class="metric"><span class="metric-name">Scheme</span><span class="metric-value">${t.colorScheme}</span></div>
                         </div>
                     </div>
                 </div>
             `;
+
+            // Update summary
+            let score = 0, factors = 0;
+            function scoreMetric(val, [good, mid]) { return val <= good ? 100 : val <= mid ? 75 : 50; }
+            if (v.lcp) { score += scoreMetric(v.lcp, T.lcp); factors++; }
+            if (v.fid !== undefined) { score += scoreMetric(v.fid, T.fid); factors++; }
+            if (v.cls !== undefined) { score += scoreMetric(v.cls, T.cls); factors++; }
+            if (v.ttfb) { score += scoreMetric(v.ttfb, T.ttfb); factors++; }
+            const finalScore = factors > 0 ? Math.round(score / factors) : 0;
+            const loadTime = p.loadComplete || 0;
+
+            document.getElementById('overall-score').textContent = finalScore > 0 ? `${finalScore}/100` : '\u2014';
+            document.getElementById('overall-score').className = `summary-value ${finalScore >= T.score[0] ? 'good' : finalScore >= T.score[1] ? 'needs-improvement' : finalScore > 0 ? 'poor' : ''}`;
+            document.getElementById('load-time').textContent = loadTime > 0 ? `${loadTime}ms` : '\u2014';
+            document.getElementById('load-time').className = `summary-value ${loadTime <= T.load[0] ? 'good' : loadTime <= T.load[1] ? 'needs-improvement' : loadTime > 0 ? 'poor' : ''}`;
         }
 
-        // Theme system
-        function initializeTheme() {
-            const themeToggle = document.getElementById('theme-toggle');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            const savedTheme = localStorage.getItem('theme');
-            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-            const defaultTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
-            
-            function applyTheme(theme) {
-                document.documentElement.setAttribute('data-theme', theme);
-                themeIcon.textContent = theme === 'dark' ? '☀️' : '🌙';
-                localStorage.setItem('theme', theme);
-                if (window.applyConfigThemeVars) {
-                    window.applyConfigThemeVars(theme);
-                }
-            }
-            
-            applyTheme(defaultTheme);
-            
-            themeToggle.addEventListener('click', () => {
-                const currentTheme = document.documentElement.getAttribute('data-theme');
-                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-                applyTheme(newTheme);
-            });
-        }
-
-        // Calculate performance score based on Core Web Vitals
-        function calculatePerformanceScore() {
-            let score = 0;
-            let factors = 0;
-            
-            // LCP scoring
-            if (stats.vitals.lcp) {
-                score += stats.vitals.lcp <= 2500 ? 100 : stats.vitals.lcp <= 4000 ? 75 : 50;
-                factors++;
-            }
-            
-            // FID scoring
-            if (stats.vitals.fid !== undefined) {
-                score += stats.vitals.fid <= 100 ? 100 : stats.vitals.fid <= 300 ? 75 : 50;
-                factors++;
-            }
-            
-            // CLS scoring
-            if (stats.vitals.cls !== undefined) {
-                const cls = parseFloat(stats.vitals.cls);
-                score += cls <= 0.1 ? 100 : cls <= 0.25 ? 75 : 50;
-                factors++;
-            }
-            
-            // TTFB scoring
-            if (stats.performance.ttfb) {
-                score += stats.performance.ttfb <= 800 ? 100 : stats.performance.ttfb <= 1800 ? 75 : 50;
-                factors++;
-            }
-            
-            return factors > 0 ? Math.round(score / factors) : 0;
-        }
-
-        // Update summary
-        function updateSummary() {
-            const score = calculatePerformanceScore();
-            const loadTime = stats.performance.loadComplete || 0;
-            
-            document.getElementById('overall-score').textContent = score > 0 ? `${score}/100` : '—';
-            document.getElementById('overall-score').className = `summary-value ${score >= 90 ? 'good' : score >= 75 ? 'needs-improvement' : score > 0 ? 'poor' : ''}`;
-            
-            document.getElementById('load-time').textContent = loadTime > 0 ? `${loadTime}ms` : '—';
-            document.getElementById('load-time').className = `summary-value ${loadTime <= 1000 ? 'good' : loadTime <= 2000 ? 'needs-improvement' : loadTime > 0 ? 'poor' : ''}`;
-        }
-
-        // Enhanced update display function
-        const originalUpdateDisplay = updateDisplay;
-        updateDisplay = function() {
-            originalUpdateDisplay();
-            updateSummary();
-        };
-
-        // Start tracking when page loads
+        // Load config for theme colors, then start tracking
         window.addEventListener('load', async () => {
-            // Define global theme applicator
-            window.applyConfigThemeVars = function(theme) {
-                if (!window.siteConfig?.theme?.css_vars) return;
-                const lightVars = window.siteConfig.theme.css_vars.light || {};
-                const darkVars = window.siteConfig.theme.css_vars.dark || {};
-                const activeVars = theme === 'dark' ? { ...lightVars, ...darkVars } : lightVars;
-                for (const [key, value] of Object.entries(activeVars)) {
-                    document.documentElement.style.setProperty(`--${key.replace(/_/g, '-')}`, value);
-                }
-                const primaryColor = activeVars.primary || lightVars.primary;
-                if (primaryColor) {
-                    const hex = primaryColor.replace('#', '');
-                    const r = parseInt(hex.substr(0, 2), 16);
-                    const g = parseInt(hex.substr(2, 2), 16);
-                    const b = parseInt(hex.substr(4, 2), 16);
-                    document.documentElement.style.setProperty('--primary-rgb', `${r}, ${g}, ${b}`);
-                }
-            };
-
             try {
-                const response = await fetch('./config.json');
+                const response = await fetch('./config.yaml');
                 if (response.ok) {
-                    window.siteConfig = await response.json();
-                    const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
-                    window.applyConfigThemeVars(currentTheme);
+                    const yamlText = await response.text();
+                    window.siteConfig = jsyaml.load(yamlText);
+                    const theme = document.documentElement.getAttribute('data-theme') || 'light';
+                    if (window.applyConfigThemeVars) window.applyConfigThemeVars(theme);
                 }
-            } catch (e) {
-                console.error("Failed to load config for stats:", e);
-            }
+            } catch (e) {}
 
-            initializeTheme();
             await new Promise(resolve => setTimeout(resolve, 100));
             await trackWebVitals();
         });
 
-        // Update viewport size on resize
         window.addEventListener('resize', () => {
-            stats.technical.viewport = `${window.innerWidth}×${window.innerHeight}`;
+            stats.technical.viewport = `${window.innerWidth}\u00D7${window.innerHeight}`;
             updateDisplay();
         });
     </script>
