@@ -290,7 +290,7 @@ hotels:
 
 # Registry
 registry:
-  message: "Your presence is truly the only gift we're after. We've built a home together and already have what we need, so we're not registering for gifts. And as grateful as we are for the thought, asking for cash toward our own honeymoon felt a little off to us. So if you do feel moved to mark the occasion, we'd simply rather see it go somewhere lasting — we've picked a cause close to our hearts below."
+  message: "Your presence is truly the only gift we're after. We've built a home together and already have what we need, so we're not registering for gifts. If you do feel moved to mark the occasion, we'd simply rather see it go somewhere lasting — we've picked a cause close to our hearts below."
   stores:
     - name: "Rainforest Trust"
       description: "They protect threatened tropical habitat and the wildlife in it by helping local communities permanently safeguard land — a lot of acres per dollar."
