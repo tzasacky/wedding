@@ -4,7 +4,10 @@ const MOBILE_BREAKPOINT = 768;
 const SWIPE_THRESHOLD = 15;
 const SCROLL_THRESHOLD = 50;
 const TIMELINE_GAP = 48;
-const PHOTO_HEIGHT_OFFSET = 250;
+// Vertical space (px) reserved around timeline photos so a card fits one viewport.
+// Larger on desktop (card must fit the screen); smaller on mobile where the card scrolls.
+const PHOTO_HEIGHT_OFFSET_DESKTOP = 470;
+const PHOTO_HEIGHT_OFFSET_MOBILE = 180;
 const PHOTO_WIDTH_OFFSET = 48;
 const PHOTO_GAP = 12;
 const LOADER_FADE_MS = 300;
@@ -64,6 +67,18 @@ function showFormMessage(el, message, type) {
 
 // --- Section renderers ---
 
+function renderItinerary(itinerary) {
+    if (!itinerary || itinerary.length === 0) return '';
+    return `<ul class="itinerary-list">
+        ${itinerary.map(item => `
+            <li class="itinerary-item">
+                <span class="itinerary-time">${item.time}</span>
+                <span class="itinerary-event">${item.event}</span>
+            </li>
+        `).join('')}
+    </ul>`;
+}
+
 function renderDetails(config) {
     return `
         <div class="content-grid">
@@ -72,12 +87,14 @@ function renderDetails(config) {
                 <p><strong>${config.ceremony.time}</strong></p>
                 ${mapsButton(config.ceremony.maps_url, config.ceremony.venue)}
                 ${dressCodeBlock(config.ceremony.dress_code)}
+                ${renderItinerary(config.ceremony.itinerary)}
             </article>
             <article class="card animate">
                 <h3>${config.reception.label}</h3>
                 <p><strong>${config.reception.time}</strong></p>
                 ${mapsButton(config.reception.maps_url, config.reception.venue)}
                 ${dressCodeBlock(config.reception.dress_code)}
+                ${renderItinerary(config.reception.itinerary)}
             </article>
             ${config.dress_code ? `
                 <article class="card animate">
@@ -201,15 +218,23 @@ function renderRSVP(config) {
             <p>${config.rsvp.labels.deadline_text} ${deadline}</p>
             <div class="form-container">
                 <form id="rsvp-form" class="rsvp-form no-print">
-                    ${formInput('firstName', 'firstName', f.first_name)}
-                    ${formInput('lastName', 'lastName', f.last_name)}
-                    ${formInput('email', 'email', f.email, { type: 'email' })}
-                    ${radioGroup('attendingCeremony', f.attending_ceremony, opts)}
-                    ${radioGroup('attendingReception', f.attending_reception, opts)}
-
-                    <div class="form-group">
-                        <label for="dietaryRestrictions">${f.dietary_restrictions}</label>
-                        <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="3" placeholder="${p.dietary_restrictions}"></textarea>
+                    <div class="form-grid">
+                        ${formInput('firstName', 'firstName', f.first_name)}
+                        ${formInput('lastName', 'lastName', f.last_name)}
+                        <div class="form-group span-2">
+                            <label for="email">${f.email} *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        ${radioGroup('attendingCeremony', f.attending_ceremony, opts)}
+                        ${radioGroup('attendingReception', f.attending_reception, opts)}
+                        <div class="form-group">
+                            <label for="dietaryRestrictions">${f.dietary_restrictions}</label>
+                            <textarea id="dietaryRestrictions" name="dietaryRestrictions" rows="2" placeholder="${p.dietary_restrictions}"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="anythingElse">${f.anything_else}</label>
+                            <textarea id="anythingElse" name="anythingElse" rows="2" placeholder="${p.anything_else}"></textarea>
+                        </div>
                     </div>
 
                     <div id="plus-one-section" class="plus-one-section hidden">
@@ -219,11 +244,6 @@ function renderRSVP(config) {
                             <label for="plusOneName">${f.plus_one_name} *</label>
                             <input type="text" id="plusOneName" name="plusOneName" placeholder="${p.plus_one_name}" required>
                         </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="anythingElse">${f.anything_else}</label>
-                        <textarea id="anythingElse" name="anythingElse" rows="3" placeholder="${p.anything_else}"></textarea>
                     </div>
 
                     <div id="form-message" class="form-message"></div>
@@ -657,21 +677,71 @@ function initializePhotoLayouts() {
         if (loadedCount === photos.length) arrangePhotos(container, photos);
     }
 
+    // Lay photos out as justified rows, choosing the row split that makes the
+    // photos as large as possible while the whole gallery fits the available height.
     function arrangePhotos(container, photos) {
-        const availableHeight = window.innerHeight - PHOTO_HEIGHT_OFFSET;
-        const containerWidth = container.offsetWidth - PHOTO_WIDTH_OFFSET;
+        const imgs = [...photos];
+        const n = imgs.length;
+        if (n === 0) return;
 
-        let totalHeight = 0;
-        photos.forEach(photo => {
-            totalHeight += containerWidth * (photo.naturalHeight / photo.naturalWidth);
-        });
-        totalHeight += (photos.length - 1) * PHOTO_GAP;
+        const availableHeight = window.innerHeight - (isMobile() ? PHOTO_HEIGHT_OFFSET_MOBILE : PHOTO_HEIGHT_OFFSET_DESKTOP);
+        const W = container.offsetWidth - PHOTO_WIDTH_OFFSET; // usable image-area width
+        const FRAME = 16; // wrapper padding (both sides) added per photo
+        const ar = imgs.map(p => (p.naturalWidth && p.naturalHeight) ? p.naturalWidth / p.naturalHeight : 1);
 
-        const scaleFactor = totalHeight > availableHeight ? availableHeight / totalHeight : 1;
+        // Evaluate one consecutive row split: each row fills the width, then the
+        // whole block is scaled down (if needed) to fit availableHeight.
+        function evaluate(rows) {
+            const rowH = [];
+            let total = 0;
+            for (const row of rows) {
+                const sumAr = row.reduce((s, i) => s + ar[i], 0);
+                const innerW = W - PHOTO_GAP * (row.length - 1) - FRAME * row.length;
+                const h = innerW / sumAr;
+                rowH.push(h);
+                total += h + FRAME;
+            }
+            total += PHOTO_GAP * (rows.length - 1);
+            const scale = Math.min(1, availableHeight / total);
+            let area = 0;
+            rows.forEach((row, r) => {
+                const h = rowH[r] * scale;
+                row.forEach(i => { area += h * h * ar[i]; });
+            });
+            return { rows, rowH, scale, area };
+        }
 
-        photos.forEach(photo => {
-            photo.style.height = (containerWidth * (photo.naturalHeight / photo.naturalWidth) * scaleFactor) + 'px';
-            photo.style.maxHeight = 'none';
+        // Enumerate every consecutive split of the photos into rows; keep the
+        // one yielding the largest total photo area.
+        let best = null;
+        for (let mask = 0; mask < (1 << (n - 1)); mask++) {
+            const rows = [[0]];
+            for (let i = 1; i < n; i++) {
+                if (mask & (1 << (i - 1))) rows.push([i]);
+                else rows[rows.length - 1].push(i);
+            }
+            const cand = evaluate(rows);
+            if (!best || cand.area > best.area) best = cand;
+        }
+
+        // Rebuild the gallery DOM into the chosen rows with explicit photo sizes.
+        container.innerHTML = '';
+        best.rows.forEach((row, r) => {
+            const rowEl = document.createElement('div');
+            rowEl.className = 'portrait-row';
+            const h = Math.floor(best.rowH[r] * best.scale);
+            row.forEach(i => {
+                const wrap = document.createElement('div');
+                wrap.className = 'timeline-image-wrapper';
+                const img = imgs[i];
+                img.style.height = h + 'px';
+                img.style.width = Math.floor(h * ar[i]) + 'px';
+                img.style.maxHeight = 'none';
+                img.style.maxWidth = 'none';
+                wrap.appendChild(img);
+                rowEl.appendChild(wrap);
+            });
+            container.appendChild(rowEl);
         });
     }
 

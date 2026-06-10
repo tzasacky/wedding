@@ -106,6 +106,15 @@ ceremony:
   dress_code:
     title: "Mountain Formal"
     description: "Indoor-outdoor venue, coats and/or layers strongly recommended!"
+  itinerary:
+    - time: "4:30 PM"
+      event: "Ceremony"
+    - time: "5:00 PM"
+      event: "Cocktail Hour"
+    - time: "6:00 PM"
+      event: "Dinner"
+    - time: "10:00 PM"
+      event: "End"
 
 reception:
   label: "Saturday Party"
@@ -115,6 +124,15 @@ reception:
   dress_code:
     title: "Western Cocktail"
     description: "Historic Saloon built in 1882!"
+  itinerary:
+    - time: "6:00 PM"
+      event: "Doors Open"
+    - time: "6:30 PM"
+      event: "Drinks & Apps"
+    - time: "8:00 PM"
+      event: "Dancing"
+    - time: "12:00 AM"
+      event: "Last Call"
 
 # Detailed dress code information
 dress_code:
@@ -211,7 +229,7 @@ timeline:
 # Travel Information
 travel:
   airports:
-    - name: "Gunnison-Crested Butte Regional Airport"
+    - name: "Gunnison Airport"
       code: "GUC"
       distance_miles: 28
       drive_time: "30 minutes"
@@ -220,7 +238,7 @@ travel:
       description: "Closest airport to Crested Butte. Flights are extremely limited, book early!"
       airlines: ["United (3 daily flights from DEN)"]
       
-    - name: "Montrose Regional Airport"
+    - name: "Montrose Airport"
       code: "MTJ"
       distance_miles: 65
       drive_time: "1 hour 30 minutes"
@@ -229,7 +247,7 @@ travel:
       description: "Scenic drive with sightseeing opportunity for the Black Canyon of the Gunnison National Park nearby!!"
       airlines: ["United", "American", "Delta", "Alaska"]
       
-    - name: "Denver International Airport"
+    - name: "Denver Airport"
       code: "DEN"
       distance_miles: 230
       drive_time: "4 hours"
@@ -264,20 +282,21 @@ hotels:
     link: "https://www.oldtowninn.net"
     maps_url: "https://www.google.com/maps/search/?api=1&query=Old+Town+Inn+Crested+Butte"
 
+  - name: "VRBO Vacation Rentals"
+    rate: "$$-$$$$"
+    description: "Recommended! Search for vacation rental homes and condos in Crested Butte. Great option for families or groups looking for extra space and a home-away-from-home experience."
+    link: "https://www.vrbo.com/search?destination=Crested+Butte%2C+CO&latLong=38.8697%2C-106.9878"
+    maps_url: ""
+
 # Registry
 registry:
-  message: "Your presence at our wedding is the greatest gift of all, however if you'd like to honor us with a gift we've provided registry options below. We're thankful to have most of what we need, so honeymoon fund is preferred."
+  message: "Your presence is truly the only gift we're after. We've built a home together and already have what we need, so we're not registering for gifts. And as grateful as we are for the thought, asking for cash toward our own honeymoon felt a little off to us. So if you do feel moved to mark the occasion, we'd simply rather see it go somewhere lasting — we've picked a cause close to our hearts below."
   stores:
-    - name: "Honeymoon Fund"
-      description: "Help us create amazing memories on our honeymoon"
-      url: "https://www.paypal.com/pool/9jAZLS5Ssb"
-      button_text: "Contribute"
-      icon: "✈️"
-    - name: "Registry"
-      description: "Traditional wedding gifts we'd love to receive"
-      url: "https://www.amazon.com/wedding/registry/3SGD7UOZNH1VH"
-      button_text: "Registry - Amazon"
-      icon: "🎁"
+    - name: "Rainforest Trust"
+      description: "They protect threatened tropical habitat and the wildlife in it by helping local communities permanently safeguard land — a lot of acres per dollar."
+      url: "https://www.rainforesttrust.org/donate/"
+      button_text: "Donate"
+      icon: "🌳"
 
 # RSVP Configuration
 rsvp:
