@@ -26,11 +26,21 @@ function mapsButton(url, text, compact = false) {
     </a>`;
 }
 
+function pinterestButton(p) {
+    if (!p) return '';
+    return `<a href="${p.url}" target="_blank" rel="noopener" class="pinterest-button">
+        <span class="pinterest-icon">📌</span>
+        <span class="pinterest-text">${p.text}</span>
+        <span class="pinterest-arrow">↗</span>
+    </a>`;
+}
+
 function dressCodeBlock(dc) {
     if (!dc) return '';
     return `<div class="dress-code">
         <div class="dress-code-title">${dc.title}</div>
         ${dc.description ? `<div class="dress-code-description">${dc.description}</div>` : ''}
+        ${pinterestButton(dc.pinterest)}
     </div>`;
 }
 
@@ -73,48 +83,39 @@ function renderItinerary(itinerary) {
         ${itinerary.map(item => `
             <li class="itinerary-item">
                 <span class="itinerary-time">${item.time}</span>
-                <span class="itinerary-event">${item.event}</span>
+                <span class="itinerary-event">${item.event}${item.optional ? ' <span class="event-optional">Optional</span>' : ''}</span>
             </li>
         `).join('')}
     </ul>`;
 }
 
+function renderEventCard(ev) {
+    if (!ev) return '';
+    return `
+        <article class="card animate${ev.optional ? ' card-optional' : ''}">
+            ${ev.optional || ev.date ? `<div class="card-header">
+                ${ev.optional ? '<span class="event-optional">Optional</span>' : ''}
+                ${ev.date ? `<span class="event-date-chip">${ev.date}</span>` : ''}
+            </div>` : ''}
+            <h3>${ev.label}</h3>
+            ${ev.maps_url ? mapsButton(ev.maps_url, ev.venue) : (ev.venue ? `<p class="event-venue">${ev.venue}</p>` : '')}
+            ${ev.description ? `<p class="event-description">${ev.description}</p>` : ''}
+            ${renderItinerary(ev.itinerary)}
+            ${dressCodeBlock(ev.dress_code)}
+        </article>
+    `;
+}
+
 function renderDetails(config) {
+    const events = [
+        config.welcome_dinner,
+        config.ceremony,
+        config.reception,
+        config.goodbye_brunch,
+    ];
     return `
         <div class="content-grid">
-            <article class="card animate">
-                <h3>${config.ceremony.label}</h3>
-                <p><strong>${config.ceremony.time}</strong></p>
-                ${mapsButton(config.ceremony.maps_url, config.ceremony.venue)}
-                ${dressCodeBlock(config.ceremony.dress_code)}
-                ${renderItinerary(config.ceremony.itinerary)}
-            </article>
-            <article class="card animate">
-                <h3>${config.reception.label}</h3>
-                <p><strong>${config.reception.time}</strong></p>
-                ${mapsButton(config.reception.maps_url, config.reception.venue)}
-                ${dressCodeBlock(config.reception.dress_code)}
-                ${renderItinerary(config.reception.itinerary)}
-            </article>
-            ${config.dress_code ? `
-                <article class="card animate">
-                    <h3>${config.dress_code.label}</h3>
-                    ${config.dress_code.intro ? `<p class="dress-code-intro">${config.dress_code.intro}</p>` : ''}
-                    ${config.dress_code.sections ? config.dress_code.sections.map(section => `
-                        <div class="dress-code-section">
-                            <h4 class="dress-code-heading">\uD83D\uDC54 ${section.title}</h4>
-                            <p>${section.description}</p>
-                        </div>
-                    `).join('') : ''}
-                    ${config.dress_code.pinterest ? `
-                        <a href="${config.dress_code.pinterest.url}" target="_blank" rel="noopener" class="pinterest-button">
-                            <span class="pinterest-icon">\uD83D\uDCCC</span>
-                            <span class="pinterest-text">${config.dress_code.pinterest.text}</span>
-                            <span class="pinterest-arrow">\u2197</span>
-                        </a>
-                    ` : ''}
-                </article>
-            ` : ''}
+            ${events.map(renderEventCard).join('')}
         </div>
     `;
 }
@@ -201,6 +202,37 @@ function renderRegistry(config) {
                     </article>
                 `).join('')}
             </div>
+        </div>
+    `;
+}
+
+function renderRecommendations(config) {
+    const r = config.recommendations;
+    return `
+        <div class="recommendations-wrapper">
+            ${r.intro ? `<p class="recommendations-intro">${r.intro}</p>` : ''}
+            <div class="content-grid">
+                ${r.cards.map(card => `
+                    <article class="card animate">
+                        <h3>${card.icon ? `${card.icon} ` : ''}${card.title}</h3>
+                        <ul class="rec-tips">
+                            ${card.tips.map(tip => `
+                                <li>
+                                    <span class="rec-tip-name">${tip.name}</span>
+                                    ${tip.description ? `<span class="rec-tip-desc">${tip.description}</span>` : ''}
+                                </li>
+                            `).join('')}
+                        </ul>
+                        ${r.doc_url ? `<a href="${r.doc_url}" target="_blank" rel="noopener" class="rec-card-link">${card.link_text || `More ${card.title.toLowerCase()} ideas`} <span class="rec-card-arrow">↗</span></a>` : ''}
+                    </article>
+                `).join('')}
+            </div>
+            ${r.doc_url ? `
+                <a href="${r.doc_url}" target="_blank" rel="noopener" class="registry-button rec-doc-button">
+                    <span>${r.doc_button_text || 'See our full guide'}</span>
+                    <span class="pinterest-arrow">↗</span>
+                </a>
+            ` : ''}
         </div>
     `;
 }
@@ -299,6 +331,7 @@ const renderers = {
     details: renderDetails,
     travel: renderTravel,
     accommodations: renderAccommodations,
+    recommendations: renderRecommendations,
     registry: renderRegistry,
     rsvp: renderRSVP,
     timeline: renderTimeline,

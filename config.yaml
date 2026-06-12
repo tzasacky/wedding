@@ -18,10 +18,10 @@ theme:
   text_muted: "#41512d"      # Deep olive for muted text
   text_light: "#ffffff"      # Pure white for light text
 
-  # Dark theme - midnight campfire/champagne gold aesthetic
+  # Dark theme - warm campfire / terracotta + ivory aesthetic
   dark:
     text_primary: "#F5F5F5"  # Starlight white
-    text_secondary: "#D4AF37" # Champagne gold for headings
+    text_secondary: "#EBD9C5" # Warm ivory for headings
     text_muted: "#A3A3A3"    # Muted warm gray
     text_light: "#1A1A1A"    # Dark contrast element
 
@@ -39,11 +39,11 @@ theme:
       bg_dark: "#e5e1e3"
       mountain_gradient: "linear-gradient(135deg, #781b12 0%, #f3912b 50%, #e5e1e3 100%)"
     dark:
-      primary: "#D4AF37"
-      secondary: "#E5Cca3"
-      accent: "#FCE8B2"
+      primary: "#CC9683"
+      secondary: "#E0BBA9"
+      accent: "#EAD7C4"
       text_dark: "#F5F5F5"
-      text_secondary: "#D4AF37"
+      text_secondary: "#EBD9C5"
       text_muted: "#A3A3A3"
       text_light: "#1A1A1A"
       bg_light: "#0A0A0A"
@@ -84,7 +84,12 @@ sections:
   - id: accommodations
     name: "Hotels"
     enabled: true
-    
+
+  - id: recommendations
+    name: "Tips"
+    title: "Recommendations"
+    enabled: true
+
   - id: registry
     name: "Registry"
     enabled: true
@@ -98,14 +103,28 @@ sections:
     enabled: true
 
 # Event details
+welcome_dinner:
+  label: "Welcome Dinner"
+  optional: true
+  date: "Thu, Sep 17"
+  venue: "Our Airbnb"
+  maps_url: "https://www.google.com/maps/search/?api=1&query=26+Whetstone+Rd+Crested+Butte+CO+81225"
+  description: "In town early? Stop by anytime for casual pizza to kick off the weekend!"
+  itinerary:
+    - time: "6–10 PM"
+      event: "Pizza & Drinks"
+
 ceremony:
   label: "Friday Wedding"
-  time: "September 18th 4:30-10PM"
+  date: "Fri, Sep 18"
   venue: "Mountain Wedding Garden"
   maps_url: "https://www.google.com/maps/search/?api=1&query=Mountain+Wedding+Garden+Crested+Butte+CO"
   dress_code:
     title: "Mountain Formal"
-    description: "Indoor-outdoor venue, coats and/or layers strongly recommended!"
+    description: "Nature inpsired formal attire. Outdoor venue will be cold, wear warm layers!"
+    pinterest:
+      url: "https://pin.it/2MKZfWCt5"
+      text: "Pinterest inspiration"
   itinerary:
     - time: "4:30 PM"
       event: "Ceremony"
@@ -114,45 +133,43 @@ ceremony:
     - time: "6:00 PM"
       event: "Dinner"
     - time: "10:00 PM"
-      event: "End"
+      event: "→ After-Party"
 
 reception:
   label: "Saturday Party"
-  time: "September 19th 6-12PM"
+  date: "Sat, Sep 19"
   venue: "Public House"
   maps_url: "https://maps.app.goo.gl/xVtrt1GBFYv4ygtH7"
   dress_code:
     title: "Western Cocktail"
-    description: "Historic Saloon built in 1882!"
+    description: "Dressy Western, lean into the mountain vibe and have fun with it."
   itinerary:
     - time: "6:00 PM"
       event: "Doors Open"
     - time: "6:30 PM"
-      event: "Drinks & Apps"
-    - time: "8:00 PM"
+      event: "Dinner & Drinks"
+    - time: "9:00 PM"
       event: "Dancing"
     - time: "12:00 AM"
       event: "Last Call"
 
-# Detailed dress code information
-dress_code:
-  label: "Dress Code Details"
-  intro: "Bring warm clothes!"
-  sections:
-    - title: "Mountain Formal"
-      description: "Formal attire in nature inspired colors and textures"
-    - title: "Western Cocktail" 
-      description: "Dressy Western, lean into the mountain vibe and have fun with it!"
-  pinterest:
-    url: "https://pin.it/2MKZfWCt5"
-    text: "Pinterest inspiration"
+goodbye_brunch:
+  label: "Goodbye Brunch"
+  optional: true
+  date: "Sun, Sep 20"
+  venue: "Our Airbnb"
+  maps_url: "https://www.google.com/maps/search/?api=1&query=26+Whetstone+Rd+Crested+Butte+CO+81225"
+  description: "Stop by whenever you're up to grab some pastries and say goodbye!"
+  itinerary:
+    - time: "9 AM–12 PM"
+      event: "Coffee & Pastries"
 
 # Timeline section (optional)
 timeline:
   events:
     - date: "Winter 2015"
       title: "Meeting on the Ski Team"
-      description: "We met on the UNC Chapel Hill club ski team skiing the illustrious slopes of the south"
+      description: "Enjoy our terrible first photo together when we met on the UNC ski team"
       images:
         - "/images/unc_ski_team.webp"
 
@@ -244,7 +261,7 @@ travel:
       drive_time: "1 hour 30 minutes"
       cost_range: "$$"
       flight_availability: "Good"
-      description: "Scenic drive with sightseeing opportunity for the Black Canyon of the Gunnison National Park nearby!!"
+      description: "Scenic drive through the Black Canyon of the Gunnison National Park nearby!"
       airlines: ["United", "American", "Delta", "Alaska"]
       
     - name: "Denver Airport"
@@ -253,22 +270,22 @@ travel:
       drive_time: "4 hours"
       cost_range: "$"
       flight_availability: "Excellent"
-      description: "Most flight options and best prices. Beautiful mountain drive but long journey."
+      description: "Most flight options and best prices with long but beautiful mountain drive."
       airlines: ["All major airlines"]
       
-  tips_label: "Transportation Tips"
+  tips_label: "Transportation in Crested Butte"
   driving_tips:
-    - "Rental car recommended for mountain driving and local flexibility"
-    - "There is a free bus available between Crested Butte Downtown and the Mountain Village - <a href=\"https:\\www.mtnexp.org\">Mountain Express</a>"
-    - "Be aware that gas stations are extremely limited in some parts of Colorado"
+    - "We recommend using the <a href=\"https://www.mtnexp.org/schedules-routes/summer/\" target=\"_blank\" rel=\"noopener\">free Mountain Express bus</a> connecting Crested Butte downtown and Mountain Village from 7:30am - Midnight"
+    - "For wedding events, the free bus stops directly at <a href=\"https://maps.app.goo.gl/G3fbyjSd3ftLp59H8\" target=\"_blank\" rel=\"noopener\">Public House</a> and a 15 minute walk from the <a href=\"https://maps.app.goo.gl/e1NMgN3LpQboqMBS7\" target=\"_blank\" rel=\"noopener\">Mountain Wedding Garden</a>"
+    - "Use local Uber alternative <a href=\"https://apps.apple.com/us/app/firsttracks/id6472332482\" target=\"_blank\" rel=\"noopener\">First Tracks</a> App to schedule rides from 7:15am-2:30am anywhere in the valley (<a href=\"https://www.mtnexp.org/firsttracks/\" target=\"_blank\" rel=\"noopener\">details</a>)"
 
 # Accommodations
 hotels:
-  - name: "Vaquera House"
-    rate: "$$$"
-    description: "Luxury boutique hotel in downtown Crested Butte with modern amenities and stunning mountain views. Walking distance to restaurants and shops."
-    link: "https://vaquerahouse.com/"
-    maps_url: "https://maps.app.goo.gl/xU36CGnuC8xcDRLt5"
+  - name: "VRBO Vacation Rentals"
+    rate: "$-$$$"
+    description: "Recommended! Search for vacation rental homes and condos in Crested Butte. Great option for families or groups looking for extra space and a home-away-from-home experience."
+    link: "https://www.vrbo.com/search?destination=Crested+Butte%2C+CO&latLong=38.8697%2C-106.9878"
+    maps_url: ""
 
   - name: "Elk Mountain Lodge"
     rate: "$$"
@@ -282,21 +299,55 @@ hotels:
     link: "https://www.oldtowninn.net"
     maps_url: "https://www.google.com/maps/search/?api=1&query=Old+Town+Inn+Crested+Butte"
 
-  - name: "VRBO Vacation Rentals"
-    rate: "$$-$$$$"
-    description: "Recommended! Search for vacation rental homes and condos in Crested Butte. Great option for families or groups looking for extra space and a home-away-from-home experience."
-    link: "https://www.vrbo.com/search?destination=Crested+Butte%2C+CO&latLong=38.8697%2C-106.9878"
-    maps_url: ""
+# Recommendations
+recommendations:
+  intro: "We've pulled together a guide of our favorite local spots, hikes, and scenic drives. Here are a few top picks!"
+  doc_url: "https://docs.google.com/document/d/1uPLi8s0_QI3uI7ysIYamXNICOPxnAGkIaQFWf7aVfrE/edit?usp=sharing"
+  doc_button_text: "See our full guide"
+  cards:
+    - icon: "🍽️"
+      title: "Food"
+      tips:
+        - name: "Camp 4 Coffee"
+          description: "Local go-to for morning coffee"
+        - name: "The Secret Stash"
+          description: "Funky local pizza spot"
+        - name: "Soupçon"
+          description: "Exceptional upscale dinner"
+    - icon: "🥾"
+      title: "Activities"
+      tips:
+        - name: "ARTumn & Vinotok Festivals"
+          description: "Sat 11-6 & Sun 10-4 on Elk Ave"
+        - name: "Stroll Elk Avenue"
+          description: "Downtown's main street"
+        - name: "Woods Walk"
+          description: "Easy, flat hike right in town"
+    - icon: "🚗"
+      title: "Road Trips"
+      link_text: "More road trip itineraries"
+      tips:
+        - name: "Black Canyon of the Gunnison"
+          description: "National park, 1.5 hrs away"
+        - name: "Kebler Pass"
+          description: "Largest aspen grove in N. America"
+        - name: "Aspen or Telluride"
+          description: "Scenic mountain towns, ~3 hrs"
 
 # Registry
 registry:
-  message: "Your presence is truly the only gift we're after. We've built a home together and already have what we need, so we're not registering for gifts. If you do feel moved to mark the occasion, we'd simply rather see it go somewhere lasting — we've picked a cause close to our hearts below."
+  message: "Traveling to celebrate with us is no small thing, and your being there is a gift to us. We've built a home together and already have what we need, so we're not registering for gifts. If you'd like to mark the occasion, we'd love to see it go somewhere lasting — we've picked a couple of causes close to our hearts below."
   stores:
-    - name: "Rainforest Trust"
-      description: "They protect threatened tropical habitat and the wildlife in it by helping local communities permanently safeguard land — a lot of acres per dollar."
-      url: "https://www.rainforesttrust.org/donate/"
+    - name: "Bald Head Island Conservancy"
+      description: "They care for the barrier island we love — protecting sea turtles, dunes, and maritime forest, and running the science and education that keep it wild."
+      url: "https://www.bhic.org/donate"
       button_text: "Donate"
-      icon: "🌳"
+      icon: "🐢"
+    - name: "Against Malaria Foundation"
+      description: "They fund insecticide-treated bed nets in the places that need them most. It's one of the most cost-effective ways to protect a life — a few dollars goes a remarkably long way."
+      url: "https://www.againstmalaria.com/Donation.aspx"
+      button_text: "Donate"
+      icon: "🦟"
 
 # RSVP Configuration
 rsvp:
