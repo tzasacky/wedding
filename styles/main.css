@@ -826,32 +826,24 @@ footer a:hover { opacity: 0.8; }
 /* Optional events: faint tint */
 .card-optional { background: rgba(var(--primary-rgb), 0.04); }
 
-/* Top row: quiet "Optional" eyebrow on the left, date chip pinned right */
+/* Top row: dominant fully-spelled-out date on the left, optional tag pinned right */
 .card-header {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     gap: 0.5rem;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.5rem;
     min-height: 1.5rem;
 }
-.card-header .event-optional {
-    margin: 0;
-    padding: 0;
-    background: none;
-    font-size: 0.68rem;
-    letter-spacing: 0.16em;
-    opacity: 0.7;
-}
-.event-date-chip {
-    margin-left: auto;
-    padding: 0.2em 0.7em;
-    background: rgba(var(--primary-rgb), 0.1);
+.event-date {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
     color: var(--primary);
-    border-radius: 999px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    white-space: nowrap;
+    line-height: 1.2;
     text-shadow: none;
+}
+.card-header .event-optional {
+    margin-left: auto;
 }
 
 .event-optional {

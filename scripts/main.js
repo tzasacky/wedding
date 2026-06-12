@@ -94,8 +94,8 @@ function renderEventCard(ev) {
     return `
         <article class="card animate${ev.optional ? ' card-optional' : ''}">
             ${ev.optional || ev.date ? `<div class="card-header">
+                ${ev.date ? `<span class="event-date">${ev.date}</span>` : ''}
                 ${ev.optional ? '<span class="event-optional">Optional</span>' : ''}
-                ${ev.date ? `<span class="event-date-chip">${ev.date}</span>` : ''}
             </div>` : ''}
             <h3>${ev.label}</h3>
             ${ev.maps_url ? mapsButton(ev.maps_url, ev.venue) : (ev.venue ? `<p class="event-venue">${ev.venue}</p>` : '')}
