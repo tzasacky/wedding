@@ -835,14 +835,15 @@ footer a:hover { opacity: 0.8; }
     min-height: 1.5rem;
 }
 .event-date-chip {
-    padding: 0.2em 0.7em;
-    background: rgba(var(--primary-rgb), 0.1);
     color: var(--primary);
-    border-radius: 999px;
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: 600;
+    letter-spacing: 0.02em;
     white-space: nowrap;
     text-shadow: none;
+}
+[data-theme="dark"] .event-date-chip {
+    color: var(--text-secondary);
 }
 .card-header .event-optional {
     margin-left: auto;
