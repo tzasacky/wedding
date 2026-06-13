@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'wedding-1b0830de';
+const CACHE_VERSION = 'wedding-9c46d89d';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
 

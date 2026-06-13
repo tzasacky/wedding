@@ -275,7 +275,7 @@ travel:
       
   tips_label: "Transportation in Crested Butte"
   driving_tips:
-    - "We recommend using the <a href=\"https://www.mtnexp.org/schedules-routes/summer/\" target=\"_blank\" rel=\"noopener\">free Mountain Express bus</a> connecting Crested Butte downtown and Mountain Village from 7:30am - Midnight"
+    - "We recommend using the <a href=\"https://www.mtnexp.org/schedules-routes/summer/\" target=\"_blank\" rel=\"noopener\">free Mountain Express bus</a> connecting Crested Butte downtown and Mountain Village 7:30am - Midnight"
     - "For wedding events, the free bus stops directly at <a href=\"https://maps.app.goo.gl/G3fbyjSd3ftLp59H8\" target=\"_blank\" rel=\"noopener\">Public House</a> and a 15 minute walk from the <a href=\"https://maps.app.goo.gl/e1NMgN3LpQboqMBS7\" target=\"_blank\" rel=\"noopener\">Mountain Wedding Garden</a>"
     - "Use local Uber alternative <a href=\"https://apps.apple.com/us/app/firsttracks/id6472332482\" target=\"_blank\" rel=\"noopener\">First Tracks</a> App to schedule rides from 7:15am-2:30am anywhere in the valley (<a href=\"https://www.mtnexp.org/firsttracks/\" target=\"_blank\" rel=\"noopener\">details</a>)"
 
@@ -336,18 +336,18 @@ recommendations:
 
 # Registry
 registry:
-  message: "Traveling to celebrate with us is no small thing, and your being there is a gift to us. We've built a home together and already have what we need, so we're not registering for gifts. If you'd like to mark the occasion, we'd love to see it go somewhere lasting — we've picked a couple of causes close to our hearts below."
+  message: "Traveling to celebrate with us is no small thing, and your being there is a gift to us. We've built a home together and already have what we need. However, if you'd like to mark the occasion, we'd love to see it go somewhere meaningful - we picked a couple of causes close to our hearts below."
   stores:
     - name: "Bald Head Island Conservancy"
       description: "They care for the barrier island we love — protecting sea turtles, dunes, and maritime forest, and running the science and education that keep it wild."
       url: "https://www.bhic.org/donate"
       button_text: "Donate"
       icon: "🐢"
-    - name: "Against Malaria Foundation"
-      description: "They fund insecticide-treated bed nets in the places that need them most. It's one of the most cost-effective ways to protect a life — a few dollars goes a remarkably long way."
-      url: "https://www.againstmalaria.com/Donation.aspx"
+    - name: "Gavi, The Vaccine Alliance"
+      description: "They help vaccinate children against deadly diseases in the places that need it most. It's one of the most cost-effective ways to protect a life — a few dollars goes a remarkably long way."
+      url: "https://www.gavi.org/donate"
       button_text: "Donate"
-      icon: "🦟"
+      icon: "💉"
 
 # RSVP Configuration
 rsvp:
