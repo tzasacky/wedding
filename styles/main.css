@@ -408,6 +408,9 @@ footer a:hover { opacity: 0.8; }
 
 .timeline-horizontal::-webkit-scrollbar { display: none; }
 
+/* Mobile-only "swipe for more" hint — hidden on desktop where nav arrows exist */
+.timeline-swipe-hint { display: none; }
+
 .timeline-item-horizontal {
     flex: 0 0 700px;
     max-width: 700px;
@@ -1414,6 +1417,39 @@ footer a:hover { opacity: 0.8; }
         display: flex; flex-direction: column;
         justify-content: flex-start; align-items: center;
         padding: 0 1rem; margin: 0;
+    }
+
+    .timeline-swipe-hint {
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+        position: absolute;
+        bottom: 0.75rem;
+        right: 1rem;
+        z-index: 5;
+        padding: 0.4em 0.85em;
+        background: rgba(var(--primary-rgb), 0.92);
+        color: var(--text-on-primary);
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+        pointer-events: none;
+        opacity: 1;
+        transition: opacity 0.4s ease;
+    }
+    .timeline-swipe-hint.hidden { opacity: 0; }
+    .timeline-swipe-arrow {
+        display: inline-block;
+        animation: timeline-swipe-nudge 1.3s ease-in-out infinite;
+    }
+    @keyframes timeline-swipe-nudge {
+        0%, 100% { transform: translateX(0); }
+        50% { transform: translateX(4px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .timeline-swipe-arrow { animation: none; }
     }
 
     .timeline-card { max-width: calc(100vw - 2rem); width: 100%; margin: 0; }

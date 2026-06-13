@@ -323,6 +323,10 @@ function renderTimeline(config) {
             <button class="timeline-nav timeline-next" aria-label="Next timeline item">
                 <span>\u203A</span>
             </button>
+            <div class="timeline-swipe-hint" aria-hidden="true">
+                <span class="timeline-swipe-text">Swipe for more</span>
+                <span class="timeline-swipe-arrow">\u2192</span>
+            </div>
         </div>
     `;
 }
@@ -580,6 +584,12 @@ function initializeTimeline() {
     let currentIndex = 0;
     const items = document.querySelectorAll('.timeline-item-horizontal');
     const totalItems = items.length;
+    const swipeHint = document.querySelector('.timeline-swipe-hint');
+
+    // Hide the mobile swipe hint once the user reaches the end (or has interacted).
+    function updateSwipeHint() {
+        if (swipeHint) swipeHint.classList.toggle('hidden', currentIndex >= totalItems - 1);
+    }
 
     function setEqualTimelineHeights() {
         const cards = document.querySelectorAll('.timeline-card');
@@ -610,6 +620,8 @@ function initializeTimeline() {
             item.style.opacity = active ? '1' : '0.7';
             item.style.transform = active ? 'scale(1)' : 'scale(0.95)';
         });
+
+        updateSwipeHint();
     }
 
     function navigateTimeline(direction) {
@@ -632,6 +644,7 @@ function initializeTimeline() {
             scrollStart = timelineContainer.scrollLeft;
             isDragging = true;
             timelineContainer.style.scrollBehavior = 'auto';
+            if (swipeHint) swipeHint.classList.add('hidden');
         });
 
         timelineContainer.addEventListener('touchmove', (e) => {
