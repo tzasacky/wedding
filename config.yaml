@@ -336,18 +336,18 @@ recommendations:
 
 # Registry
 registry:
-  message: "Traveling to celebrate with us is no small thing, and your being there is a gift to us. We've built a home together and already have what we need. However, if you'd like to mark the occasion, we'd love to see it go somewhere meaningful - we picked a couple of causes close to our hearts below."
+  message: "Traveling to celebrate with us is no small thing, and your being there is a gift to us. We've built a home together and already have what we need. However, if you'd like to mark the occasion, feel free to donate in our name to one of the causes close to our hearts below. If you give, add our email (lclindegaard@gmail.com) so we can send a proper thank-you!"
   stores:
     - name: "Bald Head Island Conservancy"
       description: "They care for the barrier island we love — protecting sea turtles, dunes, and maritime forest, and running the science and education that keep it wild."
-      url: "https://www.bhic.org/donate"
+      url: "https://app.etapestry.com/onlineforms/BaldHeadIslandConservancy/Honor.html"
       button_text: "Donate"
       icon: "🐢"
-    - name: "Gavi, The Vaccine Alliance"
-      description: "They help vaccinate children against deadly diseases in the places that need it most. It's one of the most cost-effective ways to protect a life — a few dollars goes a remarkably long way."
-      url: "https://www.gavi.org/donate"
+    - name: "GiveWell All Grants Fund"
+      description: "They fund research into data-driven, cost-effective ways to save lives, and direct money to programs where donations have the most impact (eg. vaccines and malaria nets)."
+      url: "https://secure.givewell.org/"
       button_text: "Donate"
-      icon: "💉"
+      icon: "🌍"
 
 # RSVP Configuration
 rsvp:

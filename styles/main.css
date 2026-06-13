@@ -986,7 +986,8 @@ footer a:hover { opacity: 0.8; }
 
 .registry-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    align-items: stretch;
     gap: 2rem;
     margin-top: 1.5rem;
     max-width: 640px;
