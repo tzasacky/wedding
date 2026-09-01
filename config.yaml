@@ -103,17 +103,6 @@ sections:
     enabled: true
 
 # Event details
-welcome_dinner:
-  label: "Welcome Dinner"
-  optional: true
-  date: "Thursday, Sep 17"
-  venue: "Our Airbnb"
-  maps_url: "https://www.google.com/maps/search/?api=1&query=26+Whetstone+Rd+Crested+Butte+CO+81225"
-  description: "In town early? Stop by anytime for casual pizza to kick off the weekend!"
-  itinerary:
-    - time: "6–10 PM"
-      event: "Pizza & Drinks"
-
 ceremony:
   label: "Friday Wedding"
   date: "Friday, Sep 18"
@@ -132,8 +121,6 @@ ceremony:
       event: "Cocktail Hour"
     - time: "6:00 PM"
       event: "Dinner"
-    - time: "10:00 PM"
-      event: "→ After-Party"
 
 reception:
   label: "Saturday Party"
@@ -159,9 +146,9 @@ goodbye_brunch:
   date: "Sunday, Sep 20"
   venue: "Our Airbnb"
   maps_url: "https://www.google.com/maps/search/?api=1&query=26+Whetstone+Rd+Crested+Butte+CO+81225"
-  description: "Stop by whenever you're up to grab some pastries and say goodbye!"
+  description: "Stop by if you'd like to say goodbye!"
   itinerary:
-    - time: "9 AM–12 PM"
+    - time: "9 AM"
       event: "Coffee & Pastries"
 
 # Timeline section (optional)
